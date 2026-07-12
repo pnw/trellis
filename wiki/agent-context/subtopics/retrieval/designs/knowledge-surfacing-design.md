@@ -23,7 +23,7 @@ related:
   - "[[wiki/llm-wiki/constructs/three-layer-architecture]]"
 tags: [agent-context, progressive-disclosure, architecture, okf, knowledge-management, design-patterns]
 created: 2026-07-05
-timestamp: 2026-07-08T01:30:00Z
+timestamp: 2026-07-12T07:00:00Z
 confidence: high
 novelty: exploratory
 status: draft
@@ -82,7 +82,7 @@ Query arrives
 |--------|-------------|
 | **Claude Code** | Removed vector search/embeddings in May 2025 in favor of model-driven glob/grep/read; reported to have "outperformed everything." [[wiki/agent-context/subtopics/retrieval/sources/claude-code-agentic-search-vs-rag]] |
 | **Cursor, Windsurf, GitHub Copilot, Sourcegraph Amp** | **Correction (2026-07-07):** an initial single-source claim that these vendors also dropped vectors does not hold up. Cursor is hybrid (grep + embeddings, agent picks per query), Windsurf and GitHub Copilot are embeddings-first, and Sourcegraph Amp uses structural code-graph indexing — see [[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]] for the vendor-by-vendor detail. Claude Code's pure-grep design is real but is the exception, not the rule. |
-| **This wiki, this session** | This entire research and maintenance pass — reviewing 114 pages, finding orphans, tracing citation chains — was conducted using exactly this pattern (Grep/Glob/Read tools against the raw `wiki/` directory), with no generated index consulted beyond `wiki/index.md` itself. |
+| **The pre-split ai-research vault (2026-07-07, 114 pages)** | An entire research and maintenance pass over that vault — reviewing 114 pages, finding orphans, tracing citation chains — was conducted using exactly this pattern (Grep/Glob/Read tools against the raw `wiki/` directory), with no generated index consulted beyond `wiki/index.md` itself. (This page moved to the trellis repo in the 2026-07-12 federation split; the observation stands as dated evidence.) |
 
 ### Strengths
 
@@ -98,7 +98,7 @@ Query arrives
 
 ### When to Use
 
-- Default assumption for any wiki small enough that `Grep`/`Glob` calls stay cheap and fast — which, per the evidence above, appears to extend well past this wiki's current 114-page scale.
+- Default assumption for any wiki small enough that `Grep`/`Glob` calls stay cheap and fast — which, per the evidence above, appears to extend well past the pre-split ai-research vault's 114-page scale (as of 2026-07-07).
 - When query vocabulary reliably overlaps with tags, frontmatter, filenames, or body text (true for this wiki, given its tagging and naming conventions).
 - As the first thing to try before building any of Approaches A/B/C — those add infrastructure this approach doesn't need until it demonstrably falls short.
 
@@ -455,7 +455,7 @@ validation:
 
 ## Recommendation for This Wiki
 
-**Revision (2026-07-07):** this wiki has just crossed 114 pages — past the ~100-page threshold this section originally named as the trigger to "graduate to Approach B." Research done at that trigger point changes the recommendation rather than just confirming the original plan.
+**Revision (2026-07-07):** the pre-split ai-research vault had just crossed 114 pages — past the ~100-page threshold this section originally named as the trigger to "graduate to Approach B." Research done at that trigger point changes the recommendation rather than just confirming the original plan.
 
 **Current default: Approach 0 (agentic search), already in use.** This entire research and maintenance session was conducted via `Grep`/`Glob`/`Read` directly against the raw `wiki/` directory, with `wiki/index.md` consulted but no other generated index. This matches the specific choice Anthropic made for Claude Code — real, but, per vendor-level research, the exception rather than an industry-wide norm; see [[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]]. [[wiki/agent-context/subtopics/retrieval/sources/claude-code-agentic-search-vs-rag]] There is no evidence this wiki has outgrown it yet, and no build cost to keep using it — that reasoning holds regardless of how common the choice is elsewhere.
 

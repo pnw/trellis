@@ -16,7 +16,7 @@ related:
   - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
 tags: [llm-wiki, multi-agent, agent-workflows, context-engineering, implementation]
 created: 2026-07-06
-timestamp: 2026-07-06T00:00:00Z
+timestamp: 2026-07-12T07:00:00Z
 confidence: medium
 novelty: exploratory
 status: draft
@@ -100,10 +100,12 @@ human intent
 - The Codex thread emphasizes that the wiki belongs in a larger AI project stack with tools, evals, observability, and governance: [[wiki/llm-wiki/sources/llm-wiki-effectiveness-codex-thread]].
 - ObjectGraph frames document structure as an agent traversal problem and discusses multi-agent handoff as a context-consumption use case: [[wiki/agent-context/subtopics/retrieval/sources/objectgraph-document-injection-to-knowledge-traversal]].
 - Intent compiler validation identifies coordination failures, shared state, structured handoffs, and evaluation loops as first-class risks in multi-agent systems: [[ai-research::wiki/intent-compiler/sources/intent-compiler-deep-research-validation]].
+- The only operational evidence in this vault for any coordination invariant is negative: on 2026-07-08 two parallel agent sessions each added a conflicting `invariant` page-type definition, and the merge landed with live conflict markers in the shared contract files — violating invariant 6 (single writer per file) before this pattern was ever deployed. [[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]] rates "multi-session concurrency is workable with git alone" plausible-but-unvalidated on exactly that n=1, and the one instance required manual reconciliation of contradictory normative definitions.
 
 ## Open Design Questions
 
 - Should the task graph be markdown, YAML frontmatter, or a generated view over task pages?
 - What locking or ownership convention is enough to prevent conflicting agent edits?
+- Can the coordination invariants be enforced by anything cheaper than convention? The 2026-07-08 collision suggests convention alone fails silently.
 - How much role-specific context should be duplicated in `wiki/agents/` versus linked from shared pages?
 - What eval metrics best prove the wiki is improving multi-agent throughput rather than adding ceremony?

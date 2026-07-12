@@ -24,6 +24,16 @@
 
 **Type-specific frontmatter:** `novelty`
 
+## Lifecycle: Blueprints Die into Decisions
+
+A design page whose subject is not yet built is a blueprint. When the artifact it specifies ships, the design's descriptive content is superseded by the artifact itself — do not maintain a prose mirror of something that exists. At that point:
+
+- Extract the choice rationale and rejected alternatives into one or more `decision` pages.
+- Delete or deprecate the descriptive sections.
+- Keep as live `design` content only what is still operative (protocols agents execute) or still unbuilt.
+
+Designs that never ship an artifact — operative protocols, option maps kept for future reconsideration — are not blueprints and do not expire this way.
+
 ---
 
 Part of the `schema/page-types/` registry — see `schema/page-types/registry.md` for the full vocabulary, location rules, extensibility rules, and the type decision tree. This file is the normative spec for one page type and is standalone: it carries no rationale or history (see decision pages in the wiki for those, when they exist).

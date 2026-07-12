@@ -19,17 +19,16 @@ related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]]"
 tags: [agent-context, context-engineering, agents, portability]
 created: 2026-07-06
-timestamp: 2026-07-06T00:00:00Z
+timestamp: 2026-07-12T07:00:00Z
 confidence: medium
 novelty: emerging
-aka: ["agent-agnostic context", "portable agent instructions", "cross-agent manifests", "agent manifest interoperability"]
 ---
 
 # Agent Context Portability
 
 ## Definition
 
-Agent context portability is the design problem of writing one set of project instructions that works across multiple coding agents while preserving each tool's native loading semantics, routing features, and precedence rules.
+Agent context portability is the design problem of writing one set of project instructions that works across multiple coding agents while preserving each tool's native loading semantics, routing features, and precedence rules. Also called agent-agnostic context, portable agent instructions, cross-agent manifests, or agent manifest interoperability.
 
 ## Design Thesis
 
@@ -74,6 +73,8 @@ For a small project, the minimum viable version is just `AGENTS.md` plus `CLAUDE
 | Semantic auto-inclusion | Not documented for AGENTS.md | Skills/rules distinction, not AGENTS.md semantic routing | `inclusion: auto` with `name` and `description` |
 | Manual inclusion | Ask/read files or commands | Skills/manual prompting | `inclusion: manual` with `#file` or slash command |
 | Byte/size guidance | 32 KiB default combined project-doc cap | Target under 200 lines per CLAUDE.md | Focused files; no AGENTS.md inclusion modes |
+
+This matrix records Codex, Claude Code, and Kiro loading semantics as documented mid-2026 and is the most rot-prone content on this page — re-verify against current vendor docs before relying on it.
 
 ## Effectiveness Rationale
 

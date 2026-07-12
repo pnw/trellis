@@ -44,14 +44,17 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 ### Designs
 * [[wiki/llm-wiki/designs/evidence-tier-schema]] — This wiki's two-axis epistemic schema: a required evidence tier on source-captures and rule-derived confidence on downstream pages, adapted from Admiralty, ICD 203, and GRADE.
 * [[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]] — Design pattern for adapting an LLM wiki into a shared context, coordination, handoff, and evaluation layer for multi-agent implementation projects.
-* [[wiki/llm-wiki/designs/project-wiki-application-guide]] — Operational guide for using this research wiki as a repertoire of agentic workflow knowledge and adapting it into project-specific implementation wikis.
+* [[wiki/llm-wiki/designs/project-wiki-application-guide]] — Curation and promotion guide for project wikis: selecting repertoire pages from source wikis phase by phase, and routing lessons back to the wiki whose goal they serve; instance creation itself belongs to seed/interview.md.
 * [[wiki/llm-wiki/designs/project-wiki-template]] — Reusable structure for adapting this AI research wiki into a codebase-specific knowledge base for agentic implementation workflows.
-* [[wiki/llm-wiki/designs/trellis-repo-design]] — Specification for Trellis, the upstream wiki-method repository: distributable schema/scripts/seed surface, dogfood lab wiki, upgrade prompt, and bootstrap plan.
-* [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]] — Draft design for the next evolution: one goal per wiki, the wiki method extracted into the Trellis upstream repository, breadcrumb-based schema inheritance for downstream instances, and outbound-only cross-wiki references with move-log forwarding.
+* [[wiki/llm-wiki/designs/trellis-repo-design]] — Deprecated 2026-07-12: the bootstrap blueprint, executed and died into its decision pages per the design-lifecycle doctrine; kept as a routing stub.
+* [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]] — The live federation design: single-goal and breadcrumbs-over-rails principles, target topology, schema governance, instantiation manifest, three-breadcrumb inheritance, log taxonomy, and the unexecuted Phase 2–3 roadmap.
 * [[wiki/llm-wiki/designs/wiki-self-experimentation]] — The protocol by which this wiki evolves its own knowledge-base practices as a first-class research activity — hypothesis on change, operational-evidence snapshot, verdict assessment, confidence cascade.
 
 ### Decisions
 * [[wiki/llm-wiki/decisions/adopt-agentic-search-with-qmd]] — Chose grep-based agentic search as the wiki's default retrieval with QMD-style local hybrid search as the graduation path, over embedding-RAG and bespoke index infrastructure.
+* [[wiki/llm-wiki/decisions/adopt-single-goal-federation]] — The founding split decision: one goal per wiki, trellis as upstream method lab and ai-research as downstream instance #1, federated via peer links, move-log forwarding, and manifest-pinned vendored schema. Executed 2026-07-12.
+* [[wiki/llm-wiki/decisions/designs-die-into-decisions]] — Design lifecycle doctrine: when a blueprint's artifact ships, its rationale collapses into decision pages and the descriptive prose is superseded by the artifact itself.
+* [[wiki/llm-wiki/decisions/trellis-repo-bootstrap]] — Repo-shape decisions for Trellis: the name (and rejected alternates), the two-surface distributable/lab boundary, seeded-not-inherited AGENTS.md, path-preserving migration, plain-copy provenance.
 
 ### Invariants
 * [[wiki/llm-wiki/invariants/raw-source-immutability]] — Files under raw/ are never edited in place; fidelity is what makes re-capture audits and upstream change detection possible.

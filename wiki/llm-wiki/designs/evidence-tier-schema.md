@@ -11,7 +11,7 @@ related:
   - "[[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]]"
 tags: [epistemics, schema-design, provenance, evidence-grading, lint]
 created: 2026-07-07
-timestamp: 2026-07-07T17:30:00Z
+timestamp: 2026-07-12T07:00:00Z
 confidence: low
 novelty: exploratory
 status: stable
@@ -48,17 +48,11 @@ The credibility axis lives downstream because assigning it requires the cross-va
 
 ### `evidence` tiers (source-captures, required)
 
-Ordered strongest to weakest: `empirical-primary`, `empirical-secondary`, `official-docs`, `expert-analysis`, `vendor-claim`, `llm-generated`. Source *type* gives the starting tier; Reliability Notes may justify a GRADE-style downward adjustment. Full definitions in `schema/page-format.md`.
+A six-tier reliability scale assigned once at ingest from the source's *type*, adjustable downward GRADE-style on capture-time signals. The tier list, definitions, and adjustment rule are normative in `schema/page-format.md`; the rationale for assigning it in isolation is that reliability is a property of the source alone, which is what keeps the field compatible with source isolation.
 
 ### `confidence` derivation (non-source pages)
 
-- `high` — ≥2 independent cited sources, ≥1 empirical tier, no uncontested contradiction in the vault.
-- `medium` — one empirical source; or multiple independent non-empirical sources; or corroborated official docs.
-- `low` — one non-empirical source; `llm-generated`-only sourcing; or contested claims.
-
-**Independence rule:** sources sharing authorship or commercial interest, or deriving from one another, count as one source. Citing an LLM-generated synthesis alongside the sources it summarized is circular reporting, not corroboration.
-
-**Scoped claims:** `official-docs`/`vendor-claim` sources are authoritative for design-intent claims about their own systems, weak for effectiveness claims. Design-intent pages may reach `medium` on such sources; effectiveness claims cannot.
+A three-level credibility ceiling derived from the count, tier, and independence of the page's cited sources — never asserted above it. The ceiling table, the independence rule, and the scoped-claims rule are normative in `schema/page-format.md`; this page keeps only their motivations. The independence rule exists because corroboration counting without it produced the motivating inconsistency below — non-independent sources multiplying into false confidence, with an LLM synthesis cited alongside the sources it summarized as the canonical circular-reporting shape. The scoped-claims rule exists because self-descriptive sources are authoritative about their own design intent but structurally conflicted about their own effectiveness, so the two claim scopes must hit different ceilings.
 
 ### Reliability Notes (source-capture section)
 
@@ -66,7 +60,7 @@ Within-source credibility signals assessable from the source alone: methodology 
 
 ### Lint enforcement
 
-Errors: missing/invalid `evidence` on captures; `confidence` on captures or `evidence` on non-source pages. Warnings: confidence above the derivation ceiling; non-independent corroboration. Full rules in `schema/lint.md`.
+Lint enforces field placement, tier validity, derivation ceilings, and independence honesty; full rules in `schema/lint.md`.
 
 ## Workflow / Data Flow
 

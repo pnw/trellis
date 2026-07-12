@@ -12,7 +12,7 @@ related:
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
 tags: [llm-wiki, meta-research, self-experimentation, methodology, knowledge-management]
 created: 2026-07-08
-timestamp: 2026-07-08T03:30:00Z
+timestamp: 2026-07-12T07:00:00Z
 confidence: low
 novelty: exploratory
 status: stable
@@ -28,9 +28,13 @@ Make the evolution of this wiki's own knowledge-base practices scientific and me
 
 ## System Boundary
 
-**Inside:** Practice changes to this wiki (schema, workflows, tooling, conventions), their hypotheses and revisit triggers, operational-evidence snapshots, verdict assessments, and the resulting confidence updates.
+**Inside:** Practice changes to the wiki method and its instances (schema, workflows, tooling, conventions), their hypotheses and revisit triggers, operational-evidence snapshots, verdict assessments, and the resulting confidence updates.
 
 **Outside:** The research content itself (the other topics), and the separate codebase pilot ([[ai-research::wiki/intent-compiler/designs/pilot-implementation-playbook]]) — same loop shape, different subject.
+
+## Federation Scope
+
+As of the 2026-07-12 split, the protocol is method-wide, not single-vault. Method experiments — schema changes, workflow changes, shared tooling — open hypothesis lines in the trellis roadmap ([[wiki/roadmap]]). Downstream instances may open instance-local lines in their own roadmaps, citing this protocol cross-wiki. Verdicts about the method belong in trellis assessments; instance-observed friction is harvested upstream as operational evidence — this is the arms-length evidence channel the federation created. Same-operator instances still collapse to one source under the independence rule (invariant 4 unchanged).
 
 ## Core Model
 
