@@ -1,0 +1,4 @@
+# moves.log — mechanical record of renames/moves/deletes with tombstone dispositions.
+# Lines: <date>  moved    <old> -> <new>
+#        <date>  deleted  <path>  (moved-to <path|peer::path> | merged-into <path> | superseded-by <path> | deleted)
+# Bootstrap note: all content in the initial commit arrived from ai-research (pnw/ai-research @ 3c59088) — see wiki/log.md; departures from ai-research are tombstoned in THAT repo's moves.log.

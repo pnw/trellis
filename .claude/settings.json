@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/qmd-index.sh > /tmp/qmd-index-sync.log 2>&1 || true",
+            "async": true,
+            "statusMessage": "Refreshing QMD search index..."
+          }
+        ]
+      }
+    ]
+  }
+}

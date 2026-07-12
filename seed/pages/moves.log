@@ -1,0 +1,3 @@
+# moves.log — mechanical record of renames/moves/deletes with tombstone dispositions.
+# Lines: <date>  moved    <old> -> <new>
+#        <date>  deleted  <path>  (moved-to <path|peer::path> | merged-into <path> | superseded-by <path> | deleted)
