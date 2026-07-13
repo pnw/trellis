@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: design
+tier: authored
+instigators: [user]
+status: stable
+updated: 2026-07-13
+---
+
 # `design` Page Type
 
 **Question answered:** How does this system or architecture work?
+
+**Instigation:** authored tier — user-instigated (`schema/page-types/registry.md`, Instigator Tiers). Agents draft and propose designs in conversation; they do not create design pages unprompted.
 
 **When to use:**
 - Architecture descriptions, workflow designs, system models, implementation plans, process specifications, design docs.

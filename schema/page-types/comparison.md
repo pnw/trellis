@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: comparison
+tier: interpretive
+instigators: [agent, user]
+status: stable
+updated: 2026-07-13
+---
+
 # `comparison` Page Type
 
 **Question answered:** How do these things relate or differ?
+
+**Instigation:** interpretive tier — created by an agent or at user request when a real question or tradeoff decision calls for the comparison (`schema/page-types/registry.md`, Instigator Tiers).
 
 **When to use:**
 - X vs Y, approach comparisons, tradeoff analysis, pattern comparisons, system comparisons, conceptual distinctions.

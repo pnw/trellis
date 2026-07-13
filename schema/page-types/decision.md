@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: decision
+tier: authored
+instigators: [user]
+status: stable
+updated: 2026-07-13
+---
+
 # `decision` Page Type
 
 **Question answered:** What choice was made among alternatives, and why?
+
+**Instigation:** authored tier — user-instigated or user-ratified (`schema/page-types/registry.md`, Instigator Tiers). Agents draft decision records for choices the user has made or ratified; they do not create them unprompted.
 
 A normative artifact — an architecture/design decision record (ADR). It records a *specific choice already made*, the alternatives weighed, and the reasoning, so the decision is referenceable and the rejected paths aren't silently re-litigated. A decision is an **event**: it happened once, at a point in time, and its record is never edited into a different choice — a changed mind is a *new* decision that supersedes this one.
 

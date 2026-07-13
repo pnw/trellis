@@ -11,6 +11,7 @@ Exit code: 1 if any errors, 0 otherwise (warnings never fail the run).
 
 import re
 import sys
+from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -192,6 +193,31 @@ def main():
         print(f"ERROR   {e}")
     for w in warnings:
         print(f"WARNING {w}")
+
+    # stats — page counts by type and per-topic capture/derived ratio.
+    # Observability only, never a finding: there is no target ratio
+    # (schema/page-types/registry.md, Instigator Tiers).
+    type_counts = Counter(fm.get("type") for fm in pages.values()
+                          if fm.get("type") in TYPES)
+    if type_counts:
+        by_type = ", ".join(f"{t} {n}" for t, n in type_counts.most_common())
+        print(f"\nstats: {sum(type_counts.values())} typed pages — {by_type}")
+        topics = {}
+        for key, fm in pages.items():
+            if fm.get("type") not in TYPES:
+                continue
+            topic = key.split("/")[1]
+            cap, der = topics.get(topic, (0, 0))
+            if fm.get("type") == "source-capture":
+                cap += 1
+            else:
+                der += 1
+            topics[topic] = (cap, der)
+        for topic in sorted(topics):
+            cap, der = topics[topic]
+            ratio = f"{der / cap:.2f} derived per capture" if cap else "no captures"
+            print(f"stats: {topic}: {cap} captures, {der} derived ({ratio})")
+
     print(f"\nlint: {len(errors)} errors, {len(warnings)} warnings, "
           f"{len(pages)} pages checked")
     return 1 if errors else 0

@@ -14,10 +14,11 @@ This repository is a structured markdown wiki maintained by AI agents from immut
 - `confidence` is derived, not asserted — ceiling comes from evidence tiers and independence of cited sources (`schema/page-format.md`). Wikis sharing an operator count as one source.
 - Record every wiki/raw file move or delete in `wiki/moves.log` (tombstone dispositions; `scripts/movelog.sh` prints candidates). This wiki maintains only its outbound links; peer links use the `<peer>::` prefix per `schema/conventions.md`.
 - Breadcrumbs over rails: workflows assume an agent with judgment; artifacts make judgment cheap and auditable, never replace it.
+- Page creation follows the instigator tiers (`schema/page-types/registry.md`): source-captures at ingest, interpretive pages (construct, entity, synthesis, comparison, assessment) when their trigger fires — ingest is an occasion for interpretation, not a justification — and authored pages (design, decision, invariant) only on user instigation.
 
 ## Workflows
 
-- **Ingest**: per `schema/ingest.md`; update `wiki/index.md` and append to `wiki/log.md` every time.
+- **Ingest**: per `schema/ingest.md`, two-staged — Stage 1 captures the source (bounded, source-isolated, delegable); Stage 2 reviews vault-aware and routes per the instigator tiers. Update `wiki/index.md` and append to `wiki/log.md` every time.
 - **Query**: read `wiki/index.md` first; search `wiki/` directly; cite with wikilinks.
 - **Lint**: `python3 scripts/lint.py` for the deterministic tier; judgment tier per `schema/lint.md`, including "does this content serve the goal?".
 - **Upgrade**: run the canonical upgrade prompt from trellis `seed/interview.md` Step 3.

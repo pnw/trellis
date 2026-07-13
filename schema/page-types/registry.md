@@ -1,3 +1,9 @@
+---
+spec: registry
+status: stable
+updated: 2026-07-13
+---
+
 # Page Type Registry
 
 Controlled vocabulary of artifact types for wiki pages. This file is part of the shared `schema/` layer referenced by `AGENTS.md`; tool-specific adapters must reference it rather than duplicating it.
@@ -7,6 +13,24 @@ type: source-capture | construct | entity | synthesis | design | assessment | co
 ```
 
 Types divide into two families. **Descriptive/epistemic** types (`source-capture`, `construct`, `entity`, `synthesis`, `design`, `assessment`, `comparison`) capture what sources say, what concepts mean, and what is known or uncertain — they carry the `evidence`/`confidence` epistemic machinery. **Normative** types (`decision`, `invariant`) capture what has been *chosen* or what *must hold* — they are asserted rather than evidence-derived, so `confidence` is optional and usually omitted and their `sources` may point at the design, capture, or chat that grounds the choice rather than an external raw source.
+
+---
+
+## Instigator Tiers
+
+Orthogonal to the descriptive/normative split, types divide into three tiers by *who instigates a page and what triggers its creation*. The type decision tree below answers "what type is this page?"; this table answers "should this page exist, and on whose initiative?"
+
+| Tier | Types | Instigator | Trigger |
+|------|-------|------------|---------|
+| **Capture** | `source-capture` | ingest | A source arrives. One capture per meaningful source — bounded, source-isolated, delegable to a capture agent with no vault context (`schema/ingest.md`). |
+| **Interpretive** | `construct`, `entity`, `synthesis`, `comparison`, `assessment` | agent (at ingest review or query time) or user | Ingest review surfacing something the wiki will reason with again; recurrence across captures; a real question; a contradiction needing adjudication; a verdict falling due; an explicit user request. |
+| **Authored** | `design`, `decision`, `invariant` | user | Explicit user request or ratification. Agents draft and propose authored pages in conversation; they do not create them unprompted. |
+
+Rules for the interpretive tier:
+
+- **Ingest is an occasion for interpretation, not a justification.** Every capture raises the question "does this change the derived layer?" — asking it is a required review step (`schema/ingest.md`, Stage 2); answering yes is not. A defensible answer is often no: the contribution stays in the capture until something needs it.
+- **Promotion test.** Create a `construct` or `entity` when the wiki will reason with the concept again *independent of the source that introduced it*. Recurrence across captures is retrospective evidence for that; a novel, load-bearing concept from a single source is prospective evidence. Mere mention is neither. Practical form: if the page's Why It Matters section could only restate the one source's claims, it is a paragraph in the capture, not a page.
+- **Single-source promotion is priced, not prohibited.** A page citing one source takes the `confidence` ceiling that source supports — `medium` at best, `low` for non-empirical tiers (`schema/page-format.md`) — and later corroboration raises it. The confidence machinery is the cost model; there is no page-count quota, and per-type counts (`scripts/lint.py` stats output) are an observable, never a target.
 
 ---
 
@@ -31,6 +55,21 @@ One normative file per page type — the unit a downstream wiki subsets:
 - `schema/page-types/comparison.md`
 - `schema/page-types/decision.md`
 - `schema/page-types/invariant.md`
+
+### Spec Frontmatter
+
+Files under `schema/page-types/` carry their own minimal YAML frontmatter — machine-readable metadata for downstream wikis diffing or subsetting the schema:
+
+```yaml
+spec: page-type | registry   # what kind of schema file this is
+type: construct              # page-type files only — the type this file specifies
+tier: capture | interpretive | authored   # page-type files only — instigator tier (see table above)
+instigators: [ingest] | [agent, user] | [user]   # page-type files only
+status: stable | draft | deprecated
+updated: YYYY-MM-DD          # date of last normative change
+```
+
+Trigger detail stays prose in the Instigator Tiers table above; the frontmatter carries only what a `git diff schema/` should make legible. Do not add fields beyond these without a schema change.
 
 ---
 

@@ -4,23 +4,27 @@ Agent-agnostic workflow for processing a new source into the wiki. This file is 
 
 ## Workflow
 
+Ingest is two-staged. **Stage 1 (capture)** is bounded and source-isolated: executable by a delegated capture agent given only the raw source and this spec, with no other vault context — impartiality of the capture is the point. **Stage 2 (review and routing)** is vault-aware and judgment-bearing: performed by the orchestrating agent, reading the capture rather than the raw source. One session may run both stages; the boundary between them is normative even when the executor is a single agent.
+
+### Stage 1 — Capture
+
 1. **Acquire the source.** If the user provides a URL, save it to `raw/` first (see Web Source Handling and PDF Source Handling below). If the source is already in `raw/`, read it directly.
-2. **Discuss** key takeaways with the user before writing anything, unless the user explicitly asks for autonomous ingest.
-3. **Create source-capture page** at `wiki/{topic}/sources/{source-slug}.md` or `wiki/{topic}/subtopics/{subtopic}/sources/{source-slug}.md` with `type: source-capture` frontmatter and a required `evidence` tier (see `schema/page-format.md`). The source-capture is source-isolated — it records what this source says plus capture-time assessment derivable from the source alone; it may point to other pages but never imports, endorses, or reconciles with them.
-4. **Identify contribution shapes.** Determine which downstream artifacts this source affects:
-   - Does it introduce or update constructs?
-   - Does it introduce or update entities?
-   - Does it update a synthesis?
-   - Does it update a design?
-   - Does it update an assessment?
-   - Does it update a comparison?
-   - Does it establish or update an invariant (a standing constraint with an enforcement story and a removal cost)?
-5. **Route contributions directly to affected typed artifacts.** Update or create those artifacts. Do not force contributions through construct pages first. If the source contradicts existing vault content, the contradiction is adjudicated here — in the downstream synthesis or assessment, citing both sources — never inside the source-capture.
-6. **Backlink audit** — scan existing wiki pages for mentions of concepts from this source. Add root-relative wikilinks such as `[[wiki/topic/constructs/page-name]]` in both directions where missing.
-7. **Re-derive confidence** on downstream pages the source touched: check each page's `confidence` against the derivation ceiling in `schema/page-format.md` (a new corroborating or contradicting source can raise or lower it).
-8. **Update `wiki/index.md`** — add new entries, grouped by topic, subtopic when present, then type.
-9. **Refresh the local search index** — run `scripts/qmd-index.sh` (best-effort; safe to skip if it fails, e.g. embedding model downloads blocked by network policy — see `wiki/agent-context/subtopics/retrieval/entities/qmd.md`). The index itself is not committed; the script is what every agent/session reruns to reproduce it.
-10. **Append to `wiki/log.md`** — add a bullet under today's date heading (create the heading at the top if it doesn't exist). Format: `* **Ingest**: Processed [Source Title](wiki/topic/sources/source-slug.md) from <origin>. Created/updated pages X, Y, Z.` Note any contradictions found.
+2. **Create the source-capture page** at `wiki/{topic}/sources/{source-slug}.md` or `wiki/{topic}/subtopics/{subtopic}/sources/{source-slug}.md` with `type: source-capture` frontmatter and a required `evidence` tier (see `schema/page-format.md`). The source-capture is source-isolated — it records what this source says plus capture-time assessment derivable from the source alone; it may point to other pages but never imports, endorses, or reconciles with them.
+3. **List routing candidates.** Fill the Contribution Routing section with candidate contributions derivable from the source alone — concepts it introduces, named things it describes, claims that could change broader understanding. A vault-aware capturer may name concrete wikilink targets; a context-free capture agent names candidates by shape and name, and Stage 2 resolves them against the vault.
+
+Stage 1 ends here. The capture is the handoff artifact: Stage 2 consumes it in place of the raw source.
+
+### Stage 2 — Review and Routing
+
+4. **Discuss** the capture's takeaways and routing candidates with the user before writing downstream pages, unless the user has asked for autonomous ingest.
+5. **Decide promotions** per the instigator tiers in `schema/page-types/registry.md`. Ingest is an occasion for interpretation, not a justification: every capture raises the question "does this change the derived layer?", and a defensible answer is often no. A single source may justify a new interpretive page when the promotion test passes (priced by the confidence rules); mere mention never does. Authored-tier pages (`design`, `decision`, `invariant`) are not created here without user instigation.
+6. **Route promoted contributions directly to affected typed artifacts.** Update or create those artifacts. Do not force contributions through construct pages first.
+7. **Detect contradictions.** Check the capture's claims against existing vault content — a Stage 2 responsibility, since a context-free capturer cannot see the vault. Adjudicate downstream in the affected synthesis or assessment, citing both sources — never inside the capture.
+8. **Backlink audit** — scan existing wiki pages for mentions of concepts from this source. Add root-relative wikilinks such as `[[wiki/topic/constructs/page-name]]` in both directions where missing.
+9. **Re-derive confidence** on downstream pages the source touched: check each page's `confidence` against the derivation ceiling in `schema/page-format.md` (a new corroborating or contradicting source can raise or lower it).
+10. **Update `wiki/index.md`** — add new entries, grouped by topic, subtopic when present, then type.
+11. **Refresh the local search index** — run `scripts/qmd-index.sh` (best-effort; safe to skip if it fails, e.g. embedding model downloads blocked by network policy — see `wiki/agent-context/subtopics/retrieval/entities/qmd.md`). The index itself is not committed; the script is what every agent/session reruns to reproduce it.
+12. **Append to `wiki/log.md`** — add a bullet under today's date heading (create the heading at the top if it doesn't exist). Format: `* **Ingest**: Processed [Source Title](wiki/topic/sources/source-slug.md) from <origin>. Created/updated pages X, Y, Z.` Note any contradictions found.
 
 ## Source-Capture Format
 
@@ -74,12 +78,17 @@ Exclude: navigation/header/footer links, ads/promotions/sponsored content, share
 
 ## Contribution Routing
 
-List the downstream artifacts this source may create or update.
+List candidate contributions — the downstream artifacts this source may create or update. Candidates, not commitments: Stage 2 decides what is actually promoted (`schema/page-types/registry.md`, Instigator Tiers).
 
-Examples:
+Examples (vault-aware capturer, concrete targets):
 - `[[wiki/intent-compiler/designs/intent-compiler-design]]` — updates design model
 - `[[wiki/intent-compiler/constructs/process-weights]]` — defines or updates construct
 - `[[wiki/intent-compiler/assessments/validation-assessment]]` — affects validation status
+
+A context-free capture agent cannot know vault paths; it names candidates by shape and name instead:
+- introduces the concept "process weights" — candidate construct
+- describes the tool FooSearch — candidate entity
+- reports results contradicting the common framing of X — candidate synthesis or assessment input
 
 ## Extraction Notes
 
@@ -92,8 +101,8 @@ The sections from Core Contribution through Methodology are faithful reportage o
 
 - **Source capture is source-isolated (epistemic, not navigational).** The body records only what this source says; pointers to other pages are fine, adjudication is not.
 - **Assign `evidence` at capture time.** Source type gives the starting tier; Reliability Notes may justify a downward adjustment.
-- **Contribution routing fans out after source capture.** Each contribution goes directly to the affected artifact type.
-- **Do not force every contribution through construct pages.** A source may update a synthesis, design, or assessment directly.
+- **Routing candidates are listed at capture; promotion is decided at review.** The instigator tiers and promotion test in `schema/page-types/registry.md` govern what actually gets created — ingest is an occasion for interpretation, not a justification.
+- **Do not force every contribution through construct pages.** A promoted contribution may update a synthesis, design, or assessment directly.
 - **Never edit existing files in `raw/` in place.** Fidelity is what makes re-capture audits and upstream change detection possible — the two purposes `raw/` exists for.
 - If a topic directory doesn't exist yet, create it.
 - Place new pages in the type folder that matches frontmatter: `sources/`, `constructs/`, `entities/`, `syntheses/`, `designs/`, `assessments/`, `comparisons/`, or `invariants/`.

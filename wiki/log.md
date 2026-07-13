@@ -2,6 +2,12 @@
 
 <!-- Append-only. Newest first. -->
 
+## 2026-07-13
+
+* **Schema**: Adopted the instigator-tier model — who creates which page types and when — and restaged ingest into bounded capture (Stage 1: source-isolated, delegable to a context-free capture agent, ends at the source-capture with routing candidates) plus vault-aware review and routing (Stage 2: discussion, promotion decisions per the tiers, contradiction detection). Changes: `schema/page-types/registry.md` (Instigator Tiers section + spec-frontmatter convention), minimal frontmatter and Instigation lines across all nine `schema/page-types/` specs, `schema/ingest.md` (two-stage workflow), `scripts/lint.py` + `schema/lint.md` (composition stats — observable, never a target), and compact-contract updates in `AGENTS.md` and `seed/agents-md-template.md`. Rationale in [[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]].
+* **Ingest**: Processed [Claude Code Thread: Staged Ingest and Instigator Tiers](wiki/llm-wiki/sources/staged-ingest-instigator-tiers-claude-code-thread.md) from this session (declared-condensed raw in `raw/chats/`, owner statements verbatim). Created [[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]] (authored tier, user-instigated). No interpretive pages promoted: the thread's concepts land as schema operating rules, canonical in `schema/`, and the promotion test does not pass for wiki-side duplicates.
+* **Roadmap**: Added the instigator-tiers meta-experiment line (revisit on downstream friction data plus pilot instantiation), the downstream-friction-reports self-maintenance item, and open questions on middle-tier instigator blurriness and spec-frontmatter scope; marked the first-upgrade inheritance exercise armed by this schema change.
+
 ## 2026-07-12
 
 * **Schema**: Added the design-lifecycle rule to `schema/page-types/design.md` — a blueprint design dies into `decision` page(s) when its artifact ships; only operative or unbuilt content stays live. Rationale in [[wiki/llm-wiki/decisions/designs-die-into-decisions]], adopted from the a-priori review of all nine design pages.

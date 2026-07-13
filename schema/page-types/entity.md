@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: entity
+tier: interpretive
+instigators: [agent, user]
+status: stable
+updated: 2026-07-13
+---
+
 # `entity` Page Type
 
 **Question answered:** Who or what is this named thing?
+
+**Instigation:** interpretive tier — created by an agent at ingest review or query time, or at user request, when the promotion test passes: the wiki will reason about this named thing again, independent of the source that introduced it (`schema/page-types/registry.md`, Instigator Tiers).
 
 **When to use:**
 - Named persons, organizations, projects, tools, models, repos, systems, papers, datasets, standards.
