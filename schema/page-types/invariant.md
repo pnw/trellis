@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: invariant
+tier: authored
+instigators: [user]
+status: stable
+updated: 2026-07-13
+---
+
 # `invariant` Page Type
 
 **Question answered:** What must always hold here, and what would removing it take?
+
+**Instigation:** authored tier — user-instigated or user-ratified (`schema/page-types/registry.md`, Instigator Tiers). Writing the Removal Path is a ratification act, which is the user's to make; agents draft and propose.
 
 **When to use:**
 - A named constraint that must hold across all states/time of a specific system, workflow, or protocol — with a violation cost and some commitment to keeping it true.

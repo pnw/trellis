@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: synthesis
+tier: interpretive
+instigators: [agent, user]
+status: stable
+updated: 2026-07-13
+---
+
 # `synthesis` Page Type
 
 **Question answered:** What do we currently understand about this area?
+
+**Instigation:** interpretive tier — created by an agent or at user request when a real question, a contradiction between captures, or accumulated captures demand integration (`schema/page-types/registry.md`, Instigator Tiers). Ingest is an occasion to ask whether a synthesis is due, never by itself a justification for one.
 
 **When to use:**
 - Cross-source conclusions, current state of research, thematic summaries, broad topic understanding.

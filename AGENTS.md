@@ -48,7 +48,7 @@ Topic-first typed artifact graph. Allowed page types:
 type: source-capture | construct | entity | synthesis | design | assessment | comparison | decision | invariant
 ```
 
-The first seven are descriptive (evidence-graded); `decision` and `invariant` are normative (asserted). Folder and frontmatter type must agree (`schema/page-types/registry.md`). If a page strongly matches multiple types, split it. Do not add a new page type without asking the user first.
+The first seven are descriptive (evidence-graded); `decision` and `invariant` are normative (asserted). Types also divide into three instigator tiers (`schema/page-types/registry.md`, Instigator Tiers): source-captures are ingest-instigated; interpretive pages (construct, entity, synthesis, comparison, assessment) are created by agent judgment or user request when their trigger fires — ingest is an occasion for interpretation, not a justification; authored pages (design, decision, invariant) are user-instigated. Folder and frontmatter type must agree. If a page strongly matches multiple types, split it. Do not add a new page type without asking the user first.
 
 ## Page Format
 
@@ -65,7 +65,7 @@ Epistemic fields split across two layers (two-axis model — see `schema/page-fo
 
 ## Ingest Workflow
 
-Per `schema/ingest.md`: acquire raw copy → discuss (unless autonomous) → source-capture with `evidence` tier → route contributions to typed artifacts → backlink audit → re-derive `confidence` → update `wiki/index.md` → refresh search index (`scripts/qmd-index.sh`, best-effort) → append to `wiki/log.md`. Source-captures are source-isolated; contradictions are adjudicated downstream, never in the capture.
+Per `schema/ingest.md`, two-staged. Stage 1 — capture: acquire raw copy → source-capture with `evidence` tier and routing candidates; bounded, source-isolated, delegable to a capture agent with no vault context. Stage 2 — review and routing, vault-aware, consuming the capture rather than the raw source: discuss (unless autonomous) → decide promotions per the instigator tiers → route to typed artifacts → detect contradictions (adjudicated downstream, never in the capture) → backlink audit → re-derive `confidence` → update `wiki/index.md` → refresh search index (`scripts/qmd-index.sh`, best-effort) → append to `wiki/log.md`.
 
 ## Query Workflow
 

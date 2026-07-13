@@ -25,6 +25,9 @@ The script exits non-zero when errors are present.
 - **Orphan pages** — no incoming wikilinks from any page other than `wiki/index.md` or `wiki/log.md` (the log is an append-only journal, not a discovery path — a page mentioned only in a log entry is still effectively unreachable from content navigation)
 - **Stale low-confidence pages** — `confidence: low` and `timestamp` older than 30 days
 
+### 📊 Stats
+The script ends with informational `stats:` lines — page counts by type, and per-topic capture vs derived counts with a derived-per-capture ratio. These are observability for the judgment tier and for tracking composition drift over time; they are **never findings and never targets** (`schema/page-types/registry.md`, Instigator Tiers — no page-count quota exists). Read them alongside judgment checks like thin topics or missing constructs, as context rather than verdicts.
+
 ## Judgment Tier — agent review
 
 - **Contradictions** — conflicting claims between pages (cite both pages and the underlying raw sources)

@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: source-capture
+tier: capture
+instigators: [ingest]
+status: stable
+updated: 2026-07-13
+---
+
 # `source-capture` Page Type
 
 **Question answered:** What does this source contribute?
+
+**Instigation:** capture tier — created by ingest, one per meaningful source; bounded, source-isolated, and delegable to a capture agent with no vault context (`schema/ingest.md`).
 
 **When to use:**
 - Papers, articles, chat transcripts, repo snapshots, datasets, reports, documentation pages, or other raw source material.

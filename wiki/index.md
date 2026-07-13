@@ -14,6 +14,7 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 * [[wiki/llm-wiki/sources/karpathy-llm-wiki-knowledge-base-guide]] — Comprehensive guide to Karpathy's LLM Wiki pattern covering full architecture, setup, tooling, community ecosystem, and criticisms.
 * [[wiki/llm-wiki/sources/llm-wiki-effectiveness-deep-research]] — Deep research synthesis on what LLM wikis are useful for, when to use them, what to include, failure modes, and how they factor into AI projects.
 * [[wiki/llm-wiki/sources/open-knowledge-format-spec]] — Google Cloud's OKF v0.1 spec formalizing the LLM Wiki pattern into a portable, vendor-neutral markdown knowledge format.
+* [[wiki/llm-wiki/sources/staged-ingest-instigator-tiers-claude-code-thread]] — Owner hypothesis that ingest over-produces derived pages (evidence: 4–5 downstream instances), in-thread corpus measurements testing it, and the converged instigator-tier model with a two-stage ingest.
 * [[wiki/llm-wiki/sources/wiki-as-lab-claude-code-thread]] — Owner reframing that ratified wiki meta-work as a first-class research goal — the wiki as pilot instance for evolving llm-wiki practice — and coined the operational-evidence stream and self-experimentation protocol.
 * [[wiki/llm-wiki/sources/wiki-federation-claude-code-thread]] — Outside-observer critique of this wiki and the owner's responding design capture: one goal per wiki, repo split, portable schema, cross-wiki references, and a log taxonomy.
 * [[wiki/llm-wiki/sources/wiki-federation-review-claude-code-thread]] — Owner review of the federation design ratifying the breadcrumbs-over-rails simplifications — standalone normative schema, optional decision archaeology, prompt-based inheritance — and directing the design and naming of the upstream repo.
@@ -54,6 +55,7 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 * [[wiki/llm-wiki/decisions/adopt-agentic-search-with-qmd]] — Chose grep-based agentic search as the wiki's default retrieval with QMD-style local hybrid search as the graduation path, over embedding-RAG and bespoke index infrastructure.
 * [[wiki/llm-wiki/decisions/adopt-single-goal-federation]] — The founding split decision: one goal per wiki, trellis as upstream method lab and ai-research as downstream instance #1, federated via peer links, move-log forwarding, and manifest-pinned vendored schema. Executed 2026-07-12.
 * [[wiki/llm-wiki/decisions/designs-die-into-decisions]] — Design lifecycle doctrine: when a blueprint's artifact ships, its rationale collapses into decision pages and the descriptive prose is superseded by the artifact itself.
+* [[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]] — Adopted instigator tiers (capture/interpretive/authored) for page creation, a two-stage ingest ending capture before vault-aware review, spec frontmatter on page-type files, and lint composition stats.
 * [[wiki/llm-wiki/decisions/trellis-repo-bootstrap]] — Repo-shape decisions for Trellis: the name (and rejected alternates), the two-surface distributable/lab boundary, seeded-not-inherited AGENTS.md, path-preserving migration, plain-copy provenance.
 
 ### Invariants

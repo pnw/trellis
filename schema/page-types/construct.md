@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: construct
+tier: interpretive
+instigators: [agent, user]
+status: stable
+updated: 2026-07-13
+---
+
 # `construct` Page Type
 
 **Question answered:** What reusable abstraction is this?
+
+**Instigation:** interpretive tier — created by an agent at ingest review or query time, or at user request, when the promotion test passes: the wiki will reason with this abstraction again, independent of the source that introduced it (`schema/page-types/registry.md`, Instigator Tiers). Never a mandatory ingest step.
 
 **When to use:**
 - Reusable ideas, abstractions, mechanisms, patterns, or named theoretical structures.

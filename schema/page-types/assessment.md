@@ -1,6 +1,17 @@
+---
+spec: page-type
+type: assessment
+tier: interpretive
+instigators: [agent, user]
+status: stable
+updated: 2026-07-13
+---
+
 # `assessment` Page Type
 
 **Question answered:** What is validated, speculative, risky, contradicted, or unknown?
+
+**Instigation:** interpretive tier — created by an agent or at user request when a verdict falls due: an experiment's revisit trigger fires, evidence quality needs review, or a contradiction needs adjudication (`schema/page-types/registry.md`, Instigator Tiers).
 
 **When to use:**
 - Epistemic status, design validation, risk analysis, research gaps, contradiction tracking, evidence quality review.
