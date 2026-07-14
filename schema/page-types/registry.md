@@ -14,7 +14,7 @@ type: source-capture | construct | entity | synthesis | design | assessment | co
 
 Types divide into three families. **Descriptive/epistemic** types (`source-capture`, `construct`, `entity`, `synthesis`, `design`, `assessment`, `comparison`) capture what sources say, what concepts mean, and what is known or uncertain — they carry the `evidence`/`confidence` epistemic machinery. **Normative** types (`decision`, `invariant`) capture what has been *chosen* or what *must hold* — they are asserted rather than evidence-derived, so `confidence` is optional and usually omitted and their `sources` may point at the design, capture, or chat that grounds the choice rather than an external raw source. **Planning** types (`roadmap`) capture *intended future work* — asserted, not evidence-graded, and provenance-free (`sources` is not required; the backlog cites nothing). See `schema/page-types/roadmap.md`.
 
-A tenth type-string, `design/phase`, is a **scoped type** owned by `design` (see Scoped Types below); it is not a top-level registry type and does not appear in the vocabulary line above.
+One further type-string exists outside this vocabulary line: `design/phase`, a **scoped type** owned by `design` (see Scoped Types below). It is a real, declarable page type, but not a top-level registry type.
 
 ---
 
@@ -63,7 +63,7 @@ This is the controlled-extensibility escape valve for directory-form component p
 
 ## Per-Type Specs
 
-One normative file per page type — the unit a downstream wiki subsets:
+One normative file per page type — the unit a downstream wiki subsets (declared in `wiki-manifest.yaml` `page_types`):
 
 - `schema/page-types/source-capture.md`
 - `schema/page-types/construct.md`
@@ -77,6 +77,8 @@ One normative file per page type — the unit a downstream wiki subsets:
 - `schema/page-types/roadmap.md`
 
 The scoped `design/phase` type has no file of its own — it is defined within `schema/page-types/design.md` (Scoped Type: `design/phase`).
+
+**Subset dependency:** a subset containing `design` must also contain `roadmap` — the design directory skeleton requires `phases/later.md` and `obligations.md`, which are `roadmap`-typed pages. (`design/phase` needs no declaration; scoped types travel with their parent automatically.)
 
 ### Spec Frontmatter
 
@@ -105,6 +107,8 @@ Do not invent new types casually. A new type may be introduced only when:
 4. The type is added as a new file under `schema/page-types/` with full definition, plus a registry entry here.
 5. The definition includes: purpose, question answered, when to use, when not to use, and expected sections.
 6. Never add a new type without first asking the user.
+
+For subsidiary pages of a directory-form type, prefer a **scoped type** (see Scoped Types above) over a new top-level entry — it satisfies the same definitional bar in the parent's spec without enlarging this vocabulary.
 
 ---
 
@@ -146,4 +150,4 @@ The scoped `design/phase` type is not in this tree: phase pages are placed by a 
 
 If a page strongly matches multiple types, split it.
 
-Normative vs descriptive is the first cut: if the page *asserts* what was chosen or what must hold, it is `decision` or `invariant`; if it *reports or reasons about* what is known, it is one of the seven descriptive types.
+Family is the first cut: if the page *plans* future work, it is `roadmap`; if it *asserts* what was chosen or what must hold, it is `decision` or `invariant`; if it *reports or reasons about* what is known, it is one of the seven descriptive types.

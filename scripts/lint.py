@@ -183,6 +183,16 @@ def main():
             if folder == "sources" and ptype != "source-capture":
                 errors.append(f"{rel}: non-source page inside sources/")
 
+        # skeleton-placed types are only valid at their skeleton positions;
+        # mistyped subsidiary slots are already caught by the expected check
+        if ptype == "design/phase" and expected is None:
+            errors.append(f"{rel}: 'design/phase' is valid only at a design's "
+                          f"phases/phase-N.md")
+        if ptype == "roadmap" and not subsidiary and rel != "wiki/roadmap.md":
+            errors.append(f"{rel}: 'roadmap' is skeleton-placed — valid only "
+                          f"at wiki/roadmap.md or a design's phases/later.md "
+                          f"/ obligations.md")
+
     # design directories must carry the standard skeleton — every standard
     # file is required; empty concerns are stated, never inferred from absence
     for d in sorted(p for p in WIKI.rglob("*")

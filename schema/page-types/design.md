@@ -14,7 +14,7 @@ updated: 2026-07-14
 **Instigation:** authored tier — user-instigated (`schema/page-types/registry.md`, Instigator Tiers). Agents draft and propose designs in conversation; they do not create design pages unprompted.
 
 **When to use:**
-- Architecture descriptions, workflow designs, system models, implementation plans, process specifications, design docs.
+- Architecture descriptions, workflow designs, system models, process specifications, design docs — statements of a desired state. (Implementation phasing and sequencing belong in the directory's `phases/`, never in `design.md`.)
 
 **When NOT to use:**
 - Not for reusable abstractions divorced from a specific system (use `construct`).
@@ -58,7 +58,7 @@ wiki/{topic}/designs/{design-slug}/
 - **`phases/later.md`** (`type: roadmap`) is the grab bag of deferred design scope: everything in `design.md` not claimed by a phase file — the remainder that closes the partition. Its existence removes any obligation to scope or roadmap subsequent phases up front; further `phase-N.md` files are allowed whenever the user wants to phase deliberately, never required.
 - **`obligations.md`** (`type: roadmap`) captures what the design's *completion* obligates of the rest of the system: work out of the design's own scope but which the design requires, due on completion of one or more phases. It is non-phased and lives outside `phases/` because it is not part of the design's scope partition — it is induced external work. The name states the species (obligations induced on other systems), not the genus (any "follow-up"), so it is not confused with `later.md`'s deferred design scope.
 - **`later.md` and `obligations.md` are scoped roadmaps** (`type: roadmap`), not append-only lists: localized instances of `wiki/roadmap.md`'s dynamics, pruned as items resolve or graduate into phase files, never accumulated. An item leaves when it is implemented, absorbed into a phase, or deliberately dropped.
-- The standard names are reserved and load-bearing; additional supporting files in the directory are allowed (untyped, or carrying a scoped type this spec defines).
+- The standard names are reserved and load-bearing. Additional supporting files in the directory are allowed as untyped working material outside the page system; content that deserves a type belongs in a phase file, the design, or an ordinary typed page elsewhere.
 
 **Subsidiary documents are typed pages, scoped to the design.** Phase and roadmap files carry frontmatter and a `type` like any page (`design/phase` or `roadmap`) — pages have designed types, not path-inferred ones. They differ from ordinary pages in placement and provenance: they are located by the directory skeleton rather than a type folder, their existence is required by the container rather than individually instigated, and they do not appear in `wiki/index.md` (the design's own index entry represents the whole directory). See the scoped-type addendum below and `schema/page-types/roadmap.md`.
 

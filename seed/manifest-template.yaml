@@ -4,7 +4,7 @@ upstream:
   repo: https://github.com/pnw/trellis
   pin: <commit sha at instantiation or last sync>
 goal: <one sentence — required; the single-goal principle enforced at birth>
-page_types: [source-capture, synthesis, design, decision]
+page_types: [source-capture, synthesis, design, decision, roadmap]  # design requires roadmap (its skeleton contains roadmap-typed pages)
 link_format: root-relative-wikilink   # or markdown-relative
 agents: [claude-code]                 # any of: claude-code, kiro, codex
 peers:

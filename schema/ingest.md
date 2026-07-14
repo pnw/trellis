@@ -105,7 +105,7 @@ The sections from Core Contribution through Methodology are faithful reportage o
 - **Do not force every contribution through construct pages.** A promoted contribution may update a synthesis, design, or assessment directly.
 - **Never edit existing files in `raw/` in place.** Fidelity is what makes re-capture audits and upstream change detection possible — the two purposes `raw/` exists for.
 - If a topic directory doesn't exist yet, create it.
-- Place new pages in the type folder that matches frontmatter: `sources/`, `constructs/`, `entities/`, `syntheses/`, `designs/`, `assessments/`, `comparisons/`, or `invariants/`.
+- Place new pages in the type folder that matches frontmatter: `sources/`, `constructs/`, `entities/`, `syntheses/`, `designs/`, `assessments/`, `comparisons/`, `decisions/`, or `invariants/`. (`roadmap` and `design/phase` pages are skeleton-placed, never ingest routing targets.)
 - Create or reuse a subtopic under `subtopics/` only when the narrower cluster materially improves navigation.
 - If a page already covers this concept, update it rather than creating a duplicate.
 - Note contradictions explicitly in downstream pages: cite both the new and existing source.

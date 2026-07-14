@@ -9,7 +9,7 @@ Every wiki page uses YAML frontmatter following this schema. (Subsidiary pages i
 title: Page Title                              # REQUIRED — human-readable display name
 type: source-capture | construct | entity | synthesis | design | assessment | comparison | decision | invariant | roadmap
 description: One-sentence summary of this page.       # REQUIRED — used by index generators and agent navigation
-sources:                                       # REQUIRED — provenance; wikilinks for vault files, URLs for external
+sources:                                       # REQUIRED — provenance; wikilinks for vault files, URLs for external (not required on roadmap / design/phase)
   - "[[wiki/topic/sources/source-page]]"
   - https://example.com/external-source
 related:                                       # Optional — explicit graph edges to other pages

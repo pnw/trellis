@@ -10,27 +10,26 @@ The script exits non-zero when errors are present.
 
 ### 🔴 Errors
 - **Broken wikilinks** — `[[...]]` targets that don't resolve to a file (repository-root path, with `.md` appended for wiki pages; a design-directory path resolves to the directory's `design.md`)
-- **Invalid type** — `type` field not in the registry: `source-capture`, `construct`, `entity`, `synthesis`, `design`, `assessment`, `comparison`, `decision`, `invariant`
-- **Missing required frontmatter** — `title`, `type`, `description`, `sources`, `created`, `timestamp`
+- **Invalid type** — `type` field not one of the ten registry types (`source-capture`, `construct`, `entity`, `synthesis`, `design`, `assessment`, `comparison`, `decision`, `invariant`, `roadmap`) or the scoped `design/phase`
+- **Missing required frontmatter** — `title`, `type`, `description`, `sources`, `created`, `timestamp`; `roadmap` and `design/phase` pages are exempt from `sources` only
 - **Missing or invalid evidence tier** — `type: source-capture` without a valid `evidence` value (`empirical-primary`, `empirical-secondary`, `official-docs`, `expert-analysis`, `vendor-claim`, `llm-generated`)
-- **Misplaced epistemic fields** — `confidence` on a source-capture, or `evidence` on a non-source page
+- **Misplaced epistemic fields** — `confidence` on a source-capture; `evidence` on a non-source page; any of `evidence`/`confidence`/`novelty`/`enforcement` on a `roadmap` or `design/phase` page
 - **Source-capture in wrong location** — `type: source-capture` pages not in a `sources/` directory
 - **Non-source in sources directory** — pages in a `sources/` directory without `type: source-capture`
-- **Invalid type** — `type` not one of the ten valid strings: the nine registry types, `roadmap`, or the scoped `design/phase` (which is valid only on a design's `phases/phase-{n}.md`)
-- **Folder/type mismatch** — non-source pages not in the folder matching their frontmatter type (a design directory's `design.md` counts as `designs/` placement; skeleton-placed `roadmap` and `design/phase` pages are exempt — they are validated by the design skeleton, not a type folder)
-- **Missing required field** — `roadmap` and `design/phase` pages are exempt from `sources`; all pages still need `title`, `type`, `description`, `created`, `timestamp`
+- **Folder/type mismatch** — non-source pages not in the folder matching their frontmatter type (a design directory's `design.md` counts as `designs/` placement)
+- **Skeleton-placed type outside its skeleton** — `roadmap` and `design/phase` have no type folder and are valid only at their skeleton positions: `wiki/roadmap.md` or a design's `phases/later.md`/`obligations.md` for `roadmap`; a design's `phases/phase-{n}.md` for `design/phase`. Anywhere else is an error
 - **Missing novelty** — `construct`, `design`, or `entity` pages without a `novelty` field
 - **Incomplete design directory** — a directory under `designs/` missing any required standard file: `design.md`, `phases/phase-1.md`, `phases/later.md`, or `obligations.md` (`schema/page-types/design.md`, Directory Form — every standard file is required, empty concerns stated explicitly)
-- **Wrong subsidiary type** — a design-directory subsidiary page whose `type` does not match its skeleton slot (`phases/phase-{n}.md` must be `design/phase`; `phases/later.md` and `obligations.md` must be `roadmap`), or a phase/roadmap page carrying epistemic fields (`evidence`, `confidence`, `novelty`, `enforcement`)
+- **Wrong subsidiary type** — a design-directory subsidiary page whose `type` does not match its skeleton slot (`phases/phase-{n}.md` must be `design/phase`; `phases/later.md` and `obligations.md` must be `roadmap`)
 - **Missing or invalid enforcement** — `type: invariant` without a valid `enforcement` value (`automated`, `manual`, `convention`, `external`, `unenforced`), or `enforcement` on a non-invariant page
 
 ### 🟡 Warnings
 - **Confidence above ceiling** — declared `confidence` exceeding the derivation rules in `schema/page-format.md` (approximated from frontmatter: cited capture tiers, external URL domains, llm-generated grouping)
-- **Orphan pages** — no incoming wikilinks from any page other than `wiki/index.md` or `wiki/log.md` (the log is an append-only journal, not a discovery path — a page mentioned only in a log entry is still effectively unreachable from content navigation)
+- **Orphan pages** — no incoming wikilinks from any page other than `wiki/index.md` or `wiki/log.md` (the log is an append-only journal, not a discovery path — a page mentioned only in a log entry is still effectively unreachable from content navigation). Design-directory subsidiary pages are excluded: they are reachable through their design by containment, and links from a design's own subsidiary files do not count toward its design page
 - **Stale low-confidence pages** — `confidence: low` and `timestamp` older than 30 days
 
 ### 📊 Stats
-The script ends with informational `stats:` lines — page counts by type, and per-topic capture vs derived counts with a derived-per-capture ratio. These are observability for the judgment tier and for tracking composition drift over time; they are **never findings and never targets** (`schema/page-types/registry.md`, Instigator Tiers — no page-count quota exists). Read them alongside judgment checks like thin topics or missing constructs, as context rather than verdicts.
+The script ends with informational `stats:` lines — page counts by type, and per-topic capture vs derived counts with a derived-per-capture ratio. Stats cover the nine knowledge-graph types only; planning (`roadmap`) and scoped (`design/phase`) pages are structural and excluded, so they never inflate the derived-per-capture ratio. These are observability for the judgment tier and for tracking composition drift over time; they are **never findings and never targets** (`schema/page-types/registry.md`, Instigator Tiers — no page-count quota exists). Read them alongside judgment checks like thin topics or missing constructs, as context rather than verdicts.
 
 ## Judgment Tier — agent review
 
@@ -51,5 +50,5 @@ Append to `wiki/log.md` under today's date heading: `* **Lint**: Wiki health che
 ## Rules
 
 - Treat `wiki/{topic}/subtopics/{subtopic}/...` as valid when the terminal containing folder matches the page type.
-- Do not flag `index.md`, `log.md`, `overview.md`, or `roadmap.md` for type or structure violations — they follow their own conventions.
+- Do not flag `index.md`, `log.md`, `overview.md`, or `episodes.md` for type or structure violations — they follow their own conventions. `wiki/roadmap.md` is a typed `roadmap` page and IS validated like any page (minus `sources`, which its type exempts).
 - For contradictions, cite both pages and the underlying `raw/` sources.
