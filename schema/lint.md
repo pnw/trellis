@@ -9,15 +9,17 @@ Lint has two tiers: deterministic checks run by `scripts/lint.py`, and judgment 
 The script exits non-zero when errors are present.
 
 ### 🔴 Errors
-- **Broken wikilinks** — `[[...]]` targets that don't resolve to a file (repository-root path, with `.md` appended for wiki pages)
+- **Broken wikilinks** — `[[...]]` targets that don't resolve to a file (repository-root path, with `.md` appended for wiki pages; a design-directory path resolves to the directory's `design.md`)
 - **Invalid type** — `type` field not in the registry: `source-capture`, `construct`, `entity`, `synthesis`, `design`, `assessment`, `comparison`, `decision`, `invariant`
 - **Missing required frontmatter** — `title`, `type`, `description`, `sources`, `created`, `timestamp`
 - **Missing or invalid evidence tier** — `type: source-capture` without a valid `evidence` value (`empirical-primary`, `empirical-secondary`, `official-docs`, `expert-analysis`, `vendor-claim`, `llm-generated`)
 - **Misplaced epistemic fields** — `confidence` on a source-capture, or `evidence` on a non-source page
 - **Source-capture in wrong location** — `type: source-capture` pages not in a `sources/` directory
 - **Non-source in sources directory** — pages in a `sources/` directory without `type: source-capture`
-- **Folder/type mismatch** — non-source pages not in the folder matching their frontmatter type
+- **Folder/type mismatch** — non-source pages not in the folder matching their frontmatter type (a design directory's `design.md` counts as `designs/` placement)
 - **Missing novelty** — `construct`, `design`, or `entity` pages without a `novelty` field
+- **Incomplete design directory** — a directory under `designs/` missing `design.md` or `phases/phase-1.md` (`schema/page-types/design.md`, Directory Form)
+- **Typed subsidiary design file** — a file inside a design directory other than `design.md` carrying frontmatter with a `type` field (subsidiary documents are untyped parts of the design artifact)
 - **Missing or invalid enforcement** — `type: invariant` without a valid `enforcement` value (`automated`, `manual`, `convention`, `external`, `unenforced`), or `enforcement` on a non-invariant page
 
 ### 🟡 Warnings

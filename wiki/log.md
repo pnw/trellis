@@ -2,6 +2,12 @@
 
 <!-- Append-only. Newest first. -->
 
+## 2026-07-14
+
+* **Schema**: Adopted the design-as-directory form — a design is a directory, not a single file: `design.md` (typed target specification) separated from untyped subsidiary documents under standard names — `phases/phase-1.md` (required, even for unphased designs), optional `phases/phase-N.md`, `phases/later.md` (deferred-scope grab bag), and non-phased `follow-ups.md` (obligations the design imposes outside its boundary). Links target the directory path, so legacy single-file designs convert without breaking inbound links; conversion is opportunistic, no bulk migration. Changes: `schema/page-types/design.md` (Directory Form section), `schema/structure.md`, `schema/conventions.md`, `schema/page-format.md`, `schema/page-types/registry.md`, `schema/lint.md`, and `scripts/lint.py` (design-directory recognition, skeleton completeness errors, typed-subsidiary errors, directory-path link keying). Rationale in [[wiki/llm-wiki/decisions/design-as-directory]].
+* **Ingest**: Processed [Owner Brain Dump: Rethinking the Design Type as a Directory](wiki/llm-wiki/sources/design-as-directory-brain-dump.md) (verbatim speech-to-text raw in `raw/chats/`, `expert-analysis` tier). Created [[wiki/llm-wiki/decisions/design-as-directory]] (authored tier, user-instigated by the dump). No interpretive pages promoted: the directory form lands as schema operating rules, canonical in `schema/`.
+* **Roadmap**: Added the design-as-directory meta-experiment line (revisit at first design created or converted under the rule; watch for ceremony phase-1 files and stale phase history) and the opportunistic design-directory conversion maintenance item.
+
 ## 2026-07-13
 
 * **Schema**: Adopted the instigator-tier model — who creates which page types and when — and restaged ingest into bounded capture (Stage 1: source-isolated, delegable to a context-free capture agent, ends at the source-capture with routing candidates) plus vault-aware review and routing (Stage 2: discussion, promotion decisions per the tiers, contradiction detection). Changes: `schema/page-types/registry.md` (Instigator Tiers section + spec-frontmatter convention), minimal frontmatter and Instigation lines across all nine `schema/page-types/` specs, `schema/ingest.md` (two-stage workflow), `scripts/lint.py` + `schema/lint.md` (composition stats — observable, never a target), and compact-contract updates in `AGENTS.md` and `seed/agents-md-template.md`. Rationale in [[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]].

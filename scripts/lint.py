@@ -64,6 +64,18 @@ def link_resolves(target):
     return (ROOT / t).exists() or (ROOT / (t + ".md")).exists()
 
 
+def design_dir_of(path):
+    """Return the design directory Path when *path* sits inside one
+    (…/designs/<slug>/…), else None. Single-file designs (…/designs/<slug>.md)
+    are not inside a design directory."""
+    dirs = path.relative_to(ROOT).parts[:-1]
+    if "designs" in dirs:
+        i = len(dirs) - 1 - dirs[::-1].index("designs")
+        if i < len(dirs) - 1:
+            return ROOT.joinpath(*dirs[: i + 2])
+    return None
+
+
 def main():
     errors, warnings = [], []
     pages = {}  # rel path (no .md) -> frontmatter
@@ -75,11 +87,23 @@ def main():
         bodies[rel] = text
         if path in META_FILES:
             continue
+        ddir = design_dir_of(path)
+        if ddir is not None and path != ddir / "design.md":
+            # subsidiary design document (phases/, follow-ups.md, …):
+            # an untyped part of the design artifact, not a page
+            fm = parse_frontmatter(text)
+            if fm and "type" in fm:
+                errors.append(f"{rel}: subsidiary design file carries 'type' "
+                              f"— only design.md is a typed page")
+            continue
         fm = parse_frontmatter(text)
         if fm is None:
             errors.append(f"{rel}: no frontmatter")
             continue
-        pages[rel[:-3]] = fm
+        fm["_file"] = rel
+        # a design directory's page is keyed (and linked) by the directory path
+        key = ddir.relative_to(ROOT).as_posix() if ddir is not None else rel[:-3]
+        pages[key] = fm
 
         for field in REQUIRED:
             if field not in fm:
@@ -116,11 +140,20 @@ def main():
         elif "enforcement" in fm:
             errors.append(f"{rel}: 'enforcement' only allowed on invariants")
 
-        folder = path.parent.name
+        folder = "designs" if ddir is not None else path.parent.name
         if ptype in TYPE_FOLDER and folder != TYPE_FOLDER[ptype]:
             errors.append(f"{rel}: type '{ptype}' but folder '{folder}/'")
         if folder == "sources" and ptype != "source-capture":
             errors.append(f"{rel}: non-source page inside sources/")
+
+    # design directories must carry the standard skeleton
+    for d in sorted(p for p in WIKI.rglob("*")
+                    if p.is_dir() and p.parent.name == "designs"):
+        drel = d.relative_to(ROOT).as_posix()
+        if not (d / "design.md").exists():
+            errors.append(f"{drel}/: design directory missing design.md")
+        if not (d / "phases" / "phase-1.md").exists():
+            errors.append(f"{drel}/: design directory missing phases/phase-1.md")
 
     # broken wikilinks (all wiki pages incl. meta files)
     for rel, text in bodies.items():
@@ -159,7 +192,7 @@ def main():
         rank = {"high": 3, "medium": 2, "low": 1}
         if rank[conf] > rank[ceiling]:
             warnings.append(
-                f"{key}.md: confidence '{conf}' above ceiling '{ceiling}' "
+                f"{fm['_file']}: confidence '{conf}' above ceiling '{ceiling}' "
                 f"(empirical={emp}, independent={independent}) — may be a "
                 f"justified scoped-claims override; verify")
 
@@ -170,13 +203,17 @@ def main():
         if rel in NAV_ONLY_FILES:
             continue
         src_key = rel[:-3]
+        src_ddir = design_dir_of(ROOT / rel)
+        src_dkey = src_ddir.relative_to(ROOT).as_posix() if src_ddir else None
         for target in set(WIKILINK.findall(text)):
             t = target.strip()
-            if t in incoming and t != src_key:
+            if t.endswith("/design") and t[:-len("/design")] in incoming:
+                t = t[:-len("/design")]  # explicit design.md link → directory key
+            if t in incoming and t not in (src_key, src_dkey):
                 incoming[t] += 1
     for key, count in incoming.items():
         if count == 0:
-            warnings.append(f"{key}.md: orphan (no incoming links except index/log)")
+            warnings.append(f"{pages[key]['_file']}: orphan (no incoming links except index/log)")
 
     # stale low-confidence pages
     cutoff = datetime.now(timezone.utc) - timedelta(days=STALE_DAYS)
@@ -187,7 +224,7 @@ def main():
             except ValueError:
                 continue
             if ts < cutoff:
-                warnings.append(f"{key}.md: confidence low and stale (>{STALE_DAYS}d)")
+                warnings.append(f"{fm['_file']}: confidence low and stale (>{STALE_DAYS}d)")
 
     for e in errors:
         print(f"ERROR   {e}")

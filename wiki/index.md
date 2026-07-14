@@ -9,6 +9,7 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 ## LLM Wiki
 
 ### Sources
+* [[wiki/llm-wiki/sources/design-as-directory-brain-dump]] — Owner observation that design pages mix a target specification with transient phased scoping, and the realization that a design is a directory: a standard-named target spec plus phase documents and split-out completion follow-ups.
 * [[wiki/llm-wiki/sources/epistemic-metadata-claude-code-thread]] — Claude Code thread surveying epistemic-grading frameworks (Admiralty, ICD 203, GRADE, Wikipedia, product patterns), designing the two-axis evidence/confidence schema, and ratifying the source-isolation invariant.
 * [[wiki/llm-wiki/sources/llm-wiki-effectiveness-codex-thread]] — Codex research thread arguing that an LLM wiki is a selective context substrate for repeated AI workflows, project reasoning, and agent memory rather than a prompt dump or live data store.
 * [[wiki/llm-wiki/sources/karpathy-llm-wiki-knowledge-base-guide]] — Comprehensive guide to Karpathy's LLM Wiki pattern covering full architecture, setup, tooling, community ecosystem, and criticisms.
@@ -54,6 +55,7 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 ### Decisions
 * [[wiki/llm-wiki/decisions/adopt-agentic-search-with-qmd]] — Chose grep-based agentic search as the wiki's default retrieval with QMD-style local hybrid search as the graduation path, over embedding-RAG and bespoke index infrastructure.
 * [[wiki/llm-wiki/decisions/adopt-single-goal-federation]] — The founding split decision: one goal per wiki, trellis as upstream method lab and ai-research as downstream instance #1, federated via peer links, move-log forwarding, and manifest-pinned vendored schema. Executed 2026-07-12.
+* [[wiki/llm-wiki/decisions/design-as-directory]] — Adopted the directory form for the design type: design.md as standalone target spec, required phases/phase-1.md, later.md grab bag, non-phased follow-ups.md, directory-path linking, opportunistic conversion of legacy single-file designs.
 * [[wiki/llm-wiki/decisions/designs-die-into-decisions]] — Design lifecycle doctrine: when a blueprint's artifact ships, its rationale collapses into decision pages and the descriptive prose is superseded by the artifact itself.
 * [[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]] — Adopted instigator tiers (capture/interpretive/authored) for page creation, a two-stage ingest ending capture before vault-aware review, spec frontmatter on page-type files, and lint composition stats.
 * [[wiki/llm-wiki/decisions/trellis-repo-bootstrap]] — Repo-shape decisions for Trellis: the name (and rejected alternates), the two-surface distributable/lab boundary, seeded-not-inherited AGENTS.md, path-preserving migration, plain-copy provenance.

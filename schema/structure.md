@@ -21,6 +21,7 @@ Agent-agnostic directory layout and organizational model. This file is part of t
   - `wiki/{topic}/` — Topic subdirectories (e.g., `wiki/llm-wiki/`, `wiki/token-economics/`, `wiki/intent-compiler/`).
   - `wiki/{topic}/sources/` — Source-capture pages for that topic.
   - `wiki/{topic}/constructs/`, `entities/`, `syntheses/`, `designs/`, `assessments/`, `comparisons/`, `decisions/`, `invariants/` — Typed knowledge artifacts grouped by page type. The last two are normative (choices made, rules that must hold); the rest are descriptive.
+  - `wiki/{topic}/designs/{design-slug}/` — A design is a directory, not a single file: `design.md` (the typed target specification) plus untyped subsidiary documents under standard names — `phases/phase-1.md` (required), further `phases/phase-N.md` (optional), `phases/later.md` (deferred design scope), `follow-ups.md` (obligations the design imposes outside its own boundary). See `schema/page-types/design.md`, Directory Form. Legacy single-file designs (`designs/{design-slug}.md`) remain valid until converted.
   - `wiki/{topic}/subtopics/{subtopic}/` — Narrower topic area. Subtopics may repeat the same type folders and may nest when that materially improves navigation.
 - `schema/` — The shared, agent-agnostic schema layer: page format, per-type specs under `schema/page-types/` (one standalone normative file per page type plus `registry.md`), conventions, structure, and the ingest/lint workflow references. This is the third layer of the LLM Wiki three-layer architecture (raw sources, wiki, schema). Canonical for all agents; tool adapters reference these files.
 - `scripts/` — Maintenance tooling (deterministic lint checker, move-log helper, search-index refresh).
@@ -44,7 +45,7 @@ The filesystem is organized first by **topic** because that is how a human resea
 ## Key Principles
 
 - One topic directory per broad subject area. Create new ones when a source doesn't fit existing topics.
-- Source-capture pages live in `sources/`. Other typed artifacts live in the matching type folder: `constructs/`, `entities/`, `syntheses/`, `designs/`, `assessments/`, `comparisons/`, `decisions/`, or `invariants/`.
+- Source-capture pages live in `sources/`. Other typed artifacts live in the matching type folder: `constructs/`, `entities/`, `syntheses/`, `designs/`, `assessments/`, `comparisons/`, `decisions/`, or `invariants/`. Designs occupy a directory within `designs/`; the typed page is `designs/{design-slug}/design.md`.
 - Create subtopics under `subtopics/` when at least five pages cluster around a narrower question, when the cluster has its own sources plus downstream artifacts, or when readers would naturally seek it by name. Do not force every topic into subtopics.
 - Folder and frontmatter type must agree.
 - Prefer updating existing pages over creating near-duplicates.

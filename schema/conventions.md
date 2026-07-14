@@ -15,6 +15,7 @@ All internal cross-references use repository-root wikilinks:
 - Pages in subdirectories: `[[wiki/topic/type-folder/page-name]]` (e.g., `[[wiki/llm-wiki/constructs/llm-wiki-pattern]]`)
 - Pages in subtopics: `[[wiki/topic/subtopics/subtopic/type-folder/page-name]]`
 - Root-level wiki pages: `[[wiki/page-name]]` (e.g., `[[wiki/overview]]`, `[[wiki/log]]`, `[[wiki/roadmap]]`)
+- Design pages: link the design directory path, `[[wiki/topic/designs/design-slug]]` — never `…/design-slug/design`. The target is identical for legacy single-file designs, so conversion to directory form breaks no inbound links. Subsidiary files are linked by full path (e.g. `[[wiki/topic/designs/design-slug/phases/phase-1]]`) only when the phase document itself is the referent (`schema/page-types/design.md`, Directory Form).
 - Never use bare filenames for pages in subdirectories — always include the topic prefix
 
 This format eliminates ambiguity (no collision risk from duplicate filenames), is trivial to lint (path maps directly to file), and keeps links compact.

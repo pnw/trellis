@@ -2,7 +2,7 @@
 
 Agent-agnostic schema for wiki page frontmatter. This file is part of the shared `schema/` layer referenced by `AGENTS.md`; tool-specific adapters (`.kiro/steering/`, `CLAUDE.md`) must reference it rather than duplicating it.
 
-Every wiki page uses YAML frontmatter following this schema:
+Every wiki page uses YAML frontmatter following this schema. (Subsidiary documents inside a design directory — `phases/*.md`, `follow-ups.md` — are parts of the design artifact, not pages: they carry no frontmatter and no `type`; only the directory's `design.md` is a typed page. See `schema/page-types/design.md`, Directory Form.)
 
 ```yaml
 ---

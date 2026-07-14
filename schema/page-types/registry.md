@@ -1,7 +1,7 @@
 ---
 spec: registry
 status: stable
-updated: 2026-07-13
+updated: 2026-07-14
 ---
 
 # Page Type Registry
@@ -36,7 +36,7 @@ Rules for the interpretive tier:
 
 ## Location Rules
 
-The frontmatter `type` is authoritative and must agree with the containing folder: `source-capture` in `sources/`, `construct` in `constructs/`, `entity` in `entities/`, `synthesis` in `syntheses/`, `design` in `designs/`, `assessment` in `assessments/`, `comparison` in `comparisons/`, `decision` in `decisions/`, and `invariant` in `invariants/`.
+The frontmatter `type` is authoritative and must agree with the containing folder: `source-capture` in `sources/`, `construct` in `constructs/`, `entity` in `entities/`, `synthesis` in `syntheses/`, `design` in `designs/`, `assessment` in `assessments/`, `comparison` in `comparisons/`, `decision` in `decisions/`, and `invariant` in `invariants/`. A design occupies a directory: the typed page is `designs/{design-slug}/design.md`, accompanied by untyped subsidiary phase/follow-up documents (`schema/page-types/design.md`, Directory Form); legacy single-file `designs/{design-slug}.md` remains valid until converted.
 
 Use `subtopics/` only when a narrower cluster materially improves navigation, such as five or more related pages, a cluster with its own sources and downstream artifacts, or a name readers would naturally seek. Subtopics may nest, but keep the hierarchy shallow unless deeper nesting is clearly useful.
 
