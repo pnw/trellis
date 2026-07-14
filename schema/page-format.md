@@ -2,12 +2,12 @@
 
 Agent-agnostic schema for wiki page frontmatter. This file is part of the shared `schema/` layer referenced by `AGENTS.md`; tool-specific adapters (`.kiro/steering/`, `CLAUDE.md`) must reference it rather than duplicating it.
 
-Every wiki page uses YAML frontmatter following this schema. (Subsidiary documents inside a design directory — `phases/*.md`, `follow-ups.md` — are parts of the design artifact, not pages: they carry no frontmatter and no `type`; only the directory's `design.md` is a typed page. See `schema/page-types/design.md`, Directory Form.)
+Every wiki page uses YAML frontmatter following this schema. (Subsidiary pages inside a design directory — `phases/phase-{n}.md`, `phases/later.md`, `obligations.md` — are typed but skeleton-placed: they carry frontmatter with a scoped `design/phase` or top-level `roadmap` type, are located by the directory skeleton rather than a type folder, and are `sources`-exempt. See `schema/page-types/design.md`, Directory Form, and `schema/page-types/registry.md`, Scoped Types.)
 
 ```yaml
 ---
 title: Page Title                              # REQUIRED — human-readable display name
-type: source-capture | construct | entity | synthesis | design | assessment | comparison | decision | invariant
+type: source-capture | construct | entity | synthesis | design | assessment | comparison | decision | invariant | roadmap
 description: One-sentence summary of this page.       # REQUIRED — used by index generators and agent navigation
 sources:                                       # REQUIRED — provenance; wikilinks for vault files, URLs for external
   - "[[wiki/topic/sources/source-page]]"
@@ -39,9 +39,9 @@ enforcement: automated | manual | convention | external | unenforced  # REQUIRED
 | Field | Purpose |
 |-------|---------|
 | `title` | Human-readable display name |
-| `type` | Page kind — one of: `source-capture`, `construct`, `entity`, `synthesis`, `design`, `assessment`, `comparison`, `decision`, `invariant` |
+| `type` | Page kind — one of: `source-capture`, `construct`, `entity`, `synthesis`, `design`, `assessment`, `comparison`, `decision`, `invariant`, `roadmap`; or the scoped `design/phase` (`schema/page-types/registry.md`, Scoped Types) |
 | `description` | Single sentence summarizing the page (for index entries, search, progressive disclosure) |
-| `sources` | Provenance — list of source references. Use repository-root wikilinks such as `[[wiki/topic/sources/source-page]]` for files in this vault; use URLs for external sources |
+| `sources` | Provenance — list of source references. Use repository-root wikilinks such as `[[wiki/topic/sources/source-page]]` for files in this vault; use URLs for external sources. **Exempt: `roadmap` and `design/phase` pages** assert intended work rather than cite evidence, and do not require `sources` |
 | `created` | Date page was first created (`YYYY-MM-DD`) |
 | `timestamp` | ISO 8601 datetime of last meaningful change (`YYYY-MM-DDTHH:MM:SSZ`). OKF-compatible. |
 
@@ -53,6 +53,8 @@ The wiki separates **source reliability** from **claim credibility**, following 
 - **`confidence`** (non-source pages, optional) — a property of the page's claims, derived from the evidence tiers and independence of its cited sources.
 
 Source-capture pages must NOT carry `confidence`; non-source pages must NOT carry `evidence`.
+
+**Planning and scoped types are outside the epistemic machinery.** `roadmap` pages (and the scoped `design/phase` type) assert intended work, not claims about the world, so they carry neither `evidence` nor `confidence` (nor `novelty`/`enforcement`), and `sources` is not required. They are provenance-free by nature: a backlog cites nothing, and a phase's provenance is its design. See `schema/page-types/roadmap.md` and `schema/page-types/design.md` (Scoped Type: `design/phase`).
 
 **Normative types (`decision`, `invariant`) are a special case.** They assert a choice or a rule rather than reporting evidence, so `confidence` (which rates evidence-derived credibility) is optional and usually omitted — a constraint you declare for your own project is not evidence-graded. Their required `sources` field still applies but names whatever *grounds* the choice or rule: a design page, a source-capture (when the constraint comes from a standard or paper), or the raw chat where it was decided. When a normative page's rationale *does* lean on empirical sources, `confidence` may be set by the usual rules to signal how well-founded that rationale is.
 

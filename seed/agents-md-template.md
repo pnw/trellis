@@ -14,7 +14,8 @@ This repository is a structured markdown wiki maintained by AI agents from immut
 - `confidence` is derived, not asserted — ceiling comes from evidence tiers and independence of cited sources (`schema/page-format.md`). Wikis sharing an operator count as one source.
 - Record every wiki/raw file move or delete in `wiki/moves.log` (tombstone dispositions; `scripts/movelog.sh` prints candidates). This wiki maintains only its outbound links; peer links use the `<peer>::` prefix per `schema/conventions.md`.
 - Breadcrumbs over rails: workflows assume an agent with judgment; artifacts make judgment cheap and auditable, never replace it.
-- Page creation follows the instigator tiers (`schema/page-types/registry.md`): source-captures at ingest, interpretive pages (construct, entity, synthesis, comparison, assessment) when their trigger fires — ingest is an occasion for interpretation, not a justification — and authored pages (design, decision, invariant) only on user instigation.
+- Page creation follows the instigator tiers (`schema/page-types/registry.md`): source-captures at ingest, interpretive pages (construct, entity, synthesis, comparison, assessment) when their trigger fires — ingest is an occasion for interpretation, not a justification — and authored pages (design, decision, invariant) only on user instigation. The `roadmap` planning type (a pruned backlog; `wiki/roadmap.md` and a design's `later.md`/`obligations.md`) sits outside the tiers — structural, provenance-free, no `sources`.
+- A design is a **directory**, not a single file: `design.md` (the target spec) plus a scoped `design/phase` type for `phases/phase-{n}.md` and `roadmap`-typed `later.md`/`obligations.md`, where `phases/` is a complete partition of the design's scope. Designs finalize (immutable) rather than dying into decisions. See `schema/page-types/design.md` and registry Scoped Types.
 
 ## Workflows
 

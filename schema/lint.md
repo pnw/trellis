@@ -16,10 +16,12 @@ The script exits non-zero when errors are present.
 - **Misplaced epistemic fields** — `confidence` on a source-capture, or `evidence` on a non-source page
 - **Source-capture in wrong location** — `type: source-capture` pages not in a `sources/` directory
 - **Non-source in sources directory** — pages in a `sources/` directory without `type: source-capture`
-- **Folder/type mismatch** — non-source pages not in the folder matching their frontmatter type (a design directory's `design.md` counts as `designs/` placement)
+- **Invalid type** — `type` not one of the ten valid strings: the nine registry types, `roadmap`, or the scoped `design/phase` (which is valid only on a design's `phases/phase-{n}.md`)
+- **Folder/type mismatch** — non-source pages not in the folder matching their frontmatter type (a design directory's `design.md` counts as `designs/` placement; skeleton-placed `roadmap` and `design/phase` pages are exempt — they are validated by the design skeleton, not a type folder)
+- **Missing required field** — `roadmap` and `design/phase` pages are exempt from `sources`; all pages still need `title`, `type`, `description`, `created`, `timestamp`
 - **Missing novelty** — `construct`, `design`, or `entity` pages without a `novelty` field
-- **Incomplete design directory** — a directory under `designs/` missing any required standard file: `design.md`, `phases/phase-1.md`, `phases/later.md`, or `follow-ups.md` (`schema/page-types/design.md`, Directory Form — every standard file is required, empty concerns stated explicitly)
-- **Typed subsidiary design file** — a file inside a design directory other than `design.md` carrying frontmatter with a `type` field (subsidiary documents are untyped parts of the design artifact)
+- **Incomplete design directory** — a directory under `designs/` missing any required standard file: `design.md`, `phases/phase-1.md`, `phases/later.md`, or `obligations.md` (`schema/page-types/design.md`, Directory Form — every standard file is required, empty concerns stated explicitly)
+- **Wrong subsidiary type** — a design-directory subsidiary page whose `type` does not match its skeleton slot (`phases/phase-{n}.md` must be `design/phase`; `phases/later.md` and `obligations.md` must be `roadmap`), or a phase/roadmap page carrying epistemic fields (`evidence`, `confidence`, `novelty`, `enforcement`)
 - **Missing or invalid enforcement** — `type: invariant` without a valid `enforcement` value (`automated`, `manual`, `convention`, `external`, `unenforced`), or `enforcement` on a non-invariant page
 
 ### 🟡 Warnings

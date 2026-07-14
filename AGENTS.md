@@ -45,14 +45,14 @@ Wiki structure:
 Topic-first typed artifact graph. Allowed page types:
 
 ```yaml
-type: source-capture | construct | entity | synthesis | design | assessment | comparison | decision | invariant
+type: source-capture | construct | entity | synthesis | design | assessment | comparison | decision | invariant | roadmap
 ```
 
-The first seven are descriptive (evidence-graded); `decision` and `invariant` are normative (asserted). Types also divide into three instigator tiers (`schema/page-types/registry.md`, Instigator Tiers): source-captures are ingest-instigated; interpretive pages (construct, entity, synthesis, comparison, assessment) are created by agent judgment or user request when their trigger fires — ingest is an occasion for interpretation, not a justification; authored pages (design, decision, invariant) are user-instigated. Folder and frontmatter type must agree. If a page strongly matches multiple types, split it. Do not add a new page type without asking the user first.
+The first seven are descriptive (evidence-graded); `decision` and `invariant` are normative (asserted); `roadmap` is a planning type (a pruned backlog of intended work — asserted, provenance-free, `sources` not required). Types also divide into three instigator tiers (`schema/page-types/registry.md`, Instigator Tiers): source-captures are ingest-instigated; interpretive pages (construct, entity, synthesis, comparison, assessment) are created by agent judgment or user request when their trigger fires — ingest is an occasion for interpretation, not a justification; authored pages (design, decision, invariant) are user-instigated. `roadmap` sits outside the tiers (structural — required by a container). Folder and frontmatter type must agree, except for skeleton-placed pages (`wiki/roadmap.md`; a design directory's subsidiary pages). A design is a **directory**, not a single file — `design.md` plus a scoped `design/phase` type and `roadmap`-typed `later.md`/`obligations.md` (`schema/page-types/design.md`, Directory Form; registry Scoped Types). If a page strongly matches multiple types, split it. Do not add a new page type without asking the user first.
 
 ## Page Format
 
-Every ordinary wiki page uses YAML frontmatter per `schema/page-format.md`. Required: `title`, `type`, `description`, `sources`, `created`, `timestamp`. `source-capture` pages also require `evidence`; `construct`, `design`, and `entity` pages require `novelty`; `invariant` pages require `enforcement`.
+Every ordinary wiki page uses YAML frontmatter per `schema/page-format.md`. Required: `title`, `type`, `description`, `sources`, `created`, `timestamp`. `source-capture` pages also require `evidence`; `construct`, `design`, and `entity` pages require `novelty`; `invariant` pages require `enforcement`. `roadmap` and scoped `design/phase` pages are exempt from `sources` (planning types assert intended work, not evidence) and carry no epistemic fields.
 
 Epistemic fields split across two layers (two-axis model — see `schema/page-format.md`): `evidence` rates the source in isolation at ingest; `confidence` on non-source pages is derived from the evidence tiers and *independence* of cited sources. Wikis operated by the same owner and agents count as one source for independence — no cross-repo self-corroboration.
 

@@ -28,7 +28,7 @@ The directory form ([[wiki/llm-wiki/decisions/design-as-directory]]) removed tha
 Adopted 2026-07-14, normative in `schema/page-types/design.md` (Lifecycle: Designs Finalize) and `schema/page-format.md` (`status: finalized`):
 
 1. **A design describes desired state the system is measured against.** It is not superseded by its own implementation; it remains the reference the implementation is checked against.
-2. **Live designs revise freely.** While implementation is in progress, `design.md` may evolve, phases scope work against it, and `later.md`/`follow-ups.md` are pruned as items resolve.
+2. **Live designs revise freely.** While implementation is in progress, `design.md` may evolve, phases scope work against it, and `later.md`/`obligations.md` are pruned as items resolve.
 3. **At the end of its lifecycle through implementation, a design is finalized and therefore immutable** (`status: finalized`). Phasing matters less at that point, but phase documents are **retained, not deleted** — the directory stands as the record of what was specified and how implementation was phased against it. Nothing in it is maintained further.
 4. **Supersession replaces collapse.** As systems evolve, later designs supersede or amend earlier ones; a superseding design links its predecessor, and updating `status` plus that link is the only permitted edit to a finalized design.
 5. **Decision pages are decoupled from the design lifecycle.** They still record choices and rejected alternatives whenever the rationale is worth preserving on its own; what is repealed is the mandatory collapse of a shipped design into them.

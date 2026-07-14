@@ -19,7 +19,12 @@ ROOT = Path(__file__).resolve().parent.parent
 WIKI = ROOT / "wiki"
 
 TYPES = {"source-capture", "construct", "entity", "synthesis", "design",
-         "assessment", "comparison", "decision", "invariant"}
+         "assessment", "comparison", "decision", "invariant", "roadmap"}
+# planning + scoped types: asserted work, not evidence-graded; sources-exempt,
+# skeleton-placed (no type folder), excluded from composition stats
+PLANNING_TYPES = {"roadmap", "design/phase"}
+VALID_TYPES = TYPES | {"design/phase"}
+GRAPH_TYPES = TYPES - {"roadmap"}  # the nine knowledge types, for stats
 EVIDENCE_TIERS = {"empirical-primary", "empirical-secondary", "official-docs",
                   "expert-analysis", "vendor-claim", "llm-generated"}
 EMPIRICAL = {"empirical-primary", "empirical-secondary"}
@@ -32,10 +37,12 @@ TYPE_FOLDER = {"source-capture": "sources", "construct": "constructs",
                "design": "designs", "assessment": "assessments",
                "comparison": "comparisons", "decision": "decisions",
                "invariant": "invariants"}
-META_FILES = {WIKI / "index.md", WIKI / "log.md", WIKI / "overview.md", WIKI / "roadmap.md", WIKI / "episodes.md"}
+# wiki/roadmap.md is a typed roadmap page, not a meta-file
+META_FILES = {WIKI / "index.md", WIKI / "log.md", WIKI / "overview.md", WIKI / "episodes.md"}
 STALE_DAYS = 30
 
 WIKILINK = re.compile(r"\[\[([^\]|#]+)")
+PHASE_RE = re.compile(r"^phases/phase-\d+\.md$")
 
 
 def parse_frontmatter(text):
@@ -76,6 +83,21 @@ def design_dir_of(path):
     return None
 
 
+def design_role(path, ddir):
+    """Classify a file inside design dir *ddir*. Returns (expected_type,
+    subsidiary): expected_type is the required frontmatter type, or None for an
+    allowed extra file that is skipped. 'design.md' is the design page (not
+    subsidiary); phase/later/obligations are typed subsidiary pages."""
+    rel = path.relative_to(ddir).as_posix()
+    if rel == "design.md":
+        return ("design", False)
+    if rel in ("phases/later.md", "obligations.md"):
+        return ("roadmap", True)
+    if PHASE_RE.match(rel):
+        return ("design/phase", True)
+    return (None, True)  # extra supporting file — allowed, unvalidated
+
+
 def main():
     errors, warnings = [], []
     pages = {}  # rel path (no .md) -> frontmatter
@@ -88,32 +110,44 @@ def main():
         if path in META_FILES:
             continue
         ddir = design_dir_of(path)
-        if ddir is not None and path != ddir / "design.md":
-            # subsidiary design document (phases/, follow-ups.md, …):
-            # an untyped part of the design artifact, not a page
-            fm = parse_frontmatter(text)
-            if fm and "type" in fm:
-                errors.append(f"{rel}: subsidiary design file carries 'type' "
-                              f"— only design.md is a typed page")
-            continue
+        expected, subsidiary = (None, False)
+        if ddir is not None:
+            expected, subsidiary = design_role(path, ddir)
+            if expected is None:
+                continue  # allowed extra file in a design directory
         fm = parse_frontmatter(text)
         if fm is None:
             errors.append(f"{rel}: no frontmatter")
             continue
         fm["_file"] = rel
-        # a design directory's page is keyed (and linked) by the directory path
-        key = ddir.relative_to(ROOT).as_posix() if ddir is not None else rel[:-3]
+        fm["_subsidiary"] = subsidiary
+        # a design's design.md is keyed (and linked) by the directory path;
+        # subsidiary and ordinary pages are keyed by their own rel path
+        if ddir is not None and expected == "design":
+            key = ddir.relative_to(ROOT).as_posix()
+        else:
+            key = rel[:-3]
         pages[key] = fm
 
+        ptype = fm.get("type")
+        exempt = ptype in PLANNING_TYPES  # sources-exempt planning/scoped types
         for field in REQUIRED:
+            if field == "sources" and exempt:
+                continue
             if field not in fm:
                 errors.append(f"{rel}: missing required field '{field}'")
 
-        ptype = fm.get("type")
-        if ptype and ptype not in TYPES:
+        if ptype and ptype not in VALID_TYPES:
             errors.append(f"{rel}: invalid type '{ptype}'")
+        if expected and ptype != expected:
+            errors.append(f"{rel}: design-directory file must be "
+                          f"type '{expected}', got '{ptype or 'none'}'")
 
-        if ptype == "source-capture":
+        if ptype in PLANNING_TYPES:
+            for f in ("evidence", "confidence", "novelty", "enforcement"):
+                if f in fm:
+                    errors.append(f"{rel}: '{f}' not allowed on {ptype} page")
+        elif ptype == "source-capture":
             ev = fm.get("evidence")
             if ev is None:
                 errors.append(f"{rel}: source-capture missing 'evidence'")
@@ -137,14 +171,17 @@ def main():
                 errors.append(f"{rel}: invariant missing 'enforcement'")
             elif enf not in ENFORCEMENT:
                 errors.append(f"{rel}: invalid enforcement '{enf}'")
-        elif "enforcement" in fm:
+        elif "enforcement" in fm and ptype not in PLANNING_TYPES:
             errors.append(f"{rel}: 'enforcement' only allowed on invariants")
 
-        folder = "designs" if ddir is not None else path.parent.name
-        if ptype in TYPE_FOLDER and folder != TYPE_FOLDER[ptype]:
-            errors.append(f"{rel}: type '{ptype}' but folder '{folder}/'")
-        if folder == "sources" and ptype != "source-capture":
-            errors.append(f"{rel}: non-source page inside sources/")
+        # folder/type agreement — skeleton-placed pages (subsidiary pages,
+        # wiki/roadmap.md) are exempt: their types have no type folder
+        if not subsidiary:
+            folder = "designs" if ddir is not None else path.parent.name
+            if ptype in TYPE_FOLDER and folder != TYPE_FOLDER[ptype]:
+                errors.append(f"{rel}: type '{ptype}' but folder '{folder}/'")
+            if folder == "sources" and ptype != "source-capture":
+                errors.append(f"{rel}: non-source page inside sources/")
 
     # design directories must carry the standard skeleton — every standard
     # file is required; empty concerns are stated, never inferred from absence
@@ -152,7 +189,7 @@ def main():
                     if p.is_dir() and p.parent.name == "designs"):
         drel = d.relative_to(ROOT).as_posix()
         for req in ("design.md", "phases/phase-1.md", "phases/later.md",
-                    "follow-ups.md"):
+                    "obligations.md"):
             if not (d / req).exists():
                 errors.append(f"{drel}/: design directory missing {req}")
 
@@ -213,7 +250,9 @@ def main():
             if t in incoming and t not in (src_key, src_dkey):
                 incoming[t] += 1
     for key, count in incoming.items():
-        if count == 0:
+        # subsidiary design pages are reachable through their design directory
+        # by containment, not by wikilink — never orphans
+        if count == 0 and not pages[key].get("_subsidiary"):
             warnings.append(f"{pages[key]['_file']}: orphan (no incoming links except index/log)")
 
     # stale low-confidence pages
@@ -235,14 +274,16 @@ def main():
     # stats — page counts by type and per-topic capture/derived ratio.
     # Observability only, never a finding: there is no target ratio
     # (schema/page-types/registry.md, Instigator Tiers).
+    # composition stats cover the nine knowledge-graph types; planning types
+    # (roadmap) and scoped types (design/phase) are structural, not artifacts
     type_counts = Counter(fm.get("type") for fm in pages.values()
-                          if fm.get("type") in TYPES)
+                          if fm.get("type") in GRAPH_TYPES)
     if type_counts:
         by_type = ", ".join(f"{t} {n}" for t, n in type_counts.most_common())
         print(f"\nstats: {sum(type_counts.values())} typed pages — {by_type}")
         topics = {}
         for key, fm in pages.items():
-            if fm.get("type") not in TYPES:
+            if fm.get("type") not in GRAPH_TYPES:
                 continue
             topic = key.split("/")[1]
             cap, der = topics.get(topic, (0, 0))
