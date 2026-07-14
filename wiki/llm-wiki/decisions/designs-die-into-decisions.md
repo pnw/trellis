@@ -12,11 +12,13 @@ related:
   - "[[wiki/llm-wiki/designs/trellis-repo-design]]"
 tags: [llm-wiki, schema-design, meta-research, knowledge-management, governance]
 created: 2026-07-12
-timestamp: 2026-07-12T07:00:00Z
-status: stable
+timestamp: 2026-07-14T14:00:00Z
+status: deprecated
 ---
 
 # Designs Die into Decisions
+
+> **Superseded 2026-07-14** by [[wiki/llm-wiki/decisions/designs-finalize-not-die]]. The directory form ([[wiki/llm-wiki/decisions/design-as-directory]]) separated target specification from transient phasing, removing the prose-mirror drift this doctrine existed to solve; designs now finalize as immutable desired-state records instead of collapsing into decision pages. The decisions extracted under this doctrine remain valid. Body below is frozen as history.
 
 ## Context
 

@@ -18,7 +18,7 @@ The script exits non-zero when errors are present.
 - **Non-source in sources directory** — pages in a `sources/` directory without `type: source-capture`
 - **Folder/type mismatch** — non-source pages not in the folder matching their frontmatter type (a design directory's `design.md` counts as `designs/` placement)
 - **Missing novelty** — `construct`, `design`, or `entity` pages without a `novelty` field
-- **Incomplete design directory** — a directory under `designs/` missing `design.md` or `phases/phase-1.md` (`schema/page-types/design.md`, Directory Form)
+- **Incomplete design directory** — a directory under `designs/` missing any required standard file: `design.md`, `phases/phase-1.md`, `phases/later.md`, or `follow-ups.md` (`schema/page-types/design.md`, Directory Form — every standard file is required, empty concerns stated explicitly)
 - **Typed subsidiary design file** — a file inside a design directory other than `design.md` carrying frontmatter with a `type` field (subsidiary documents are untyped parts of the design artifact)
 - **Missing or invalid enforcement** — `type: invariant` without a valid `enforcement` value (`automated`, `manual`, `convention`, `external`, `unenforced`), or `enforcement` on a non-invariant page
 

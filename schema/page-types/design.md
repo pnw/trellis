@@ -45,14 +45,17 @@ wiki/{topic}/designs/{design-slug}/
   phases/
     phase-1.md       # REQUIRED — first implementation scope against the design
     phase-2.md …     # optional — further scoped phases, only if deliberately roadmapped
-    later.md         # deferred design scope not claimed by any phase file
-  follow-ups.md      # optional — obligations the design imposes outside its own boundary
+    later.md         # REQUIRED — deferred design scope not claimed by any phase file
+  follow-ups.md      # REQUIRED — obligations the design imposes outside its own boundary
 ```
+
+**Every standard file is required — an empty concern is stated, never inferred.** A missing file is always ambiguous between "nothing there" and "nobody wrote it," so each standard file exists even when its concern is empty: an unphased design's `phase-1.md` states that phase 1 implements the design in full; a fully-phased design's `later.md` states that the phase files cover the design; a design imposing no external obligations says so in `follow-ups.md`. Only further `phase-N.md` files are optional, because `later.md` already accounts for everything they would claim.
 
 - **`design.md`** is the standalone requirements document: the target future state, complete in itself. It carries the page frontmatter and is the only typed page in the directory. Phase scoping, sequencing, and "do this first" content do not belong in it.
 - **`phases/phase-1.md`** captures the first implementation scope — the slice usually most necessary to understand in design iterations. This is where implementation gets specific: which existing abstractions and interfaces are boundaries not to be touched, what will have been implemented against the design when the phase ends. Every design directory has one, even when the design will be implemented in one go — an unphased design's `phase-1.md` simply states that phase 1 implements the design in full. This makes absence unambiguous: there is never a question of "no phases" versus "forgot the phases".
-- **`phases/later.md`** is the grab bag of deferred design scope: everything in `design.md` not claimed by a phase file. Its existence removes any obligation to scope or roadmap subsequent phases up front — further `phase-N.md` files are allowed whenever the user wants to phase deliberately, never required. Omit `later.md` only when the phase files cover the design in full.
+- **`phases/later.md`** is the grab bag of deferred design scope: everything in `design.md` not claimed by a phase file. Its existence removes any obligation to scope or roadmap subsequent phases up front — further `phase-N.md` files are allowed whenever the user wants to phase deliberately, never required.
 - **`follow-ups.md`** captures follow-ups to the *completion* of the design: work that is out of the design's scope but which the design requires of the rest of the system, due on completion of one or more phases. It is non-phased and lives outside `phases/` because it is not deferred design scope — it is induced external work.
+- **`later.md` and `follow-ups.md` are scoped roadmaps, not append-only lists.** They follow the same dynamics as `wiki/roadmap.md`, localized to one design: pruned as items resolve or graduate into phase files, never accumulated. An item leaves when it is implemented, absorbed into a phase, or deliberately dropped.
 - The standard names are reserved and load-bearing; additional supporting files in the directory are allowed.
 
 **Subsidiary documents are not pages.** Phase files, `later.md`, `follow-ups.md`, and any other supporting files carry no frontmatter and no `type` — they are parts of the one design artifact, transient scoping records rather than knowledge artifacts, and they do not appear in the index. The design's frontmatter (`sources`, `timestamp`, `status`) speaks for the directory.
@@ -61,15 +64,15 @@ wiki/{topic}/designs/{design-slug}/
 
 **Conversion.** New designs use directory form. A legacy single-file design converts the next time it needs phase or follow-up content or receives substantive revision: move `{design-slug}.md` to `{design-slug}/design.md`, create `phases/phase-1.md`, and record the move in `wiki/moves.log`.
 
-## Lifecycle: Blueprints Die into Decisions
+## Lifecycle: Designs Finalize
 
-A design page whose subject is not yet built is a blueprint. When the artifact it specifies ships, the design's descriptive content is superseded by the artifact itself — do not maintain a prose mirror of something that exists. The lifecycle rule operates on `design.md`; subsidiary phase files are working documents on a shorter clock — when a phase completes, move its unfinished remainder to `phases/later.md` or a successor phase and prune what shipped rather than maintaining it as history. When the design as a whole ships:
+A design describes a **desired state the system can be measured against** — it is not a transient description of an implementation, and it does not die when its artifact ships.
 
-- Extract the choice rationale and rejected alternatives into one or more `decision` pages.
-- Delete or deprecate the descriptive sections.
-- Keep as live `design` content only what is still operative (protocols agents execute) or still unbuilt.
+- **Live** (`status: draft` or `stable`) — `design.md` is the current desired state and may be revised as understanding evolves. Phase files scope implementation against it; when a phase completes, move its unfinished remainder to `phases/later.md` or a successor phase. `later.md` and `follow-ups.md` are pruned as items resolve.
+- **Finalized** (`status: finalized`) — when the design's lifecycle through implementation ends, the design is finalized and therefore **immutable**: `design.md` and every subsidiary document are retained exactly as they stand, as the record of what was specified and how implementation was phased against it. Do not delete phase documents at finalization; do not maintain any of it further.
+- **Superseded** (`status: deprecated`) — systems evolve; later designs supersede or amend earlier ones. Supersession is expressed by a new design that links the old one; on a finalized design, updating `status` and adding that link is the only permitted edit — its body is never revised to track the system.
 
-Designs that never ship an artifact — operative protocols, option maps kept for future reconsideration — are not blueprints and do not expire this way.
+Decision pages still record choices and rejected alternatives whenever that rationale is worth preserving on its own, but a design is not collapsed into them on shipping.
 
 ---
 

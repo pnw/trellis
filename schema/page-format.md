@@ -17,7 +17,7 @@ related:                                       # Optional — explicit graph edg
 tags: [topic-a, topic-b]                       # Optional — cross-cutting categories for filtering
 created: YYYY-MM-DD                            # REQUIRED — date page was first created
 timestamp: YYYY-MM-DDTHH:MM:SSZ               # REQUIRED — ISO 8601 datetime of last meaningful change (OKF-compatible)
-status: draft | stable | deprecated            # Optional — lifecycle status
+status: draft | stable | finalized | deprecated  # Optional — lifecycle status (finalized: design pages only)
 # --- source-capture pages only ---
 evidence: empirical-primary | empirical-secondary | official-docs | expert-analysis | vendor-claim | llm-generated  # REQUIRED — source reliability tier
 # --- non-source pages only ---
@@ -91,7 +91,7 @@ Scoped claims: `official-docs` and `vendor-claim` sources are authoritative for 
 |-------|---------|
 | `related` | Explicit relationship edges to other wiki pages (repository-root wikilinks) |
 | `tags` | Cross-cutting categories for filtering and grouping |
-| `status` | Lifecycle: `draft` (incomplete), `stable` (ready for use), `deprecated` (superseded) |
+| `status` | Lifecycle: `draft` (incomplete), `stable` (ready for use), `finalized` (design pages only — implementation against the design is complete; the design directory is immutable thereafter), `deprecated` (superseded) |
 
 Freshness is tracked by `timestamp` plus lint staleness rules — there is no assertable freshness field. Usefulness is never asserted in frontmatter; it is revealed by inbound links and reuse (orphan detection in lint).
 

@@ -146,14 +146,15 @@ def main():
         if folder == "sources" and ptype != "source-capture":
             errors.append(f"{rel}: non-source page inside sources/")
 
-    # design directories must carry the standard skeleton
+    # design directories must carry the standard skeleton — every standard
+    # file is required; empty concerns are stated, never inferred from absence
     for d in sorted(p for p in WIKI.rglob("*")
                     if p.is_dir() and p.parent.name == "designs"):
         drel = d.relative_to(ROOT).as_posix()
-        if not (d / "design.md").exists():
-            errors.append(f"{drel}/: design directory missing design.md")
-        if not (d / "phases" / "phase-1.md").exists():
-            errors.append(f"{drel}/: design directory missing phases/phase-1.md")
+        for req in ("design.md", "phases/phase-1.md", "phases/later.md",
+                    "follow-ups.md"):
+            if not (d / req).exists():
+                errors.append(f"{drel}/: design directory missing {req}")
 
     # broken wikilinks (all wiki pages incl. meta files)
     for rel, text in bodies.items():
