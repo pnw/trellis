@@ -1,5 +1,6 @@
 ---
 title: Wiki Federation and Schema Inheritance
+type: design
 description: The live federation design for the llm-wiki practice — one goal per wiki, the method dogfooded in its own upstream repository (Trellis), breadcrumb-based schema inheritance for downstream instances, and outbound-only cross-wiki references with move-log forwarding.
 sources:
   - "[[wiki/llm-wiki/sources/wiki-federation-claude-code-thread]]"

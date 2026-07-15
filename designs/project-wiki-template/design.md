@@ -1,5 +1,6 @@
 ---
 title: Project Wiki Template
+type: design
 description: "Reference layout and rationale for a codebase-specific project wiki instance: coordination meta-files, registry-typed knowledge pages, topics, and a project design surface."
 sources:
   - "[[wiki/llm-wiki/sources/llm-wiki-effectiveness-deep-research]]"

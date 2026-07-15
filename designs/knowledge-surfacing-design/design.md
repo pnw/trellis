@@ -1,5 +1,6 @@
 ---
 title: Agent Knowledge Surfacing — Progressive Disclosure Approaches
+type: design
 description: "Design exploration of approaches for surfacing an OKF knowledge graph to agents: static index layers, MCP-based tool discovery, and hybrid compilation strategies."
 sources:
   - "[[wiki/agent-context/subtopics/retrieval/sources/objectgraph-document-injection-to-knowledge-traversal]]"

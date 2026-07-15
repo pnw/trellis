@@ -1,5 +1,6 @@
 ---
 title: Project Wiki Application Guide
+type: design
 description: "Content-curation and feedback guide for project wikis: selecting repertoire pages from the source wikis phase by phase, and routing lessons back to the wiki whose goal they serve."
 sources:
   - "[[wiki/llm-wiki/sources/llm-wiki-effectiveness-deep-research]]"

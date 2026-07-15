@@ -1,5 +1,6 @@
 ---
 title: The Design Surface
+type: design
 description: "Separates designs from the wiki into lifecycle-governed dossiers under designs/, with their own schema, containment as the organizing principle, and native support for alternatives fan-outs."
 sources:
   - "[[wiki/llm-wiki/sources/design-surface-separation-claude-code-thread]]"

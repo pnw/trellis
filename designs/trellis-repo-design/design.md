@@ -1,5 +1,6 @@
 ---
 title: "Trellis: The Upstream Wiki-Method Repository"
+type: design
 description: Superseded bootstrap blueprint for the Trellis repository; executed 2026-07-12 and kept as a routing stub to its decision records.
 sources:
   - "[[wiki/llm-wiki/sources/wiki-federation-claude-code-thread]]"

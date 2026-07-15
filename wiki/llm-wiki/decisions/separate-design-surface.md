@@ -6,16 +6,19 @@ sources:
   - "[[wiki/llm-wiki/sources/design-surface-separation-claude-code-thread]]"
 related:
   - "[[designs/design-surface]]"
+  - "[[wiki/llm-wiki/decisions/dossier-phasing-and-types]]"
   - "[[wiki/llm-wiki/decisions/designs-die-into-decisions]]"
   - "[[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]]"
   - "[[designs/wiki-federation-and-inheritance]]"
 tags: [llm-wiki, schema-design, meta-research, governance, design-process]
 created: 2026-07-15
-timestamp: 2026-07-15T12:00:00Z
+timestamp: 2026-07-15T14:00:00Z
 status: stable
 ---
 
 # Separate Design Surface
+
+> **Amended 2026-07-15** by [[wiki/llm-wiki/decisions/dossier-phasing-and-types]], reconciling a parallel session this decision was merged without seeing. Two points change: dossier files **do** carry declared types, from a vocabulary scoped to the design surface (overriding the no-`type` containment rule below), and the dossier gains a required phasing skeleton (`phases/phase-1.md`, `phases/later.md`, `obligations.md` on live dossiers). The two-surface architecture, lifecycle, linking rules, and migration below stand unchanged; the "parent-scoped types" deferral in Alternatives resolved the same day, in transposed form.
 
 ## Context
 

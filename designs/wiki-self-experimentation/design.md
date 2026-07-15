@@ -1,5 +1,6 @@
 ---
 title: Wiki Self-Experimentation
+type: design
 description: The protocol by which this wiki evolves its own knowledge-base practices as a first-class research activity — hypothesis on change, operational-evidence snapshot, verdict assessment, confidence cascade.
 sources:
   - "[[wiki/llm-wiki/sources/wiki-as-lab-claude-code-thread]]"

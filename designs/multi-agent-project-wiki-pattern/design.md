@@ -1,5 +1,6 @@
 ---
 title: Multi-Agent Project Wiki Pattern
+type: design
 description: "Design pattern for adapting an LLM wiki into a shared context, coordination, handoff, and evaluation layer for multi-agent implementation projects."
 sources:
   - "[[wiki/llm-wiki/sources/llm-wiki-effectiveness-deep-research]]"

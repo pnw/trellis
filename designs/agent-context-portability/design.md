@@ -1,5 +1,6 @@
 ---
 title: Agent Context Portability
+type: design
 description: "A cross-platform pattern for keeping agent instructions portable across Codex, Claude Code, Kiro, and other coding agents without duplicating drifting manifests."
 sources:
   - "[[wiki/agent-context/subtopics/context-files/sources/openai-codex-agents-md-docs]]"

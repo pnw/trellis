@@ -31,10 +31,12 @@ Reference direction: design documents cite wiki pages freely; wiki pages link on
   - `wiki/{topic}/sources/` — Source-capture pages for that topic.
   - `wiki/{topic}/constructs/`, `entities/`, `syntheses/`, `assessments/`, `comparisons/`, `decisions/`, `invariants/` — Typed knowledge artifacts grouped by page type. The last two are normative (choices made, rules that must hold); the rest are descriptive.
   - `wiki/{topic}/subtopics/{subtopic}/` — Narrower topic area. Subtopics may repeat the same type folders and may nest when that materially improves navigation.
-- `designs/` — The design surface: one dossier per design, per `schema/design/dossier.md`.
+- `designs/` — The design surface: one dossier per design, per `schema/design/dossier.md`. Dossier files carry designed types from the surface's own scoped vocabulary (`design | phase | roadmap | alternative | weighing`).
   - `designs/index.md` — Catalog of dossiers: one line each with description and lifecycle status.
-  - `designs/{design-slug}/design.md` — The design document (required; the dossier's only external link target).
-  - `designs/{design-slug}/alternatives/` — Optional fan-out of candidate variants plus a `weighing.md` adjudication document.
+  - `designs/{design-slug}/design.md` — The target specification (required; the dossier's only external link target; `type: design`).
+  - `designs/{design-slug}/phases/` — Implementation scoping: `phase-1.md` (`type: phase`), optional further `phase-N.md`, and `later.md` (`type: roadmap`). A complete partition of the design's scope: phase-1 + phase-N + later = everything in `design.md`. Required, with `obligations.md`, while the dossier is live; empty concerns are stated, never inferred.
+  - `designs/{design-slug}/obligations.md` — Work the design imposes outside its own boundary (`type: roadmap`; non-phased).
+  - `designs/{design-slug}/alternatives/` — Optional fan-out of candidate variants (`type: alternative`) plus a `weighing.md` adjudication document (`type: weighing`).
 - `schema/` — The shared, agent-agnostic schema layer, canonical for all agents; tool adapters reference these files.
   - `schema/structure.md` — this file (repo-wide layout).
   - `schema/wiki/` — the wiki surface's schema: `page-format.md`, `page-types/` (one standalone normative file per page type plus `registry.md`), `conventions.md`, `ingest.md`, `lint.md`.

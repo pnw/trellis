@@ -35,8 +35,11 @@ TYPE_FOLDER = {"source-capture": "sources", "construct": "constructs",
                "comparison": "comparisons", "decision": "decisions",
                "invariant": "invariants"}
 DESIGN_STATUS = {"draft", "active", "implemented", "superseded", "abandoned"}
-DESIGN_REQUIRED = ["title", "description", "status", "created", "timestamp"]
-WIKI_ONLY_FIELDS = ("type", "evidence", "confidence", "novelty", "enforcement")
+DESIGN_REQUIRED = ["title", "type", "description", "created", "timestamp"]
+DESIGN_TYPES = {"design", "phase", "roadmap", "alternative", "weighing"}
+PHASE_STATUS = {"pending", "in-progress", "complete"}
+EPISTEMIC_FIELDS = ("evidence", "confidence", "novelty", "enforcement")
+PHASE_RE = re.compile(r"^phases/phase-\d+\.md$")
 META_FILES = {WIKI / "index.md", WIKI / "log.md", WIKI / "overview.md", WIKI / "roadmap.md", WIKI / "episodes.md"}
 STALE_DAYS = 30
 
@@ -62,6 +65,22 @@ def parse_frontmatter(text):
                 in_sources = True
     fields["_sources"] = sources
     return fields
+
+
+def dossier_slot(rel_in_dossier):
+    """Expected dossier type for a standard skeleton file, or None for
+    untyped workspace assets (schema/design/dossier.md, Dossier Type System)."""
+    if rel_in_dossier == "design.md":
+        return "design"
+    if rel_in_dossier in ("phases/later.md", "obligations.md"):
+        return "roadmap"
+    if PHASE_RE.match(rel_in_dossier):
+        return "phase"
+    if rel_in_dossier == "alternatives/weighing.md":
+        return "weighing"
+    if rel_in_dossier.startswith("alternatives/") and rel_in_dossier.count("/") == 1:
+        return "alternative"
+    return None
 
 
 def link_resolves(target):
@@ -138,28 +157,61 @@ def main():
         for dossier in sorted(DESIGNS.iterdir()):
             if not dossier.is_dir():
                 continue
+            droot = f"designs/{dossier.name}"
+            dfm = None
             if not (dossier / "design.md").exists():
-                errors.append(f"designs/{dossier.name}: dossier without design.md")
+                errors.append(f"{droot}: dossier without design.md")
+            else:
+                dfm = parse_frontmatter((dossier / "design.md").read_text())
+            # live dossiers carry the full phasing skeleton; terminal dossiers
+            # are frozen and keep whatever skeleton they have
+            if dfm and dfm.get("status") in ("draft", "active"):
+                for req in ("phases/phase-1.md", "phases/later.md",
+                            "obligations.md"):
+                    if not (dossier / req).exists():
+                        errors.append(f"{droot}: live dossier missing {req}")
         for path in sorted(DESIGNS.rglob("*.md")):
             rel = path.relative_to(ROOT).as_posix()
             text = path.read_text()
             design_bodies[rel] = text
             if rel == "designs/index.md":
                 continue
+            parts = path.relative_to(DESIGNS).parts
+            slot = dossier_slot("/".join(parts[1:]))
             fm = parse_frontmatter(text)
+            if slot is None:
+                # workspace asset: untyped and unvalidated (links still checked),
+                # but never a wiki-typed page smuggled onto the surface
+                if fm and fm.get("type") in TYPES:
+                    errors.append(f"{rel}: wiki type '{fm['type']}' on a "
+                                  f"design-surface file")
+                continue
             if fm is None:
                 errors.append(f"{rel}: no frontmatter")
                 continue
-            for field in WIKI_ONLY_FIELDS:
+            for field in EPISTEMIC_FIELDS:
                 if field in fm:
-                    errors.append(f"{rel}: wiki-surface field '{field}' on a design file")
-            if path.name == "design.md":
-                for field in DESIGN_REQUIRED:
-                    if field not in fm:
-                        errors.append(f"{rel}: missing required field '{field}'")
+                    errors.append(f"{rel}: wiki epistemic field '{field}' "
+                                  f"on a design file")
+            ftype = fm.get("type")
+            if ftype != slot:
+                errors.append(f"{rel}: must be type '{slot}', "
+                              f"got '{ftype or 'none'}'")
+            for field in DESIGN_REQUIRED:
+                if field not in fm:
+                    errors.append(f"{rel}: missing required field '{field}'")
             status = fm.get("status")
-            if status and status not in DESIGN_STATUS:
-                errors.append(f"{rel}: invalid design status '{status}'")
+            if slot == "design":
+                if status is None:
+                    errors.append(f"{rel}: missing required field 'status'")
+                elif status not in DESIGN_STATUS:
+                    errors.append(f"{rel}: invalid design status '{status}'")
+            elif slot == "phase":
+                if status and status not in PHASE_STATUS:
+                    errors.append(f"{rel}: invalid phase status '{status}'")
+            elif slot == "alternative":
+                if status and status not in DESIGN_STATUS:
+                    errors.append(f"{rel}: invalid design status '{status}'")
 
     # broken wikilinks in design files
     for rel, text in design_bodies.items():

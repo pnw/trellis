@@ -14,7 +14,7 @@ type: source-capture | construct | entity | synthesis | assessment | comparison 
 
 Types divide into two families. **Descriptive/epistemic** types (`source-capture`, `construct`, `entity`, `synthesis`, `assessment`, `comparison`) capture what sources say, what concepts mean, and what is known or uncertain — they carry the `evidence`/`confidence` epistemic machinery. **Normative** types (`decision`, `invariant`) capture what has been *chosen* or what *must hold* — they are asserted rather than evidence-derived, so `confidence` is optional and usually omitted and their `sources` may point at the design dossier, capture, or chat that grounds the choice rather than an external raw source.
 
-Designs are not a wiki page type. A document answering "what are we building, and where is it in being built?" is commitment-shaped, not claim-shaped, and lives on the design surface (`designs/` dossiers, per `schema/design/dossier.md`) under lifecycle governance rather than evidence governance.
+Designs are not a wiki page type. A document answering "what are we building, and where is it in being built?" is commitment-shaped, not claim-shaped, and lives on the design surface (`designs/` dossiers, per `schema/design/dossier.md`) under lifecycle governance rather than evidence governance. The design surface carries its own type vocabulary scoped to dossiers (`design | phase | roadmap | alternative | weighing`); those types are defined in the dossier spec, not here, and are never valid on wiki pages — the surface boundary is the namespace.
 
 ---
 

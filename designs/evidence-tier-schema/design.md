@@ -1,5 +1,6 @@
 ---
 title: Evidence Tier Schema
+type: design
 description: This wiki's two-axis epistemic schema — a required evidence tier on source-captures and rule-derived confidence on downstream pages — adapted from Admiralty, ICD 203, and GRADE.
 sources:
   - "[[wiki/llm-wiki/sources/epistemic-metadata-claude-code-thread]]"

@@ -9,6 +9,7 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]] | design surface: 
 ## LLM Wiki
 
 ### Sources
+* [[wiki/llm-wiki/sources/design-as-directory-brain-dump]] — Owner observation that design pages mix a target specification with transient phased scoping, and the realization that a design is a directory: a standard-named target spec plus phase documents and split-out completion obligations.
 * [[wiki/llm-wiki/sources/design-surface-separation-claude-code-thread]] — Owner-directed design thread that began as structured design alternatives inside the wiki and converged on separating designs into their own lifecycle-governed surface with a split schema.
 * [[wiki/llm-wiki/sources/epistemic-metadata-claude-code-thread]] — Claude Code thread surveying epistemic-grading frameworks (Admiralty, ICD 203, GRADE, Wikipedia, product patterns), designing the two-axis evidence/confidence schema, and ratifying the source-isolation invariant.
 * [[wiki/llm-wiki/sources/llm-wiki-effectiveness-codex-thread]] — Codex research thread arguing that an LLM wiki is a selective context substrate for repeated AI workflows, project reasoning, and agent memory rather than a prompt dump or live data store.
@@ -47,7 +48,8 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]] | design surface: 
 * [[wiki/llm-wiki/decisions/adopt-agentic-search-with-qmd]] — Chose grep-based agentic search as the wiki's default retrieval with QMD-style local hybrid search as the graduation path, over embedding-RAG and bespoke index infrastructure.
 * [[wiki/llm-wiki/decisions/adopt-single-goal-federation]] — The founding split decision: one goal per wiki, trellis as upstream method lab and ai-research as downstream instance #1, federated via peer links, move-log forwarding, and manifest-pinned vendored schema. Executed 2026-07-12.
 * [[wiki/llm-wiki/decisions/designs-die-into-decisions]] — Deprecated 2026-07-15: the former design-lifecycle doctrine, superseded by the design-surface separation; kept as the frozen record.
-* [[wiki/llm-wiki/decisions/separate-design-surface]] — Designs leave the wiki: lifecycle-governed dossiers on a separate designs/ surface with their own schema, superseding the design page type and the designs-die-into-decisions doctrine.
+* [[wiki/llm-wiki/decisions/dossier-phasing-and-types]] — Parallel-session reconciliation: dossiers gain the required phasing skeleton (phases/phase-1 + later + obligations, a complete partition of the design's scope) and a type vocabulary scoped to the design surface, amending the separation decision's no-type rule.
+* [[wiki/llm-wiki/decisions/separate-design-surface]] — Designs leave the wiki: lifecycle-governed dossiers on a separate designs/ surface with their own schema, superseding the design page type and the designs-die-into-decisions doctrine. Amended same-day by dossier-phasing-and-types.
 * [[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]] — Adopted instigator tiers (capture/interpretive/authored) for page creation, a two-stage ingest ending capture before vault-aware review, spec frontmatter on page-type files, and lint composition stats.
 * [[wiki/llm-wiki/decisions/trellis-repo-bootstrap]] — Repo-shape decisions for Trellis: the name (and rejected alternates), the two-surface distributable/lab boundary, seeded-not-inherited AGENTS.md, path-preserving migration, plain-copy provenance.
 

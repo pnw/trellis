@@ -23,9 +23,11 @@ The script exits non-zero when errors are present.
 Design-surface checks (`schema/design/dossier.md`):
 
 - **Dossier without design.md** — a `designs/{slug}/` directory missing its `design.md`
-- **Missing design frontmatter** — `design.md` without `title`, `description`, `status`, `created`, or `timestamp`
-- **Invalid design status** — `status` not one of `draft`, `active`, `implemented`, `superseded`, `abandoned`
-- **Wiki-surface fields on a design file** — `type`, `evidence`, `confidence`, or `novelty` in design-surface frontmatter
+- **Incomplete live dossier** — a dossier whose `design.md` status is `draft` or `active` missing `phases/phase-1.md`, `phases/later.md`, or `obligations.md` (terminal dossiers are frozen and keep whatever skeleton they have)
+- **Missing dossier frontmatter** — a standard dossier file without `title`, `type`, `description`, `created`, or `timestamp`; `design.md` additionally requires `status`
+- **Slot/type mismatch** — a standard dossier file whose declared `type` does not match its skeleton slot (`design.md` → `design`; `phases/phase-{n}.md` → `phase`; `phases/later.md` and `obligations.md` → `roadmap`; `alternatives/{variant}.md` → `alternative`; `alternatives/weighing.md` → `weighing`)
+- **Invalid design status** — `design.md` (or an alternative's) `status` not one of `draft`, `active`, `implemented`, `superseded`, `abandoned`; a phase's `status` not one of `pending`, `in-progress`, `complete`
+- **Wiki fields on a design file** — `evidence`, `confidence`, `novelty`, or `enforcement` in design-surface frontmatter, or a wiki type on a workspace asset
 - **Broken wikilinks in design files** — same resolution rules as wiki pages; `[[designs/{slug}]]` resolves to the dossier's `design.md`
 - **Wiki link into dossier internals** — a wiki page whose wikilink targets anything under `designs/{slug}/` other than the dossier root
 
