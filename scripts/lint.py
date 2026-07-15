@@ -179,11 +179,19 @@ def main():
             slot = dossier_slot("/".join(parts[1:]))
             fm = parse_frontmatter(text)
             if slot is None:
-                # workspace asset: untyped and unvalidated (links still checked),
-                # but never a wiki-typed page smuggled onto the surface
-                if fm and fm.get("type") in TYPES:
-                    errors.append(f"{rel}: wiki type '{fm['type']}' on a "
+                # non-standard file: workspace, which the spec requires to be
+                # untyped (schema/design/dossier.md). A type here is either a
+                # wiki page smuggled onto the surface, or a skeleton file whose
+                # name misses its slot pattern (e.g. phases/phase-two.md) and so
+                # silently fell through to "workspace" — both are errors.
+                t = fm.get("type") if fm else None
+                if t in TYPES:
+                    errors.append(f"{rel}: wiki type '{t}' on a "
                                   f"design-surface file")
+                elif t is not None:
+                    errors.append(f"{rel}: workspace file carries type '{t}' — "
+                                  f"dossier workspace is untyped; a standard file "
+                                  f"must sit at its skeleton path")
                 continue
             if fm is None:
                 errors.append(f"{rel}: no frontmatter")
