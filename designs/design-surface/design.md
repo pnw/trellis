@@ -9,11 +9,13 @@ related:
   - "[[wiki/llm-wiki/decisions/designs-die-into-decisions]]"
 tags: [design-process, schema-design, meta-research, governance]
 created: 2026-07-15
-timestamp: 2026-07-15T12:00:00Z
+timestamp: 2026-07-15T14:00:00Z
 status: implemented
 ---
 
 # The Design Surface
+
+> **Amended 2026-07-15** by [[wiki/llm-wiki/decisions/dossier-phasing-and-types]] (reconciling a parallel session). Two mechanism claims in this frozen body were reversed: dossier files **do** carry declared types, from a vocabulary scoped to the design surface (`design | phase | roadmap | alternative | weighing`), and dossiers gain a required phasing skeleton on live status. The current mechanism is in `schema/design/dossier.md`; this body is retained as the intent-as-built record and read against it, per the freeze rule.
 
 This dossier is the first design authored under its own rules — the design of the surface it lives on. Normative detail is in `schema/design/dossier.md`; this document is the intent and rationale record. Status `implemented`: the surface shipped with the same change that ratified this design, so this document is frozen as the record of what was intended and why.
 

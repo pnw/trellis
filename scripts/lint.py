@@ -36,7 +36,6 @@ TYPE_FOLDER = {"source-capture": "sources", "construct": "constructs",
                "invariant": "invariants"}
 DESIGN_STATUS = {"draft", "active", "implemented", "superseded", "abandoned"}
 DESIGN_REQUIRED = ["title", "type", "description", "created", "timestamp"]
-DESIGN_TYPES = {"design", "phase", "roadmap", "alternative", "weighing"}
 PHASE_STATUS = {"pending", "in-progress", "complete"}
 EPISTEMIC_FIELDS = ("evidence", "confidence", "novelty", "enforcement")
 PHASE_RE = re.compile(r"^phases/phase-\d+\.md$")
