@@ -5,7 +5,7 @@ description: The invariant that a source-capture records only what its source sa
 sources:
   - "[[wiki/llm-wiki/sources/epistemic-metadata-claude-code-thread]]"
 related:
-  - "[[wiki/llm-wiki/designs/evidence-tier-schema]]"
+  - "[[designs/evidence-tier-schema]]"
   - "[[wiki/llm-wiki/syntheses/epistemic-metadata-frameworks]]"
   - "[[wiki/llm-wiki/constructs/three-layer-architecture]]"
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
@@ -30,13 +30,13 @@ Source-captures exist so downstream pages can consume condensed, "clean" represe
 
 1. **Regenerability.** An isolated capture is a pure function of its raw source — auditable, correctable, and regenerable from the raw file alone. Cross-vault leakage makes it a function of (source + vault state at capture time), destroying provenance.
 2. **Fault isolation.** A bad downstream claim traces to two suspects — the source lied, or the capture misread it — rather than N.
-3. **Corroboration independence.** Derived confidence (see [[wiki/llm-wiki/designs/evidence-tier-schema]]) requires captures to be independent measurements. Harmonizing a capture with existing vault content manufactures artificial agreement — the knowledge-base equivalent of circular reporting in intelligence analysis.
+3. **Corroboration independence.** Derived confidence (see [[designs/evidence-tier-schema]]) requires captures to be independent measurements. Harmonizing a capture with existing vault content manufactures artificial agreement — the knowledge-base equivalent of circular reporting in intelligence analysis.
 4. **Write-once maintenance.** An isolated capture never goes stale relative to the vault, only relative to its immutable source — so re-review effort concentrates entirely on downstream pages.
 
 ## Mechanism / Structure
 
 - The capture body divides into **faithful reportage** (Core Contribution, Key Claims, Evidence and Results, Methodology) and **capture-time assessment** (Limitations, Reliability Notes, Extraction Notes) — the capturer speaking, still derivable from the source alone. The groups stay structurally separate so downstream consumers can distinguish source voice from capturer voice.
-- The `evidence` tier is assignable at ingest precisely because it is a property of the source in isolation; claim credibility is not, which is why `confidence` lives downstream. [[wiki/llm-wiki/designs/evidence-tier-schema]]
+- The `evidence` tier is assignable at ingest precisely because it is a property of the source in isolation; claim credibility is not, which is why `confidence` lives downstream. [[designs/evidence-tier-schema]]
 - Contradiction handling: the ingest workflow routes contradictions to a downstream synthesis or assessment (citing both sources) and may leave a pointer in the capture — never the adjudication itself.
 
 ## Distinctions
@@ -53,7 +53,7 @@ Source-captures exist so downstream pages can consume condensed, "clean" represe
 
 ## Related Artifacts
 
-- [[wiki/llm-wiki/designs/evidence-tier-schema]] — depends on this invariant for axis placement
+- [[designs/evidence-tier-schema]] — depends on this invariant for axis placement
 - [[wiki/llm-wiki/constructs/three-layer-architecture]] — the layer model this invariant hardens
 - [[wiki/llm-wiki/syntheses/epistemic-metadata-frameworks]] — the framework survey supplying the circular-reporting rationale
 

@@ -7,8 +7,8 @@ sources:
   - "[[raw/chats/wiki-federation-review-claude-code-thread.md]]"
 related:
   - "[[wiki/llm-wiki/sources/wiki-federation-claude-code-thread]]"
-  - "[[wiki/llm-wiki/designs/wiki-federation-and-inheritance]]"
-  - "[[wiki/llm-wiki/designs/trellis-repo-design]]"
+  - "[[designs/wiki-federation-and-inheritance]]"
+  - "[[designs/trellis-repo-design]]"
 tags: [llm-wiki, federation, meta-research, schema-design, knowledge-management]
 created: 2026-07-10
 timestamp: 2026-07-10T18:00:00Z
@@ -58,5 +58,5 @@ Conversational; owner statements of intent and design philosophy. No empirical c
 
 ## Contribution Routing
 
-- [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]] — revision (breadcrumbs-over-rails principle, schema governance, inheritance, cross-wiki lint, phasing, health metrics)
-- [[wiki/llm-wiki/designs/trellis-repo-design]] — new design (the directed deliverable)
+- [[designs/wiki-federation-and-inheritance]] — revision (breadcrumbs-over-rails principle, schema governance, inheritance, cross-wiki lint, phasing, health metrics)
+- [[designs/trellis-repo-design]] — new design (the directed deliverable)

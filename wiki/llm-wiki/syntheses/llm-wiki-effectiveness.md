@@ -12,8 +12,8 @@ related:
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
   - "[[wiki/llm-wiki/comparisons/llm-wiki-vs-rag]]"
   - "[[wiki/llm-wiki/constructs/three-layer-architecture]]"
-  - "[[wiki/llm-wiki/designs/project-wiki-application-guide]]"
-  - "[[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]]"
+  - "[[designs/project-wiki-application-guide]]"
+  - "[[designs/multi-agent-project-wiki-pattern]]"
   - "[[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]]"
@@ -48,7 +48,7 @@ The pattern has five strong primary applications:
 
 5. **Cross-agent organizational memory.** In multi-agent setups, the wiki becomes a shared context layer preventing fragmentation across disconnected sessions, individual engineer context, and siloed incident history. DORA 2024 finding: AI adoption lifts individual output but degrades system-level throughput when knowledge doesn't persist. — [[wiki/llm-wiki/sources/llm-wiki-effectiveness-deep-research]]
 
-For multi-agent implementation projects, this fifth application is not secondary. It is the organizing case: the wiki is where agents coordinate through durable artifacts instead of inheriting only conversation history. See [[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]].
+For multi-agent implementation projects, this fifth application is not secondary. It is the organizing case: the wiki is where agents coordinate through durable artifacts instead of inheriting only conversation history. See [[designs/multi-agent-project-wiki-pattern]].
 
 ### Why It Works
 
@@ -165,15 +165,15 @@ The Codex thread is stronger on operational integration: the wiki as one layer i
 
 6. **Hybrid architectures are the likely future.** Compiled wiki for recent/frequent context + RAG for broad retrieval at scale. They're complementary, not competing, at different scales.
 
-7. **Multi-agent wikis need coordination artifacts, not just knowledge pages.** A project wiki intended for multiple agents should include task graphs, role pages, handoff notes, evals, and an error book so agents can coordinate through durable state. — [[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]]
+7. **Multi-agent wikis need coordination artifacts, not just knowledge pages.** A project wiki intended for multiple agents should include task graphs, role pages, handoff notes, evals, and an error book so agents can coordinate through durable state. — [[designs/multi-agent-project-wiki-pattern]]
 
 ## Related Artifacts
 
 - [[wiki/llm-wiki/constructs/llm-wiki-pattern]] — the core pattern this synthesis evaluates
 - [[wiki/llm-wiki/comparisons/llm-wiki-vs-rag]] — comparison with the alternative approach
 - [[wiki/llm-wiki/constructs/three-layer-architecture]] — structural foundation enabling the pattern
-- [[wiki/llm-wiki/designs/project-wiki-application-guide]] — operational guide for applying this knowledge
-- [[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]] — multi-agent coordination template built from this synthesis
+- [[designs/project-wiki-application-guide]] — operational guide for applying this knowledge
+- [[designs/multi-agent-project-wiki-pattern]] — multi-agent coordination template built from this synthesis
 - [[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]] — the key content selection principle
 - [[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]] — why wrong content actively hurts
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — how agents should navigate wiki content

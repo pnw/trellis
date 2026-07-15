@@ -7,7 +7,7 @@ sources:
   - "[[wiki/agent-context/subtopics/context-files/sources/augment-how-to-build-agents-md]]"
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
 tags: [agent-context, context-engineering, design-patterns]
 created: 2026-07-05
 timestamp: 2026-07-05T13:27:00Z
@@ -70,7 +70,7 @@ This principle directly governs what belongs in this wiki's `.kiro/steering/` fi
 ## Related Artifacts
 
 - [[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]] — why inferable content is actively harmful, not just wasteful
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — design approaches informed by this principle
+- [[designs/knowledge-surfacing-design]] — design approaches informed by this principle
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — the structural solution (load only what's needed)
 
 ## Open Questions

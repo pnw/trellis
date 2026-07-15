@@ -11,7 +11,7 @@ related:
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
   - "[[wiki/llm-wiki/constructs/source-isolation]]"
   - "[[wiki/llm-wiki/constructs/three-layer-architecture]]"
-  - "[[wiki/llm-wiki/designs/evidence-tier-schema]]"
+  - "[[designs/evidence-tier-schema]]"
 tags: [llm-wiki, agent-memory, knowledge-management, temporal-reasoning, provenance]
 created: 2026-07-08
 timestamp: 2026-07-08T06:30:00Z
@@ -56,7 +56,7 @@ The cognitive-taxonomy row reflects the memory field's convergence on episodic/s
 An *episode* is a discrete unit of raw input — one chat message, one document chunk, one payload — timestamped and stored verbatim before any interpretation; *facts* are what extraction derives from episodes, each pointing back to the episode that justified it. [[wiki/agent-context/subtopics/memory/sources/graphiti-readme]] The terms come from cognitive science's episodic (what happened) vs semantic (what is known) distinction. Two consequences for the wiki analogy:
 
 - **Grain differs by design.** Memory episodes are *event-sized* (a single message) because the stream is ingested automatically; this wiki's raw files are *document-sized* (a whole article or transcript) because a human decides what is worth ingesting. Neither is wrong — grain follows the ingest economics.
-- **A raw file is only an episode if it is verbatim.** An agent-*condensed* transcript saved to `raw/` is already an interpretation — extraction has happened before the provenance boundary, which weakens regenerability. This observation motivated the chat-source fidelity rule in `schema/ingest.md`.
+- **A raw file is only an episode if it is verbatim.** An agent-*condensed* transcript saved to `raw/` is already an interpretation — extraction has happened before the provenance boundary, which weakens regenerability. This observation motivated the chat-source fidelity rule in `schema/wiki/ingest.md`.
 - The wiki's closest true episode stream is `wiki/log.md`: small, timestamped, append-only records of what happened — which is why [[wiki/llm-wiki/constructs/operational-evidence]] treats it as the journal grade.
 
 ## When to Use Agent Memory
@@ -89,4 +89,4 @@ Per this wiki's lightweight bias: borrow ideas, not machinery. Three transfers, 
 
 - [[wiki/llm-wiki/comparisons/llm-wiki-vs-rag]] — the sibling comparison; memory systems are the third substrate alongside RAG and curated wikis
 - [[wiki/llm-wiki/constructs/source-isolation]] — the reconciliation model on the wiki side of the contrast
-- [[wiki/llm-wiki/designs/evidence-tier-schema]] — the trust layer memory systems lack entirely
+- [[designs/evidence-tier-schema]] — the trust layer memory systems lack entirely

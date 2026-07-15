@@ -5,7 +5,7 @@ description: No load-bearing step of this wiki's query workflow may require netw
 sources:
   - "[[wiki/llm-wiki/sources/wiki-operational-history-2026-07-08]]"
 related:
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/entities/qmd]]"
   - "[[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]]"
   - "[[wiki/llm-wiki/constructs/operational-evidence]]"
@@ -25,7 +25,7 @@ At every point in time, every load-bearing step of this wiki's query and ingest 
 
 ## Scope
 
-Binds the Query Workflow and the search-index step of the Ingest Workflow (`AGENTS.md`, `schema/conventions.md`, `schema/ingest.md`) and any future retrieval tooling adopted for this vault. It governs the wiki's *operation*, not its content: pages may discuss network-dependent tools freely.
+Binds the Query Workflow and the search-index step of the Ingest Workflow (`AGENTS.md`, `schema/wiki/conventions.md`, `schema/wiki/ingest.md`) and any future retrieval tooling adopted for this vault. It governs the wiki's *operation*, not its content: pages may discuss network-dependent tools freely.
 
 ## Rationale
 
@@ -33,7 +33,7 @@ This vault is operated by agents inside sandboxed sessions whose network policy 
 
 ## Enforcement
 
-`convention` — the fallback rule documented in the Query Workflow (`AGENTS.md`, `schema/conventions.md`): treat `qmd` as an optimization, never a dependency, and fall back to `Grep`/`Glob`/`Read` directly against `wiki/`. That canonical statement is the mechanism; this page does not restate it, it records the standing constraint behind it. Nothing automated verifies that new workflow steps stay egress-free — a new schema or tooling change must be checked against this invariant by the agent making it.
+`convention` — the fallback rule documented in the Query Workflow (`AGENTS.md`, `schema/wiki/conventions.md`): treat `qmd` as an optimization, never a dependency, and fall back to `Grep`/`Glob`/`Read` directly against `wiki/`. That canonical statement is the mechanism; this page does not restate it, it records the standing constraint behind it. Nothing automated verifies that new workflow steps stay egress-free — a new schema or tooling change must be checked against this invariant by the agent making it.
 
 ## Violation Modes
 
@@ -47,7 +47,7 @@ This vault is operated by agents inside sandboxed sessions whose network policy 
 
 **What removal would require:** either (a) the operating environments' network policies durably allowing the model hosts, or (b) vendoring the embedding models into the environment or repository so no egress is needed. Both are outside or partially outside the vault's control; (b) is actionable but carries repo-size and license considerations.
 
-**Effects of removal:** hybrid semantic retrieval (`qmd query`) could become the default query path rather than an opportunistic enhancement; `scripts/qmd-index.sh` would gain an embed step; the fallback language in `AGENTS.md`/`schema/conventions.md` could be relaxed from "never a dependency" to "preferred path with fallback." This is a two-way door — cheap to relax and cheap to reinstate — so the invariant should be re-checked whenever the environment picture changes, rather than defended indefinitely.
+**Effects of removal:** hybrid semantic retrieval (`qmd query`) could become the default query path rather than an opportunistic enhancement; `scripts/qmd-index.sh` would gain an embed step; the fallback language in `AGENTS.md`/`schema/wiki/conventions.md` could be relaxed from "never a dependency" to "preferred path with fallback." This is a two-way door — cheap to relax and cheap to reinstate — so the invariant should be re-checked whenever the environment picture changes, rather than defended indefinitely.
 
 ## Exceptions
 
@@ -55,7 +55,7 @@ This vault is operated by agents inside sandboxed sessions whose network policy 
 
 ## Related Artifacts
 
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — the design this invariant constrains (Approach 0 / B2 layering is its direct expression)
+- [[designs/knowledge-surfacing-design]] — the design this invariant constrains (Approach 0 / B2 layering is its direct expression)
 - [[wiki/agent-context/subtopics/retrieval/entities/qmd]] — the tool whose environment failure surfaced the constraint
 - [[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]] — lists "environment egress policy is a first-class tooling constraint" as plausible-but-unvalidated; that item tests this invariant
 - [[wiki/llm-wiki/constructs/operational-evidence]] — the evidence class backing it

@@ -7,7 +7,7 @@ sources:
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/llm-as-router]]"
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
 tags: [agent-context, retrieval, agents, knowledge-graph]
 created: 2026-07-05
 timestamp: 2026-07-05T13:27:00Z
@@ -70,5 +70,5 @@ Traditional RAG treats retrieval as a single step before generation. But complex
 
 - [[wiki/agent-context/subtopics/retrieval/constructs/llm-as-router]] — the routing mechanism used at the search step
 - [[wiki/llm-wiki/constructs/llm-wiki-pattern]] — the production side (compile knowledge into wiki); this is the consumption side
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — Approach B (MCP Meta-Tool) implements this via tool calls
+- [[designs/knowledge-surfacing-design]] — Approach B (MCP Meta-Tool) implements this via tool calls
 - [[wiki/llm-wiki/comparisons/llm-wiki-vs-rag]] — the broader comparison this paradigm contributes to

@@ -56,7 +56,7 @@ Tiered `vendor-claim`: this is Anthropic's own report about its own platform's e
 ## Contribution Routing
 
 - Upgrades [[wiki/agent-context/subtopics/retrieval/constructs/meta-tool-pattern]], which previously cited this same 98.7% figure only secondhand via a Synaptic Labs blog post rather than a direct capture of Anthropic's own post.
-- Strengthens Approach B evidence in [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]].
+- Strengthens Approach B evidence in [[designs/knowledge-surfacing-design]].
 
 ## Extraction Notes
 

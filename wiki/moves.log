@@ -2,3 +2,12 @@
 # Lines: <date>  moved    <old> -> <new>
 #        <date>  deleted  <path>  (moved-to <path|peer::path> | merged-into <path> | superseded-by <path> | deleted)
 # Bootstrap note: all content in the initial commit arrived from ai-research (pnw/ai-research @ 3c59088) — see wiki/log.md; departures from ai-research are tombstoned in THAT repo's moves.log.
+2026-07-15  moved    wiki/llm-wiki/designs/evidence-tier-schema.md -> designs/evidence-tier-schema/design.md
+2026-07-15  moved    wiki/llm-wiki/designs/multi-agent-project-wiki-pattern.md -> designs/multi-agent-project-wiki-pattern/design.md
+2026-07-15  moved    wiki/llm-wiki/designs/project-wiki-application-guide.md -> designs/project-wiki-application-guide/design.md
+2026-07-15  moved    wiki/llm-wiki/designs/project-wiki-template.md -> designs/project-wiki-template/design.md
+2026-07-15  moved    wiki/llm-wiki/designs/trellis-repo-design.md -> designs/trellis-repo-design/design.md
+2026-07-15  moved    wiki/llm-wiki/designs/wiki-federation-and-inheritance.md -> designs/wiki-federation-and-inheritance/design.md
+2026-07-15  moved    wiki/llm-wiki/designs/wiki-self-experimentation.md -> designs/wiki-self-experimentation/design.md
+2026-07-15  moved    wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design.md -> designs/knowledge-surfacing-design/design.md
+2026-07-15  moved    wiki/agent-context/subtopics/context-files/designs/agent-context-portability.md -> designs/agent-context-portability/design.md

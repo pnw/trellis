@@ -9,7 +9,7 @@ related:
   - "[[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]]"
   - "[[wiki/agent-context/subtopics/context-files/entities/agents-md]]"
-  - "[[wiki/llm-wiki/designs/project-wiki-template]]"
+  - "[[designs/project-wiki-template]]"
 tags: [agent-context, context-engineering, agents, cost-optimization]
 created: 2026-07-06
 timestamp: 2026-07-06T00:00:00Z
@@ -58,7 +58,7 @@ The pattern is not "more context helps." It is "specific, non-redundant context 
 
 - [[wiki/agent-context/subtopics/context-files/entities/agents-md]] — the emerging standard file format.
 - [[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]] — the selection rule for what belongs in context files.
-- [[wiki/llm-wiki/designs/project-wiki-template]] — applies this construct to project-specific wiki structure.
+- [[designs/project-wiki-template]] — applies this construct to project-specific wiki structure.
 
 ## Open Questions
 

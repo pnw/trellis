@@ -11,7 +11,7 @@ sources:
   - "[[wiki/agent-context/subtopics/retrieval/sources/mcp-progressive-disclosure-security-discussion]]"
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/llm-as-router]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/agentic-search]]"
 tags: [agent-context, agents, architecture, design-patterns, mcp]
@@ -110,6 +110,6 @@ Community reaction to the code-execution variant raised a further, more fundamen
 
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — the broader principle these tools implement
 - [[wiki/agent-context/subtopics/retrieval/constructs/llm-as-router]] — the routing mechanism operating on the discovery tool's index
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — Approach B implements this pattern for knowledge bases
+- [[designs/knowledge-surfacing-design]] — Approach B implements this pattern for knowledge bases
 - [[wiki/agent-context/subtopics/retrieval/constructs/agentic-search]] — the no-tool-schema alternative for document (not tool) retrieval
 - [[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]] — the discovery index should contain only what aids routing

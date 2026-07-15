@@ -1,7 +1,8 @@
 # Per-wiki metadata (see schema/structure.md). Trellis is the upstream method
 # repo, so there is no `upstream:` block — downstream instances have one.
 goal: Develop and evidence the wiki method itself, through its own operation.
-page_types: [source-capture, construct, entity, synthesis, design, assessment, comparison, decision, invariant]
+page_types: [source-capture, construct, entity, synthesis, assessment, comparison, decision, invariant]
+design_surface: true   # designs/ dossiers per schema/design/dossier.md
 link_format: root-relative-wikilink
 agents: [claude-code, kiro, codex]
 peers:

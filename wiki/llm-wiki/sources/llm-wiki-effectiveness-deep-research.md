@@ -7,7 +7,7 @@ sources:
   - "[[raw/articles/llm-wiki-effectiveness-deep-research.md]]"
 related:
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
-  - "[[wiki/llm-wiki/designs/project-wiki-application-guide]]"
+  - "[[designs/project-wiki-application-guide]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]]"
 tags: [llm-wiki, knowledge-management, context-engineering, agent-workflows]
 created: 2026-07-06
@@ -61,6 +61,6 @@ The source is a secondary synthesis across articles, papers, and practitioner gu
 
 ## Contribution Routing
 
-- Updates: [[wiki/llm-wiki/designs/project-wiki-application-guide]]
-- Informs: [[wiki/llm-wiki/designs/project-wiki-template]]
+- Updates: [[designs/project-wiki-application-guide]]
+- Informs: [[designs/project-wiki-template]]
 - Cross-links: [[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]], [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]], [[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]]

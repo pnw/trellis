@@ -6,8 +6,8 @@ sources:
   - "[[wiki/llm-wiki/sources/staged-ingest-instigator-tiers-claude-code-thread]]"
 related:
   - "[[wiki/llm-wiki/constructs/source-isolation]]"
-  - "[[wiki/llm-wiki/designs/evidence-tier-schema]]"
-  - "[[wiki/llm-wiki/designs/wiki-self-experimentation]]"
+  - "[[designs/evidence-tier-schema]]"
+  - "[[designs/wiki-self-experimentation]]"
   - "[[wiki/llm-wiki/decisions/adopt-single-goal-federation]]"
   - "[[wiki/llm-wiki/decisions/designs-die-into-decisions]]"
 tags: [llm-wiki, schema-design, ingest, governance, knowledge-management]
@@ -26,10 +26,10 @@ The owner operates several downstream instances of this method (~4–5), and rep
 
 Adopted 2026-07-13, all in the distributable layer:
 
-1. **Instigator tiers** (`schema/page-types/registry.md`): page types classify into three tiers by who instigates creation — **capture** (`source-capture`: ingest-instigated, one per meaningful source), **interpretive** (`construct`, `entity`, `synthesis`, `comparison`, `assessment`: agent- or user-instigated when a trigger fires), and **authored** (`design`, `decision`, `invariant`: user-instigated; agents draft and propose but do not create unprompted).
+1. **Instigator tiers** (`schema/wiki/page-types/registry.md`): page types classify into three tiers by who instigates creation — **capture** (`source-capture`: ingest-instigated, one per meaningful source), **interpretive** (`construct`, `entity`, `synthesis`, `comparison`, `assessment`: agent- or user-instigated when a trigger fires), and **authored** (`design`, `decision`, `invariant`: user-instigated; agents draft and propose but do not create unprompted).
 2. **Interpretive-tier rules**: ingest is an occasion for interpretation, not a justification; the promotion test asks whether the wiki will reason with a concept again independent of its introducing source (recurrence is retrospective evidence, novel load-bearing concepts are prospective evidence, mere mention is neither); single-source promotion is priced by the existing confidence-derivation rules, not prohibited.
-3. **Two-stage ingest** (`schema/ingest.md`): Stage 1 (capture) is bounded, source-isolated, and delegable to a capture agent with no vault context, ending at the source-capture with routing *candidates*; Stage 2 (review and routing) is vault-aware, consumes the capture instead of the raw source, and owns the user discussion, promotion decisions, contradiction detection, backlink audit, and confidence re-derivation. The stage boundary is normative even when one agent executes both.
-4. **Spec frontmatter**: files under `schema/page-types/` carry minimal machine-readable frontmatter (`spec`, `type`, `tier`, `instigators`, `status`, `updated`) as a diffable upgrade surface for downstream wikis.
+3. **Two-stage ingest** (`schema/wiki/ingest.md`): Stage 1 (capture) is bounded, source-isolated, and delegable to a capture agent with no vault context, ending at the source-capture with routing *candidates*; Stage 2 (review and routing) is vault-aware, consumes the capture instead of the raw source, and owns the user discussion, promotion decisions, contradiction detection, backlink audit, and confidence re-derivation. The stage boundary is normative even when one agent executes both.
+4. **Spec frontmatter**: files under `schema/wiki/page-types/` carry minimal machine-readable frontmatter (`spec`, `type`, `tier`, `instigators`, `status`, `updated`) as a diffable upgrade surface for downstream wikis.
 5. **Composition observability**: `scripts/lint.py` prints per-type page counts and per-topic derived-per-capture ratios as stats — explicitly never findings or targets.
 
 ## Alternatives Considered
@@ -46,12 +46,12 @@ Adopted 2026-07-13, all in the distributable layer:
 - Contradiction detection is now an explicit Stage 2 responsibility (a context-free capturer cannot see the vault); adjudication remains downstream in syntheses/assessments, never in captures.
 - The legacy "discuss before writing anything" step relocates to Stage 2, where interpretation actually happens — preserving its original purpose (the user weighs in on interpretation) in its proper place.
 - Downstream wikis inherit the tiers through schema sync plus the updated `seed/agents-md-template.md`; this is the first post-split schema change, so it also arms the three-breadcrumb inheritance exercise ([[wiki/llm-wiki/decisions/adopt-single-goal-federation]]).
-- Follow-on obligations (tracked in [[wiki/roadmap]]): ingest the downstream friction reports so the motivating evidence becomes citable rather than owner anecdata; revisit the interpretive tier's plural-instigator blurriness once downstream data exists; decide whether spec frontmatter extends beyond `schema/page-types/`.
+- Follow-on obligations (tracked in [[wiki/roadmap]]): ingest the downstream friction reports so the motivating evidence becomes citable rather than owner anecdata; revisit the interpretive tier's plural-instigator blurriness once downstream data exists; decide whether spec frontmatter extends beyond `schema/wiki/page-types/`.
 - Consistent with [[wiki/llm-wiki/decisions/designs-die-into-decisions]], no blueprint design page was created: the change shipped directly as schema, and this decision is its rationale record.
 
 ## Invariants Established
 
-None. The tier table and the occasion-not-justification rule are schema operating rules, canonical in `schema/page-types/registry.md` and `schema/ingest.md`; per the invariant spec they are not restated as invariant pages.
+None. The tier table and the occasion-not-justification rule are schema operating rules, canonical in `schema/wiki/page-types/registry.md` and `schema/wiki/ingest.md`; per the invariant spec they are not restated as invariant pages.
 
 ## Status
 
@@ -61,6 +61,6 @@ None. The tier table and the occasion-not-justification rule are schema operatin
 
 - [[wiki/llm-wiki/sources/staged-ingest-instigator-tiers-claude-code-thread]] — the grounding thread
 - [[wiki/llm-wiki/constructs/source-isolation]] — the invariant-construct the staged capture operationalizes
-- [[wiki/llm-wiki/designs/evidence-tier-schema]] — the pricing machinery the promotion rules lean on
-- [[wiki/llm-wiki/designs/wiki-self-experimentation]] — the governing protocol for this practice change
+- [[designs/evidence-tier-schema]] — the pricing machinery the promotion rules lean on
+- [[designs/wiki-self-experimentation]] — the governing protocol for this practice change
 - [[wiki/llm-wiki/decisions/adopt-single-goal-federation]] — the federation context that makes downstream friction arms-length evidence

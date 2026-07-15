@@ -6,7 +6,7 @@ sources:
   - "[[raw/chats/staged-ingest-instigator-tiers-claude-code-thread.md]]"
 related:
   - "[[wiki/llm-wiki/constructs/source-isolation]]"
-  - "[[wiki/llm-wiki/designs/evidence-tier-schema]]"
+  - "[[designs/evidence-tier-schema]]"
 tags: [llm-wiki, ingest, schema-design, knowledge-management, governance]
 created: 2026-07-13
 timestamp: 2026-07-13T12:00:00Z

@@ -30,7 +30,7 @@ A file format proposed by Mohit Dubey and Open Gigantic (April 2026) that reconc
 
 ## Relevance to the Wiki
 
-ObjectGraph formalizes the [[wiki/agent-context/subtopics/retrieval/constructs/document-consumption-problem]] and proposes a solution via the [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]]. While this wiki doesn't use .og format directly, the constructs it introduces (index routing, dense summaries, typed edges, LLM-as-Router) directly inform [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]].
+ObjectGraph formalizes the [[wiki/agent-context/subtopics/retrieval/constructs/document-consumption-problem]] and proposes a solution via the [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]]. While this wiki doesn't use .og format directly, the constructs it introduces (index routing, dense summaries, typed edges, LLM-as-Router) directly inform [[designs/knowledge-surfacing-design]].
 
 The key lesson: you don't need .og format to get the benefits. OKF + generated indexes achieves similar routing with standard Markdown.
 

@@ -7,7 +7,7 @@ sources:
   - "[[raw/articles/claude-code-agentic-search-vs-rag.md]]"
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/agentic-search]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/entities/model-context-protocol]]"
 tags: [agent-context, retrieval, coding-agents, embeddings]
 created: 2026-07-07
@@ -54,7 +54,7 @@ Tiered `expert-analysis`: an industry interview relayed through an independent, 
 ## Contribution Routing
 
 - Grounds the new [[wiki/agent-context/subtopics/retrieval/constructs/agentic-search]] construct.
-- Directly relevant to [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]'s approach comparison — this is real-world evidence for a "no bespoke index infrastructure" option the design previously did not consider.
+- Directly relevant to [[designs/knowledge-surfacing-design]]'s approach comparison — this is real-world evidence for a "no bespoke index infrastructure" option the design previously did not consider.
 
 ## Extraction Notes
 

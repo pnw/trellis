@@ -6,7 +6,7 @@ description: "Official OpenAI documentation for Codex AGENTS.md discovery, prece
 sources:
   - "[[raw/articles/openai-codex-agents-md-docs.md]]"
 related:
-  - "[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]"
+  - "[[designs/agent-context-portability]]"
   - "[[wiki/agent-context/subtopics/context-files/entities/agents-md]]"
 tags: [agent-context, context-engineering, codex, agents]
 created: 2026-07-06
@@ -44,6 +44,6 @@ Codex can participate in cross-platform context if AGENTS.md is canonical. It ca
 
 ## Contribution Routing
 
-- Creates: `[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]`
+- Creates: `[[designs/agent-context-portability]]`
 - Updates: `[[wiki/agent-context/subtopics/context-files/entities/agents-md]]`
 

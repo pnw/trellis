@@ -5,7 +5,7 @@ description: "Tags organized as a directed acyclic graph (DAG) with root domain 
 sources:
   - "[[wiki/agent-context/subtopics/retrieval/sources/tagrag-tag-guided-hierarchical-knowledge-graph-rag]]"
 related:
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/llm-as-router]]"
 tags: [agent-context, tags, knowledge-graph, retrieval, architecture]
 created: 2026-07-05
@@ -79,7 +79,7 @@ knowledge-management (root)
 
 ## Related Artifacts
 
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — Approach C uses tag hierarchy for compiled graph routing
+- [[designs/knowledge-surfacing-design]] — Approach C uses tag hierarchy for compiled graph routing
 - [[wiki/agent-context/subtopics/retrieval/constructs/llm-as-router]] — the mechanism that navigates the tag hierarchy at query time
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — tag hierarchy as one implementation of progressive disclosure
 - [[wiki/llm-wiki/entities/open-knowledge-format]] — OKF has flat `tags` field; hierarchy must be layered on top

@@ -6,7 +6,7 @@ description: "Paper finding AGENTS.md associated with lower median runtime and r
 sources:
   - "[[raw/papers/agents-md-efficiency.md]]"
 related:
-  - "[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]"
+  - "[[designs/agent-context-portability]]"
   - "[[wiki/agent-context/subtopics/context-files/constructs/context-file-effectiveness]]"
 tags: [agent-context, context-engineering, cost-optimization, agents]
 created: 2026-07-06
@@ -59,4 +59,4 @@ Useful context can reduce downstream wandering and output verbosity. The best cr
 ## Contribution Routing
 
 - Updates: `[[wiki/agent-context/subtopics/context-files/constructs/context-file-effectiveness]]`
-- Creates: `[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]`
+- Creates: `[[designs/agent-context-portability]]`

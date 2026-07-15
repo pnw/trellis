@@ -69,4 +69,4 @@ This grows super-linearly in both T and n.
 - [[wiki/agent-context/subtopics/retrieval/constructs/document-consumption-problem]] — the parent problem this is a failure mode of
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — the solution pattern (read only what's needed)
 - [[ai-research::wiki/token-economics/syntheses/token-cost-optimization]] — broader strategies for reducing LLM costs
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — design approaches that address compounding
+- [[designs/knowledge-surfacing-design]] — design approaches that address compounding

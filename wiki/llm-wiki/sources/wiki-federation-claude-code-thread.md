@@ -7,7 +7,7 @@ sources:
   - "[[raw/chats/wiki-federation-claude-code-thread.md]]"
 related:
   - "[[wiki/llm-wiki/sources/wiki-as-lab-claude-code-thread]]"
-  - "[[wiki/llm-wiki/designs/wiki-federation-and-inheritance]]"
+  - "[[designs/wiki-federation-and-inheritance]]"
   - "[[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]]"
 tags: [llm-wiki, meta-research, federation, portability, knowledge-management, epistemics]
 created: 2026-07-10
@@ -71,6 +71,6 @@ Conversational. The critique cites the vault's own record (log entries, lint out
 
 ## Contribution Routing
 
-- [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]] — new design (the deliverable)
+- [[designs/wiki-federation-and-inheritance]] — new design (the deliverable)
 - [[wiki/overview]] — the single-goal principle bears on the Purpose section once the split lands
 - [[wiki/roadmap]] — self-maintenance item for the phased implementation

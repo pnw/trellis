@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Idempotent local-search index refresh for wiki/ (Approach B2 in
-# wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design.md).
+# Idempotent local-search index refresh for wiki/ and designs/ (Approach B2 in
+# designs/knowledge-surfacing-design/design.md).
 #
 # Safe to run repeatedly and from any environment: on first run it creates
 # the local index and registers the wiki/ collection; on later runs it just
@@ -25,6 +25,10 @@ fi
 
 if ! "${QMD[@]}" collection show wiki >/dev/null 2>&1; then
   "${QMD[@]}" collection add wiki
+fi
+
+if ! "${QMD[@]}" collection show designs >/dev/null 2>&1; then
+  "${QMD[@]}" collection add designs
 fi
 
 "${QMD[@]}" update

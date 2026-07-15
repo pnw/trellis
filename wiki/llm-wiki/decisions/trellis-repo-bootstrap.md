@@ -8,8 +8,8 @@ sources:
 related:
   - "[[wiki/llm-wiki/decisions/adopt-single-goal-federation]]"
   - "[[wiki/llm-wiki/decisions/designs-die-into-decisions]]"
-  - "[[wiki/llm-wiki/designs/wiki-federation-and-inheritance]]"
-  - "[[wiki/llm-wiki/designs/trellis-repo-design]]"
+  - "[[designs/wiki-federation-and-inheritance]]"
+  - "[[designs/trellis-repo-design]]"
 tags: [llm-wiki, federation, portability, schema-design, knowledge-management]
 created: 2026-07-12
 timestamp: 2026-07-12T07:00:00Z
@@ -18,7 +18,7 @@ status: stable
 
 # Trellis Repository Bootstrap Decisions
 
-The concrete repo-shape choices behind this repository, extracted from the bootstrap blueprint ([[wiki/llm-wiki/designs/trellis-repo-design]], now deprecated) when the bootstrap executed and the design died into this record per [[wiki/llm-wiki/decisions/designs-die-into-decisions]].
+The concrete repo-shape choices behind this repository, extracted from the bootstrap blueprint ([[designs/trellis-repo-design]], now deprecated) when the bootstrap executed and the design died into this record per [[wiki/llm-wiki/decisions/designs-die-into-decisions]].
 
 ## Context
 
@@ -40,7 +40,7 @@ The federation decision ([[wiki/llm-wiki/decisions/adopt-single-goal-federation]
 
 ## Consequences
 
-- The repository exists as specified: bootstrap executed 2026-07-12 (commit `a08dbb3`), subsuming Phases 0–1 of the federation design's migration plan — schema granulated into `schema/page-types/` during the copy, `seed/` written, lab content moved, both repos linting clean.
+- The repository exists as specified: bootstrap executed 2026-07-12 (commit `a08dbb3`), subsuming Phases 0–1 of the federation design's migration plan — schema granulated into `schema/wiki/page-types/` during the copy, `seed/` written, lab content moved, both repos linting clean.
 - The distributable/lab boundary gives the upgrade prompt a clean referent: downstream diffs touch only `schema/` and `scripts/`.
 - The blueprint design page is deprecated; the repo layout is documented by the repo itself and `AGENTS.md`, and this page holds the rationale.
 
@@ -55,5 +55,5 @@ None registered as pages. The directory-level distributable/lab boundary is a st
 ## Related Artifacts
 
 - [[wiki/llm-wiki/decisions/adopt-single-goal-federation]] — the founding split decision this one implements
-- [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]] — the live federation design
-- [[wiki/llm-wiki/designs/trellis-repo-design]] — the deprecated bootstrap blueprint this record replaced
+- [[designs/wiki-federation-and-inheritance]] — the live federation design
+- [[designs/trellis-repo-design]] — the deprecated bootstrap blueprint this record replaced

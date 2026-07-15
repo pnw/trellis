@@ -6,7 +6,7 @@ description: "Empirical study of 253 Claude.md files from 242 repositories, docu
 sources:
   - "[[raw/papers/claude-code-agentic-manifests.md]]"
 related:
-  - "[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]"
+  - "[[designs/agent-context-portability]]"
   - "[[wiki/agent-context/subtopics/context-files/constructs/context-file-effectiveness]]"
 tags: [agent-context, context-engineering, claude-code, agents]
 created: 2026-07-06
@@ -60,4 +60,4 @@ Claude-specific manifests already resemble AGENTS.md content, so a canonical AGE
 
 ## Contribution Routing
 
-- Creates: `[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]`
+- Creates: `[[designs/agent-context-portability]]`

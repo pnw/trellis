@@ -8,7 +8,7 @@ sources:
 related:
   - "[[wiki/llm-wiki/constructs/three-layer-architecture]]"
   - "[[wiki/llm-wiki/constructs/source-isolation]]"
-  - "[[wiki/llm-wiki/designs/evidence-tier-schema]]"
+  - "[[designs/evidence-tier-schema]]"
 tags: [llm-wiki, provenance, curation, knowledge-management]
 created: 2026-07-08
 timestamp: 2026-07-08T03:00:00Z
@@ -35,11 +35,11 @@ Out of scope: correcting a genuinely corrupt capture (wrong file saved, truncate
 1. **Re-capture audits** — regenerating or checking a source-capture page against its original requires the original to be unchanged. If `raw/` drifts, the audit compares against a moved target.
 2. **Upstream change detection** — `raw/` files are copies of upstream sources; detecting that an upstream source changed requires a faithful baseline to diff against. Editing the baseline destroys the signal.
 
-Immutability is also what lets [[wiki/llm-wiki/constructs/source-isolation]] hold: a source-capture is regenerable from its raw source only if that source is stable, and `evidence` tiers assigned at ingest ([[wiki/llm-wiki/designs/evidence-tier-schema]]) stay meaningful only if the thing they rate doesn't shift underneath them.
+Immutability is also what lets [[wiki/llm-wiki/constructs/source-isolation]] hold: a source-capture is regenerable from its raw source only if that source is stable, and `evidence` tiers assigned at ingest ([[designs/evidence-tier-schema]]) stay meaningful only if the thing they rate doesn't shift underneath them.
 
 ## Enforcement
 
-`convention` — the operating rule is canonical in `AGENTS.md` (Directory Contract), `schema/ingest.md` (Key Rules), and `schema/structure.md`; this page does not restate that rule, it records the standing constraint behind it — the scope boundaries, violation costs, and removal analysis the canonical one-liners don't carry. Not yet mechanically checked: `scripts/lint.py` does not diff `raw/` against git history. A future deterministic check could flag modifications (as opposed to additions) to tracked `raw/` files in a diff; until then it relies on agent discipline and human review.
+`convention` — the operating rule is canonical in `AGENTS.md` (Directory Contract), `schema/wiki/ingest.md` (Key Rules), and `schema/structure.md`; this page does not restate that rule, it records the standing constraint behind it — the scope boundaries, violation costs, and removal analysis the canonical one-liners don't carry. Not yet mechanically checked: `scripts/lint.py` does not diff `raw/` against git history. A future deterministic check could flag modifications (as opposed to additions) to tracked `raw/` files in a diff; until then it relies on agent discipline and human review.
 
 ## Violation Modes
 
@@ -66,4 +66,4 @@ Two bounded carve-outs, both already stated in the canonical rule:
 
 - [[wiki/llm-wiki/constructs/three-layer-architecture]] — the raw/wiki/schema separation this invariant guards
 - [[wiki/llm-wiki/constructs/source-isolation]] — the downstream invariant that depends on stable raw sources
-- [[wiki/llm-wiki/designs/evidence-tier-schema]] — evidence tiers assume the rated source doesn't change after ingest
+- [[designs/evidence-tier-schema]] — evidence tiers assume the rated source doesn't change after ingest

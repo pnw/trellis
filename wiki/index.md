@@ -4,11 +4,12 @@ okf_version: "0.1"
 
 # Index
 
-See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
+See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]] | design surface: `designs/index.md`
 
 ## LLM Wiki
 
 ### Sources
+* [[wiki/llm-wiki/sources/design-surface-separation-claude-code-thread]] — Owner-directed design thread that began as structured design alternatives inside the wiki and converged on separating designs into their own lifecycle-governed surface with a split schema.
 * [[wiki/llm-wiki/sources/epistemic-metadata-claude-code-thread]] — Claude Code thread surveying epistemic-grading frameworks (Admiralty, ICD 203, GRADE, Wikipedia, product patterns), designing the two-axis evidence/confidence schema, and ratifying the source-isolation invariant.
 * [[wiki/llm-wiki/sources/llm-wiki-effectiveness-codex-thread]] — Codex research thread arguing that an LLM wiki is a selective context substrate for repeated AI workflows, project reasoning, and agent memory rather than a prompt dump or live data store.
 * [[wiki/llm-wiki/sources/karpathy-llm-wiki-knowledge-base-guide]] — Comprehensive guide to Karpathy's LLM Wiki pattern covering full architecture, setup, tooling, community ecosystem, and criticisms.
@@ -42,19 +43,11 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 * [[wiki/llm-wiki/comparisons/llm-wiki-vs-agent-memory]] — How a curated llm-wiki relates to automatic agent-memory systems (Letta, Mem0, Zep/Graphiti) — same pipeline shape, different jobs, and two ideas worth borrowing without importing the machinery.
 * [[wiki/llm-wiki/comparisons/llm-wiki-vs-rag]] — Comparison of the LLM Wiki pattern vs RAG — LLM Wiki wins at personal/team scale, RAG wins at enterprise scale.
 
-### Designs
-* [[wiki/llm-wiki/designs/evidence-tier-schema]] — This wiki's two-axis epistemic schema: a required evidence tier on source-captures and rule-derived confidence on downstream pages, adapted from Admiralty, ICD 203, and GRADE.
-* [[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]] — Design pattern for adapting an LLM wiki into a shared context, coordination, handoff, and evaluation layer for multi-agent implementation projects.
-* [[wiki/llm-wiki/designs/project-wiki-application-guide]] — Curation and promotion guide for project wikis: selecting repertoire pages from source wikis phase by phase, and routing lessons back to the wiki whose goal they serve; instance creation itself belongs to seed/interview.md.
-* [[wiki/llm-wiki/designs/project-wiki-template]] — Reusable structure for adapting this AI research wiki into a codebase-specific knowledge base for agentic implementation workflows.
-* [[wiki/llm-wiki/designs/trellis-repo-design]] — Deprecated 2026-07-12: the bootstrap blueprint, executed and died into its decision pages per the design-lifecycle doctrine; kept as a routing stub.
-* [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]] — The live federation design: single-goal and breadcrumbs-over-rails principles, target topology, schema governance, instantiation manifest, three-breadcrumb inheritance, log taxonomy, and the unexecuted Phase 2–3 roadmap.
-* [[wiki/llm-wiki/designs/wiki-self-experimentation]] — The protocol by which this wiki evolves its own knowledge-base practices as a first-class research activity — hypothesis on change, operational-evidence snapshot, verdict assessment, confidence cascade.
-
 ### Decisions
 * [[wiki/llm-wiki/decisions/adopt-agentic-search-with-qmd]] — Chose grep-based agentic search as the wiki's default retrieval with QMD-style local hybrid search as the graduation path, over embedding-RAG and bespoke index infrastructure.
 * [[wiki/llm-wiki/decisions/adopt-single-goal-federation]] — The founding split decision: one goal per wiki, trellis as upstream method lab and ai-research as downstream instance #1, federated via peer links, move-log forwarding, and manifest-pinned vendored schema. Executed 2026-07-12.
-* [[wiki/llm-wiki/decisions/designs-die-into-decisions]] — Design lifecycle doctrine: when a blueprint's artifact ships, its rationale collapses into decision pages and the descriptive prose is superseded by the artifact itself.
+* [[wiki/llm-wiki/decisions/designs-die-into-decisions]] — Deprecated 2026-07-15: the former design-lifecycle doctrine, superseded by the design-surface separation; kept as the frozen record.
+* [[wiki/llm-wiki/decisions/separate-design-surface]] — Designs leave the wiki: lifecycle-governed dossiers on a separate designs/ surface with their own schema, superseding the design page type and the designs-die-into-decisions doctrine.
 * [[wiki/llm-wiki/decisions/staged-ingest-and-instigator-tiers]] — Adopted instigator tiers (capture/interpretive/authored) for page creation, a two-stage ingest ending capture before vault-aware review, spec frontmatter on page-type files, and lint composition stats.
 * [[wiki/llm-wiki/decisions/trellis-repo-bootstrap]] — Repo-shape decisions for Trellis: the name (and rejected alternates), the two-surface distributable/lab boundary, seeded-not-inherited AGENTS.md, path-preserving migration, plain-copy provenance.
 
@@ -81,9 +74,6 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 
 #### Entities
 * [[wiki/agent-context/subtopics/context-files/entities/agents-md]] — A cross-tool standard for providing AI coding agents with persistent, project-specific operational guidance. Donated to the Agentic AI Foundation (Linux Foundation) in December 2025.
-
-#### Designs
-* [[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]] — A cross-platform pattern for keeping agent instructions portable across Codex, Claude Code, Kiro, and other coding agents without duplicating drifting manifests.
 
 ### Memory
 
@@ -130,9 +120,6 @@ See also: [[wiki/overview]] | [[wiki/roadmap]] | [[wiki/log]]
 
 #### Comparisons
 * [[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]] — Vendor-by-vendor survey of Claude Code, Cursor, Windsurf, GitHub Copilot, Sourcegraph Amp, and OpenAI Codex CLI retrieval architectures, correcting an overstated "industry abandoned embeddings" framing.
-
-#### Designs
-* [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — Design exploration of approaches for surfacing an OKF knowledge graph to agents: agentic search, static index layers, MCP-based tool discovery/hybrid search, and compiled graph strategies.
 
 #### Invariants
 * [[wiki/agent-context/subtopics/retrieval/invariants/sandbox-compatible-retrieval]] — No load-bearing step of this wiki's query workflow may require network egress at query time — every retrieval path must degrade to tools that work in a sandboxed session.

@@ -3,11 +3,11 @@ title: Adopt Agentic Search with QMD for Wiki Retrieval
 type: decision
 description: Chose grep-based agentic search as this wiki's default retrieval, with QMD-style local hybrid search as the graduation path — over embedding-RAG infrastructure and over building a bespoke index or MCP schema.
 sources:
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/agentic-search]]"
   - "[[wiki/agent-context/subtopics/retrieval/entities/qmd]]"
 related:
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]]"
   - "[[ai-research::wiki/intent-compiler/constructs/process-weights]]"
 tags: [agent-context, retrieval, knowledge-management, tooling]
@@ -20,7 +20,7 @@ status: stable
 
 ## Context
 
-The wiki crossed ~100 pages (129 at time of writing), the threshold [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] had named for graduating beyond a flat `index.md`. That page originally proposed building a `wiki/by-tag.md` and eventually a bespoke MCP meta-tool server or compiled typed-edge graph. Research done at the threshold ([[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]]) changed the picture: the real-world graduation path from a flat markdown wiki is grep-based agentic search first, then an off-the-shelf local hybrid-search tool — not custom index infrastructure. Multiple agents (Claude Code, Kiro, Codex) work in this repo, so whatever was chosen needed to be reproducible from committed config, not dependent on one environment's ad-hoc state.
+The wiki crossed ~100 pages (129 at time of writing), the threshold [[designs/knowledge-surfacing-design]] had named for graduating beyond a flat `index.md`. That page originally proposed building a `wiki/by-tag.md` and eventually a bespoke MCP meta-tool server or compiled typed-edge graph. Research done at the threshold ([[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]]) changed the picture: the real-world graduation path from a flat markdown wiki is grep-based agentic search first, then an off-the-shelf local hybrid-search tool — not custom index infrastructure. Multiple agents (Claude Code, Kiro, Codex) work in this repo, so whatever was chosen needed to be reproducible from committed config, not dependent on one environment's ad-hoc state.
 
 ## Decision
 
@@ -50,6 +50,6 @@ This was a *deliberate early build* of B2, ahead of the "wait for an observed ag
 
 ## Related Artifacts
 
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — the design and its Implementation section
+- [[designs/knowledge-surfacing-design]] — the design and its Implementation section
 - [[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]] — the vendor evidence behind the choice
 - [[ai-research::wiki/intent-compiler/constructs/process-weights]] — the ceremony-scaling principle that made "don't overbuild" the default

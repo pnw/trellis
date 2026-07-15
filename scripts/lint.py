@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic lint tier for the research wiki (see schema/lint.md).
+"""Deterministic lint tier for the research wiki and the design surface
+(see schema/wiki/lint.md and schema/design/dossier.md).
 
 Checks frontmatter validity, wikilink resolution, epistemic-field placement,
-folder/type agreement, confidence ceilings, orphans, and staleness.
-Judgment checks (contradictions, circular reporting, isolation violations)
-are agent work and out of scope here.
+folder/type agreement, confidence ceilings, orphans, staleness, and design
+dossier integrity. Judgment checks (contradictions, circular reporting,
+isolation violations) are agent work and out of scope here.
 
 Exit code: 1 if any errors, 0 otherwise (warnings never fail the run).
 """
@@ -17,8 +18,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WIKI = ROOT / "wiki"
+DESIGNS = ROOT / "designs"
 
-TYPES = {"source-capture", "construct", "entity", "synthesis", "design",
+TYPES = {"source-capture", "construct", "entity", "synthesis",
          "assessment", "comparison", "decision", "invariant"}
 EVIDENCE_TIERS = {"empirical-primary", "empirical-secondary", "official-docs",
                   "expert-analysis", "vendor-claim", "llm-generated"}
@@ -26,12 +28,15 @@ EMPIRICAL = {"empirical-primary", "empirical-secondary"}
 CONFIDENCE = {"high", "medium", "low"}
 ENFORCEMENT = {"automated", "manual", "convention", "external", "unenforced"}
 REQUIRED = ["title", "type", "description", "sources", "created", "timestamp"]
-NOVELTY_TYPES = {"construct", "design", "entity"}
+NOVELTY_TYPES = {"construct", "entity"}
 TYPE_FOLDER = {"source-capture": "sources", "construct": "constructs",
                "entity": "entities", "synthesis": "syntheses",
-               "design": "designs", "assessment": "assessments",
+               "assessment": "assessments",
                "comparison": "comparisons", "decision": "decisions",
                "invariant": "invariants"}
+DESIGN_STATUS = {"draft", "active", "implemented", "superseded", "abandoned"}
+DESIGN_REQUIRED = ["title", "description", "status", "created", "timestamp"]
+WIKI_ONLY_FIELDS = ("type", "evidence", "confidence", "novelty", "enforcement")
 META_FILES = {WIKI / "index.md", WIKI / "log.md", WIKI / "overview.md", WIKI / "roadmap.md", WIKI / "episodes.md"}
 STALE_DAYS = 30
 
@@ -61,7 +66,12 @@ def parse_frontmatter(text):
 
 def link_resolves(target):
     t = target.strip()
-    return (ROOT / t).exists() or (ROOT / (t + ".md")).exists()
+    parts = t.split("/")
+    if parts[0] == "designs":
+        if len(parts) == 2:  # dossier root -> its design.md
+            return (ROOT / t / "design.md").exists()
+        return (ROOT / (t + ".md")).exists() or (ROOT / t).is_file()
+    return (ROOT / t).is_file() or (ROOT / (t + ".md")).is_file()
 
 
 def main():
@@ -122,6 +132,50 @@ def main():
         if folder == "sources" and ptype != "source-capture":
             errors.append(f"{rel}: non-source page inside sources/")
 
+    # design surface: dossier integrity (schema/design/dossier.md)
+    design_bodies = {}
+    if DESIGNS.exists():
+        for dossier in sorted(DESIGNS.iterdir()):
+            if not dossier.is_dir():
+                continue
+            if not (dossier / "design.md").exists():
+                errors.append(f"designs/{dossier.name}: dossier without design.md")
+        for path in sorted(DESIGNS.rglob("*.md")):
+            rel = path.relative_to(ROOT).as_posix()
+            text = path.read_text()
+            design_bodies[rel] = text
+            if rel == "designs/index.md":
+                continue
+            fm = parse_frontmatter(text)
+            if fm is None:
+                errors.append(f"{rel}: no frontmatter")
+                continue
+            for field in WIKI_ONLY_FIELDS:
+                if field in fm:
+                    errors.append(f"{rel}: wiki-surface field '{field}' on a design file")
+            if path.name == "design.md":
+                for field in DESIGN_REQUIRED:
+                    if field not in fm:
+                        errors.append(f"{rel}: missing required field '{field}'")
+            status = fm.get("status")
+            if status and status not in DESIGN_STATUS:
+                errors.append(f"{rel}: invalid design status '{status}'")
+
+    # broken wikilinks in design files
+    for rel, text in design_bodies.items():
+        for target in set(WIKILINK.findall(text)):
+            if "::" in target:
+                continue
+            if not link_resolves(target):
+                errors.append(f"{rel}: broken wikilink [[{target}]]")
+
+    # wiki pages must not link into dossier internals (dossier root only)
+    for rel, text in bodies.items():
+        for target in set(WIKILINK.findall(text)):
+            t2 = target.strip()
+            if t2.startswith("designs/") and len(t2.split("/")) > 2:
+                errors.append(f"{rel}: wiki link into dossier internals [[{t2}]]")
+
     # broken wikilinks (all wiki pages incl. meta files)
     for rel, text in bodies.items():
         for target in set(WIKILINK.findall(text)):
@@ -166,8 +220,9 @@ def main():
     # orphans: no incoming links except from index.md or log.md
     NAV_ONLY_FILES = {"wiki/index.md", "wiki/log.md", "wiki/episodes.md"}
     incoming = {key: 0 for key in pages}
-    for rel, text in bodies.items():
-        if rel in NAV_ONLY_FILES:
+    link_sources = {**bodies, **design_bodies}
+    for rel, text in link_sources.items():
+        if rel in NAV_ONLY_FILES or rel == "designs/index.md":
             continue
         src_key = rel[:-3]
         for target in set(WIKILINK.findall(text)):
@@ -196,7 +251,7 @@ def main():
 
     # stats — page counts by type and per-topic capture/derived ratio.
     # Observability only, never a finding: there is no target ratio
-    # (schema/page-types/registry.md, Instigator Tiers).
+    # (schema/wiki/page-types/registry.md, Instigator Tiers).
     type_counts = Counter(fm.get("type") for fm in pages.values()
                           if fm.get("type") in TYPES)
     if type_counts:
@@ -218,8 +273,12 @@ def main():
             ratio = f"{der / cap:.2f} derived per capture" if cap else "no captures"
             print(f"stats: {topic}: {cap} captures, {der} derived ({ratio})")
 
+    dossiers = sorted(d.name for d in DESIGNS.iterdir() if d.is_dir()) if DESIGNS.exists() else []
+    if dossiers:
+        print(f"stats: design surface: {len(dossiers)} dossiers")
+
     print(f"\nlint: {len(errors)} errors, {len(warnings)} warnings, "
-          f"{len(pages)} pages checked")
+          f"{len(pages)} pages checked, {len(dossiers)} dossiers checked")
     return 1 if errors else 0
 
 

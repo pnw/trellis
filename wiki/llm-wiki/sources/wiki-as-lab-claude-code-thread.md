@@ -7,7 +7,7 @@ sources:
   - "[[raw/chats/wiki-as-lab-claude-code-thread.md]]"
 related:
   - "[[wiki/llm-wiki/constructs/operational-evidence]]"
-  - "[[wiki/llm-wiki/designs/wiki-self-experimentation]]"
+  - "[[designs/wiki-self-experimentation]]"
   - "[[wiki/llm-wiki/sources/epistemic-metadata-claude-code-thread]]"
 tags: [llm-wiki, meta-research, knowledge-management, epistemics, self-experimentation]
 created: 2026-07-08
@@ -59,7 +59,7 @@ Conversational reasoning plus examples drawn from the session's own operational 
 ## Contribution Routing
 
 - [[wiki/llm-wiki/constructs/operational-evidence]] — new construct
-- [[wiki/llm-wiki/designs/wiki-self-experimentation]] — new design (the protocol)
+- [[designs/wiki-self-experimentation]] — new design (the protocol)
 - [[wiki/llm-wiki/sources/wiki-operational-history-2026-07-08]] — first operational snapshot capture
 - [[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]] — first findings assessment
 - `AGENTS.md` Core Mission and [[wiki/overview]] Purpose — lab goal statement

@@ -1,7 +1,7 @@
 {
   "name": "research",
   "description": "AI research wiki agent \u2014 ingests sources, maintains wiki, runs lint",
-  "prompt": "You are a research agent that builds and maintains a structured markdown wiki from raw sources.\n\nAGENTS.md is the canonical cross-agent contract for this repository. Treat .kiro/ as the Kiro-specific adapter layer: steering controls Kiro inclusion behavior, skills provide Kiro-native workflows, and this JSON controls Kiro runtime/tool configuration.\n\nYou own everything in wiki/. raw/ exists for re-visiting source captures and change detection against upstream sources. You may create new files in raw/ during ingest (e.g., saving fetched URLs or downloaded PDFs), but never edit existing raw files in place; prune incidental non-source assets only when the user directs.\n\nYou have two Kiro skills: ingest (process a new source into the wiki) and lint (health-check the wiki). Use them when the user asks you to process sources or audit the wiki.",
+  "prompt": "You are a research agent that builds and maintains a structured markdown wiki from raw sources.\n\nAGENTS.md is the canonical cross-agent contract for this repository. Treat .kiro/ as the Kiro-specific adapter layer: steering controls Kiro inclusion behavior, skills provide Kiro-native workflows, and this JSON controls Kiro runtime/tool configuration.\n\nYou own everything in wiki/. designs/ is the design surface (lifecycle-governed dossiers per schema/design/dossier.md); designs are user-instigated \u2014 draft and edit them only on user direction. raw/ exists for re-visiting source captures and change detection against upstream sources. You may create new files in raw/ during ingest (e.g., saving fetched URLs or downloaded PDFs), but never edit existing raw files in place; prune incidental non-source assets only when the user directs.\n\nYou have two Kiro skills: ingest (process a new source into the wiki) and lint (health-check the wiki). Use them when the user asks you to process sources or audit the wiki.",
   "mcpServers": {
     "github": {
       "disabled": true,
@@ -36,7 +36,8 @@
     "write": {
       "allowedPaths": [
         "wiki/**",
-        "raw/**"
+        "raw/**",
+        "designs/**"
       ]
     },
     "shell": {
@@ -59,6 +60,7 @@
   "resources": [
     "file://AGENTS.md",
     "file://wiki/index.md",
+    "file://designs/index.md",
     "file://schema/**/*.md",
     "file://.kiro/steering/**/*.md",
     "skill://.kiro/skills/**/*.md",

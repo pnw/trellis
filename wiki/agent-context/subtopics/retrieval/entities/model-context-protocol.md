@@ -7,7 +7,7 @@ sources:
   - "[[wiki/agent-context/subtopics/retrieval/sources/objectgraph-document-injection-to-knowledge-traversal]]"
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/meta-tool-pattern]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/context-files/entities/agents-md]]"
 tags: [agent-context, agents, standards, mcp]
 created: 2026-07-05
@@ -31,7 +31,7 @@ An open protocol published by Anthropic (2024) that standardizes how AI agents c
 
 ## Relevance to the Wiki
 
-MCP is the enabling technology for Approach B in [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — exposing a wiki's knowledge graph through tool calls rather than static file injection. A wiki MCP server would expose `discover_knowledge` and `read_knowledge` tools, enabling depth-controlled retrieval.
+MCP is the enabling technology for Approach B in [[designs/knowledge-surfacing-design]] — exposing a wiki's knowledge graph through tool calls rather than static file injection. A wiki MCP server would expose `discover_knowledge` and `read_knowledge` tools, enabling depth-controlled retrieval.
 
 MCP is also the substrate on which the [[wiki/agent-context/subtopics/retrieval/constructs/meta-tool-pattern]] operates — progressive tool disclosure is layered on top of the MCP spec (not part of it).
 

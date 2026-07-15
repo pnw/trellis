@@ -73,4 +73,4 @@ K = {(tag_i, summary_i, embedding_i)} for all domain tags
 
 - [[wiki/agent-context/subtopics/retrieval/constructs/hierarchical-tag-chains]] — the structural substrate on which fusion operates
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — fused summaries serve as the "dense pass" layer
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — Approach C could implement fusion at each tag level
+- [[designs/knowledge-surfacing-design]] — Approach C could implement fusion at each tag level

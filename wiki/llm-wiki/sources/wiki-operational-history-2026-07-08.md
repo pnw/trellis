@@ -7,7 +7,7 @@ sources:
   - "[[raw/repos/ai-research-operational-history-2026-07-08.md]]"
 related:
   - "[[wiki/llm-wiki/constructs/operational-evidence]]"
-  - "[[wiki/llm-wiki/designs/wiki-self-experimentation]]"
+  - "[[designs/wiki-self-experimentation]]"
   - "[[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]]"
 tags: [llm-wiki, meta-research, operations, epistemics, self-experimentation]
 created: 2026-07-08

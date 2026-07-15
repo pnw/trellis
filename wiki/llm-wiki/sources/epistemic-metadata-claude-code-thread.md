@@ -6,7 +6,7 @@ sources:
   - "[[raw/chats/epistemic-metadata-claude-code-thread.md]]"
 related:
   - "[[wiki/llm-wiki/syntheses/epistemic-metadata-frameworks]]"
-  - "[[wiki/llm-wiki/designs/evidence-tier-schema]]"
+  - "[[designs/evidence-tier-schema]]"
   - "[[wiki/llm-wiki/constructs/source-isolation]]"
   - "[[ai-research::wiki/intent-compiler/sources/intent-refinement-claude-code-thread]]"
 tags: [epistemics, knowledge-management, provenance, schema-design]
@@ -65,6 +65,6 @@ The thread's framework descriptions (Admiralty grades, ICD 203 confidence/likeli
 ## Contribution Routing
 
 - [[wiki/llm-wiki/syntheses/epistemic-metadata-frameworks]] — frameworks synthesis
-- [[wiki/llm-wiki/designs/evidence-tier-schema]] — the adopted schema design
+- [[designs/evidence-tier-schema]] — the adopted schema design
 - [[wiki/llm-wiki/constructs/source-isolation]] — the ratified invariant as a construct
 - `AGENTS.md` and `schema/` — contract and schema-layer updates implemented from this thread

@@ -10,7 +10,7 @@ sources:
   - https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources
   - https://www.notion.com/help/wiki-verified-pages
 related:
-  - "[[wiki/llm-wiki/designs/evidence-tier-schema]]"
+  - "[[designs/evidence-tier-schema]]"
   - "[[wiki/llm-wiki/constructs/source-isolation]]"
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
   - "[[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]]"
@@ -62,7 +62,7 @@ For an agent-maintained wiki, two additional constraints apply:
 1. **A field earns its place only if it changes agent behavior** — the schema-level analogue of [[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]]. A source tier an agent can filter on qualifies; an asserted usefulness rating does not.
 2. **The credibility axis must live where the cross-vault view exists.** Source reliability is assignable at ingest in isolation; claim credibility requires seeing the whole vault (independence, corroboration, contradiction) and so belongs on downstream synthesis-layer pages — which also preserves [[wiki/llm-wiki/constructs/source-isolation]]. Even in original intelligence practice, the credibility digit is assigned by the receiving analyst relative to existing holdings. [[wiki/llm-wiki/sources/epistemic-metadata-claude-code-thread]]
 
-This wiki's adoption of these findings is specified in [[wiki/llm-wiki/designs/evidence-tier-schema]].
+This wiki's adoption of these findings is specified in [[designs/evidence-tier-schema]].
 
 ## Supporting Evidence
 
@@ -82,7 +82,7 @@ This wiki's adoption of these findings is specified in [[wiki/llm-wiki/designs/e
 
 ## Related Artifacts
 
-- [[wiki/llm-wiki/designs/evidence-tier-schema]] — the schema this synthesis grounds
+- [[designs/evidence-tier-schema]] — the schema this synthesis grounds
 - [[wiki/llm-wiki/constructs/source-isolation]] — why the credibility axis cannot live on captures
 - [[wiki/llm-wiki/entities/open-knowledge-format]] — the base format this extends
 

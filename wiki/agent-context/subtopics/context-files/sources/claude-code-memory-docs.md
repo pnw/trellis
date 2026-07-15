@@ -6,7 +6,7 @@ description: "Official Claude Code documentation for CLAUDE.md loading, AGENTS.m
 sources:
   - "[[raw/articles/claude-code-memory-docs.md]]"
 related:
-  - "[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]"
+  - "[[designs/agent-context-portability]]"
   - "[[wiki/agent-context/subtopics/context-files/entities/agents-md]]"
 tags: [agent-context, context-engineering, claude-code, agents]
 created: 2026-07-06
@@ -45,6 +45,6 @@ Claude is well-suited to a thin-wrapper pattern because `CLAUDE.md` can import c
 
 ## Contribution Routing
 
-- Creates: `[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]`
+- Creates: `[[designs/agent-context-portability]]`
 - Updates: `[[wiki/agent-context/subtopics/context-files/entities/agents-md]]`
 

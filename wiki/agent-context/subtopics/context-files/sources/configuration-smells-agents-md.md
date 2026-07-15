@@ -6,7 +6,7 @@ description: "Paper cataloging common smells in AGENTS.md and CLAUDE.md files, i
 sources:
   - "[[raw/papers/configuration-smells-agents-md.md]]"
 related:
-  - "[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]"
+  - "[[designs/agent-context-portability]]"
   - "[[wiki/agent-context/subtopics/context-files/constructs/context-file-effectiveness]]"
 tags: [agent-context, context-engineering, agents, maintenance]
 created: 2026-07-06
@@ -62,5 +62,5 @@ Cross-platform context design should avoid duplicating large manifests across to
 
 ## Contribution Routing
 
-- Creates: `[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]`
+- Creates: `[[designs/agent-context-portability]]`
 - Updates: `[[wiki/agent-context/subtopics/context-files/constructs/context-file-effectiveness]]`

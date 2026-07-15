@@ -57,7 +57,7 @@ Tiered `official-docs`: authoritative for what the tool is and how it is designe
 ## Contribution Routing
 
 - Grounds the new [[wiki/agent-context/subtopics/retrieval/entities/qmd]] entity page.
-- Provides a concrete "existing implementation" for the local-hybrid-search option in [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]].
+- Provides a concrete "existing implementation" for the local-hybrid-search option in [[designs/knowledge-surfacing-design]].
 
 ## Extraction Notes
 

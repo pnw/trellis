@@ -8,7 +8,7 @@ sources:
 related:
   - "[[wiki/llm-wiki/sources/karpathy-llm-wiki-knowledge-base-guide]]"
   - "[[wiki/llm-wiki/constructs/llm-wiki-pattern]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
 tags: [llm-wiki, knowledge-management, scale, retrieval]
 created: 2026-07-07
 timestamp: 2026-07-07T20:00:00Z
@@ -59,7 +59,7 @@ Tiered `expert-analysis` rather than higher: this is a practitioner's own design
 
 ## Contribution Routing
 
-- Directly informs the "Recommendation for This Wiki" section of [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — this wiki has just crossed the ~100-page threshold this gist names.
+- Directly informs the "Recommendation for This Wiki" section of [[designs/knowledge-surfacing-design]] — this wiki has just crossed the ~100-page threshold this gist names.
 - Corroborates (independently, as a primary source vs. the existing secondary guide) [[wiki/llm-wiki/constructs/llm-wiki-pattern]].
 
 ## Extraction Notes

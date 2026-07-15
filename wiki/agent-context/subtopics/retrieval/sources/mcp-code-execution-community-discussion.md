@@ -54,7 +54,7 @@ Tiered `expert-analysis`: a substantive, multi-contributor practitioner discussi
 
 ## Contribution Routing
 
-- Supplies both corroboration and important limitations/caveats for [[wiki/agent-context/subtopics/retrieval/constructs/meta-tool-pattern]] and the Approach B discussion in [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]].
+- Supplies both corroboration and important limitations/caveats for [[wiki/agent-context/subtopics/retrieval/constructs/meta-tool-pattern]] and the Approach B discussion in [[designs/knowledge-surfacing-design]].
 
 ## Extraction Notes
 

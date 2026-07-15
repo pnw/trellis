@@ -10,7 +10,7 @@ sources:
   - "[[wiki/agent-context/subtopics/retrieval/sources/sourcegraph-context-engineering-hybrid]]"
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/agentic-search]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/entities/qmd]]"
 tags: [agent-context, retrieval, coding-agents, embeddings]
 created: 2026-07-07
@@ -56,5 +56,5 @@ The original claim was **overstated**. Anthropic's move away from embeddings in 
 ## Related Artifacts
 
 - [[wiki/agent-context/subtopics/retrieval/constructs/agentic-search]] — the construct this page corrects the evidentiary scope of
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — where this wiki's own retrieval strategy is decided
+- [[designs/knowledge-surfacing-design]] — where this wiki's own retrieval strategy is decided
 - [[wiki/agent-context/subtopics/retrieval/entities/qmd]] — notably itself a hybrid (BM25 + vector + rerank) tool, consistent with the hybrid consensus found here rather than a pure-grep one

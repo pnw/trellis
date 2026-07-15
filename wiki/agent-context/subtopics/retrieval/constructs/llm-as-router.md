@@ -6,7 +6,7 @@ sources:
   - "[[wiki/agent-context/subtopics/retrieval/sources/objectgraph-document-injection-to-knowledge-traversal]]"
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
 tags: [agent-context, agents, architecture, retrieval]
 created: 2026-07-05
 timestamp: 2026-07-05T13:27:00Z
@@ -71,6 +71,6 @@ The pattern requires no fine-tuning — any instruction-following model can perf
 ## Related Artifacts
 
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — the broader model this mechanism serves
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — design approaches using LLM-as-Router
+- [[designs/knowledge-surfacing-design]] — design approaches using LLM-as-Router
 - [[wiki/agent-context/subtopics/retrieval/constructs/document-consumption-problem]] — the problem this solves at the routing layer
 - [[wiki/agent-context/subtopics/context-files/constructs/non-inferable-details]] — what the index should contain (only what aids routing)

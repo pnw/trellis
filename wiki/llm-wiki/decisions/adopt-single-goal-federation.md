@@ -6,7 +6,7 @@ sources:
   - "[[wiki/llm-wiki/sources/wiki-federation-claude-code-thread]]"
   - "[[wiki/llm-wiki/sources/wiki-federation-review-claude-code-thread]]"
 related:
-  - "[[wiki/llm-wiki/designs/wiki-federation-and-inheritance]]"
+  - "[[designs/wiki-federation-and-inheritance]]"
   - "[[wiki/llm-wiki/decisions/trellis-repo-bootstrap]]"
   - "[[wiki/llm-wiki/decisions/designs-die-into-decisions]]"
   - "[[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]]"
@@ -18,7 +18,7 @@ status: stable
 
 # Adopt Single-Goal Wikis with Federation
 
-The founding decision of the repository split. The live design it produced is [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]]; this page freezes the choice, the rejected paths, and the execution record.
+The founding decision of the repository split. The live design it produced is [[designs/wiki-federation-and-inheritance]]; this page freezes the choice, the rejected paths, and the execution record.
 
 ## Context
 
@@ -37,7 +37,7 @@ Split the repository into two single-goal wikis and federate them:
 - **`trellis`** — upstream: system-of-record for the wiki method (normative `schema/`, `scripts/`, instantiation `seed/`) plus the dogfood lab wiki whose subject is the method itself. Goal: develop and evidence the wiki method through its own operation.
 - **`ai-research`** — downstream instance #1. Goal: the owner's practice reference for building software with AI agents.
 
-Federation mechanics, as designed in [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]]:
+Federation mechanics, as designed in [[designs/wiki-federation-and-inheritance]]:
 
 - **Peer-prefixed cross-wiki links**, resolved through the manifest's `peers` block; unprefixed wikilinks stay intra-wiki.
 - **Outbound-only link responsibility**: a wiki lints and maintains only its own outbound links, including cross-wiki ones.
@@ -49,19 +49,19 @@ Federation mechanics, as designed in [[wiki/llm-wiki/designs/wiki-federation-and
 
 - **Goal-tagging within one repo** — tag pages by which goal they serve. Rejected: no distribution story, evaluator and evaluated stay fused, and the membership test remains advisory.
 - **Monorepo with two wiki roots** — rejected: agents load contracts per-repo, so the boundary agents actually experience stays blurred, and "point a new wiki at the upstream repo" has no clean referent.
-- **Schema-only extraction (no dogfood wiki upstream)** — publish `schema/` plus scripts as a bare template repo. Rejected: it loses the lab — the method research needs its own evidence base, and a practices repo with no real workload violates the workload-stays-real invariant of [[wiki/llm-wiki/designs/wiki-self-experimentation]].
+- **Schema-only extraction (no dogfood wiki upstream)** — publish `schema/` plus scripts as a bare template repo. Rejected: it loses the lab — the method research needs its own evidence base, and a practices repo with no real workload violates the workload-stays-real invariant of [[designs/wiki-self-experimentation]].
 - **First-draft rails** (rejected at the 2026-07-10 owner review, [[wiki/llm-wiki/sources/wiki-federation-review-claude-code-thread]]): a change-classification taxonomy, upstream CHANGELOG and migration-note contracts, mandatory schema↔decision linkage, a pairing lint, a cross-wiki lint tier, and a wiki→schema generation pipeline. All replaced by breadcrumbs plus agent judgment; recorded here so they are not re-proposed.
 
 ## Consequences
 
 - Each repo's health is measurable against its own single goal: `ai-research` on object-level throughput (above all, the pilot), `trellis` on dogfood health plus instance health.
 - Downstream friction becomes arms-length operational evidence — instances existing, upgrades completing, friction reports harvested from downstream logs — structurally separated from self-observation for the first time, and the only evidence axis that can ever escape the `medium` cap.
-- Same-operator wikis still count as **one source** for independence purposes: citing a claim across repos that share an operator adds no corroboration. This closes the confidence-laundering loophole the split would otherwise open; the rule is now normative in `schema/page-format.md`.
+- Same-operator wikis still count as **one source** for independence purposes: citing a claim across repos that share an operator adds no corroboration. This closes the confidence-laundering loophole the split would otherwise open; the rule is now normative in `schema/wiki/page-format.md`.
 - Executed 2026-07-12: trellis bootstrap commit `a08dbb3`; ai-research migration merged at `a56a97d`. Both repos lint clean; departed pages are tombstoned in ai-research's `wiki/moves.log` with `moved-to trellis::...` forwarding addresses.
 
 ## Invariants Established
 
-Two standing constraints originate here: **single-goal-per-wiki** (new content must serve the wiki's stated goal; checked at the lint judgment tier) and **outbound-only-links** (a wiki maintains only its own outbound references). Their `invariant` pages are deliberately not yet written — deferred until the split settles enough that the rules' final wording and enforcement are stable; the roadmap tracks writing them. Until then the rules live normatively in `schema/conventions.md` and the two repos' agent contracts.
+Two standing constraints originate here: **single-goal-per-wiki** (new content must serve the wiki's stated goal; checked at the lint judgment tier) and **outbound-only-links** (a wiki maintains only its own outbound references). Their `invariant` pages are deliberately not yet written — deferred until the split settles enough that the rules' final wording and enforcement are stable; the roadmap tracks writing them. Until then the rules live normatively in `schema/wiki/conventions.md` and the two repos' agent contracts.
 
 ## Status
 
@@ -69,7 +69,7 @@ Two standing constraints originate here: **single-goal-per-wiki** (new content m
 
 ## Related Artifacts
 
-- [[wiki/llm-wiki/designs/wiki-federation-and-inheritance]] — the live federation design (principles, topology, inheritance, log taxonomy)
+- [[designs/wiki-federation-and-inheritance]] — the live federation design (principles, topology, inheritance, log taxonomy)
 - [[wiki/llm-wiki/decisions/trellis-repo-bootstrap]] — the repo-shape decisions of the upstream repository
 - [[wiki/llm-wiki/decisions/designs-die-into-decisions]] — the design-lifecycle doctrine this batch first applied
 - [[wiki/llm-wiki/assessments/schema-evolution-findings-2026-07]] — the pre-split evidence record the critique drew on

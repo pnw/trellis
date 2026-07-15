@@ -11,7 +11,7 @@ sources:
 related:
   - "[[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/document-consumption-problem]]"
-  - "[[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]]"
+  - "[[designs/knowledge-surfacing-design]]"
   - "[[wiki/agent-context/subtopics/retrieval/entities/qmd]]"
   - "[[wiki/agent-context/subtopics/retrieval/comparisons/coding-agent-retrieval-architectures]]"
 tags: [agent-context, retrieval, embeddings, coding-agents]
@@ -68,7 +68,7 @@ Stated rationale for abandoning the embeddings-based alternative was not primari
 
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — the staged-artifact alternative this construct forgoes
 - [[wiki/agent-context/subtopics/retrieval/entities/qmd]] — a concrete tool that adds structured hybrid search back on top of a raw markdown corpus without full embedding-RAG infrastructure
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — where this construct is evaluated as an option for this wiki specifically
+- [[designs/knowledge-surfacing-design]] — where this construct is evaluated as an option for this wiki specifically
 
 ## Open Questions
 

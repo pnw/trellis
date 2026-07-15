@@ -6,7 +6,7 @@ description: "Official Kiro documentation for steering files, inclusion modes, A
 sources:
   - "[[raw/articles/kiro-steering-docs.md]]"
 related:
-  - "[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]"
+  - "[[designs/agent-context-portability]]"
   - "[[wiki/agent-context/subtopics/context-files/entities/agents-md]]"
 tags: [agent-context, context-engineering, kiro, agents]
 created: 2026-07-06
@@ -44,5 +44,5 @@ Kiro is the strongest of the surveyed tools for first-class conditional context 
 
 ## Contribution Routing
 
-- Creates: `[[wiki/agent-context/subtopics/context-files/designs/agent-context-portability]]`
+- Creates: `[[designs/agent-context-portability]]`
 - Updates: `[[wiki/agent-context/subtopics/context-files/entities/agents-md]]`

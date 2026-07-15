@@ -44,7 +44,7 @@ The 12.5% accuracy figure is Cursor's own reported internal evaluation; no exter
 
 ## Reliability Notes
 
-Tiered `official-docs`: authoritative for what Cursor's retrieval architecture actually is (design-intent), which is the load-bearing claim for this capture. The effectiveness claim (12.5% improvement) is a vendor's self-reported number and should be weighted accordingly — see the scoped-claims rule in `schema/page-format.md`.
+Tiered `official-docs`: authoritative for what Cursor's retrieval architecture actually is (design-intent), which is the load-bearing claim for this capture. The effectiveness claim (12.5% improvement) is a vendor's self-reported number and should be weighted accordingly — see the scoped-claims rule in `schema/wiki/page-format.md`.
 
 ## Important References and Linked Material
 

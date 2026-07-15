@@ -66,4 +66,4 @@ The problem manifests in three failure modes:
 - [[wiki/agent-context/subtopics/retrieval/constructs/progressive-disclosure-model]] — the solution pattern
 - [[wiki/agent-context/subtopics/retrieval/constructs/context-compounding]] — failure mode #2 in detail
 - [[wiki/agent-context/subtopics/retrieval/constructs/attention-dilution]] — why the wasted tokens actively harm accuracy
-- [[wiki/agent-context/subtopics/retrieval/designs/knowledge-surfacing-design]] — design approaches that solve this problem for OKF wikis
+- [[designs/knowledge-surfacing-design]] — design approaches that solve this problem for OKF wikis

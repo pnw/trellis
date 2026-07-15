@@ -7,8 +7,8 @@ sources:
   - "[[raw/chats/llm-wiki-effectiveness-codex-thread.md]]"
 related:
   - "[[wiki/llm-wiki/syntheses/llm-wiki-effectiveness]]"
-  - "[[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]]"
-  - "[[wiki/llm-wiki/designs/project-wiki-application-guide]]"
+  - "[[designs/multi-agent-project-wiki-pattern]]"
+  - "[[designs/project-wiki-application-guide]]"
   - "[[wiki/agent-context/subtopics/retrieval/constructs/retrieval-as-reasoning]]"
 tags: [llm-wiki, context-engineering, agent-workflows, multi-agent]
 created: 2026-07-06
@@ -65,5 +65,5 @@ The thread combined web search over LLM wiki, RAG, and context-engineering sourc
 ## Contribution Routing
 
 - Updates: [[wiki/llm-wiki/syntheses/llm-wiki-effectiveness]]
-- Informs: [[wiki/llm-wiki/designs/multi-agent-project-wiki-pattern]]
-- Informs: [[wiki/llm-wiki/designs/project-wiki-template]]
+- Informs: [[designs/multi-agent-project-wiki-pattern]]
+- Informs: [[designs/project-wiki-template]]
