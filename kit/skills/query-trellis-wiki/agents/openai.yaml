@@ -1,0 +1,4 @@
+interface:
+  display_name: "Query Trellis Wiki"
+  short_description: "Answer questions from a Trellis Wiki corpus"
+  default_prompt: "Use $query-trellis-wiki to answer this question from the project wiki."

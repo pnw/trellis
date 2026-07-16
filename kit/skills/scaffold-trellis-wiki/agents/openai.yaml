@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scaffold Trellis Wiki"
+  short_description: "Create a Trellis Wiki bundle from the spec"
+  default_prompt: "Use $scaffold-trellis-wiki to create a new wiki bundle for this project."

@@ -3,11 +3,10 @@ outputs/*.pdf
 .idea/
 .obsidian/workspace.json
 
-# QMD local search index — derived/regenerable artifact, not source.
-# Rebuild with scripts/qmd-index.sh. See
-# wiki/agent-context/subtopics/retrieval/entities/qmd.md.
+# Optional QMD local-search index — derived and regenerable.
+# Rebuild with kit/scripts/qmd-index.sh when that kit feature is installed.
 .qmd/
 node_modules/
 
-# Personal Claude Code overrides — .claude/settings.json (team-wide hooks) is tracked.
+# Personal Claude Code overrides.
 .claude/settings.local.json

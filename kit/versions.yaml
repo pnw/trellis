@@ -1,0 +1,10 @@
+wiki:
+  version: 0.1.0
+  okf_version: "0.1"
+  local_spec: ../specs/wiki.md
+  release_tag: wiki-v0.1.0
+design:
+  version: 0.1.0
+  okf_version: "0.1"
+  local_spec: ../specs/design.md
+  release_tag: design-v0.1.0

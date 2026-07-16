@@ -1,0 +1,11 @@
+spec:
+  kind: trellis-wiki
+  version: 0.1.0
+  okf_version: "0.1"
+  source: https://raw.githubusercontent.com/pnw/trellis/wiki-v0.1.0/specs/wiki.md
+extensions: []
+features:
+  log: false
+  move_log: false
+  local_search: false
+adapters: []

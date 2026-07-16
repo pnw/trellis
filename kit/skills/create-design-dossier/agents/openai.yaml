@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Design Dossier"
+  short_description: "Create an OKF-conformant Trellis design dossier"
+  default_prompt: "Use $create-design-dossier to create a design dossier for this change."

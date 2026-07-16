@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lint Trellis Wiki"
+  short_description: "Check Trellis Wiki structure and judgment quality"
+  default_prompt: "Use $lint-trellis-wiki to audit this project wiki for conformance and quality."

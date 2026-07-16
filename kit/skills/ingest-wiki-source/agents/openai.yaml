@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ingest Wiki Source"
+  short_description: "Capture and route a source into a Trellis Wiki"
+  default_prompt: "Use $ingest-wiki-source to ingest this source into the project wiki."
