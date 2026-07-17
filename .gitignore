@@ -1,7 +1,7 @@
 .DS_Store
 outputs/*.pdf
 .idea/
-.obsidian/workspace.json
+.obsidian/
 
 # Optional QMD local-search index — derived and regenerable.
 # Rebuild with kit/scripts/qmd-index.sh when that kit feature is installed.
