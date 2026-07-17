@@ -7,8 +7,8 @@ description: Create a new Trellis Wiki bundle from the standalone specification 
 
 1. Read the complete Wiki specification selected by the project. In this
    repository, use `../../../specs/wiki.md`.
-2. Confirm the wiki's purpose, scope, and target directory. Ask only for
-   decisions that materially change the result.
+2. Confirm the wiki's single governing goal, scope, and target directory. Ask
+   only for decisions that materially change the result.
 3. Create the minimum bundle first: `index.md`, `overview.md`, and `raw/`.
    Use `../../templates/wiki/bundle/` as editable starting material. Repository
    instructions and the optional manifest live under `templates/wiki/repository/`.

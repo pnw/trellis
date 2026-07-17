@@ -1,7 +1,7 @@
 ---
 title: Alternatives Evaluation
 type: evaluation
-description: Comparison and current judgment across the design alternatives.
+description: Evaluation of design alternatives against the authoritative target.
 timestamp: YYYY-MM-DDTHH:MM:SSZ
 ---
 
@@ -13,8 +13,12 @@ timestamp: YYYY-MM-DDTHH:MM:SSZ
 
 ## Comparison
 
+<!-- Compare every candidate with its design.md baseline and, when multiple exist, one another. -->
+
 ## Judgment
 
 Unresolved.
 
 ## Unresolved Questions
+
+None.

@@ -12,11 +12,17 @@ description: Check a Trellis Wiki for deterministic conformance and judgment-lev
 3. Review judgment concerns the script cannot prove:
    - source captures remain source-isolated;
    - evidence tiers match within-source reliability signals;
-   - construct and entity confidence follows evidence and independence;
+   - construct and entity confidence follows evidence and independence,
+     including same-operator wikis counting as one source and uncaptured URLs
+     counting as no stronger than expert analysis;
    - synthetic pages expose tensions instead of hiding them in a scalar score;
-   - decisions and invariants are asserted artifacts with the required body;
+   - decisions preserve a point-in-time choice and dispose of established
+     invariants when superseded;
+   - invariants are binding constraints with an origin, violation cost,
+     enforcement mechanism, and meaningful removal path;
    - pages serve the purpose and scope stated in `overview.md`;
-   - contradictions, stale claims, and near-duplicates are visible.
+   - factual claims have inline provenance, and contradictions, stale claims,
+     and near-duplicates are visible.
 4. Report errors, warnings, and judgment findings in that order with concrete
    remedies. Do not create a durable lint report file.
 5. Fix findings only when the user requested changes. If the optional log is

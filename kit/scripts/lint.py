@@ -65,7 +65,7 @@ SOURCE_HEADINGS = [
     "Methodology",
     "Limitations and Caveats",
     "Reliability Notes",
-    "Important References",
+    "Important References and Linked Material",
     "Contribution Routing",
     "Extraction Notes",
 ]
@@ -86,15 +86,6 @@ INVARIANT_HEADINGS = [
     "Exceptions",
 ]
 OVERVIEW_HEADINGS = ["Purpose", "Scope", "Navigation", "Current Understanding"]
-DESIGN_HEADINGS = [
-    "Motivation",
-    "Goals",
-    "Non-goals",
-    "Terminology",
-    "Design",
-    "Constraints",
-    "Open Questions",
-]
 PHASE_HEADINGS = [
     "Scope",
     "Deliverables",
@@ -102,7 +93,6 @@ PHASE_HEADINGS = [
     "Dependencies and Constraints",
     "Design Coverage",
 ]
-ALTERNATIVE_HEADINGS = ["Summary", "Design", "Strengths", "Costs and Risks", "Consequences"]
 EVALUATION_HEADINGS = [
     "Decision Question",
     "Criteria",
@@ -184,6 +174,29 @@ def check_exact_headings(path: Path, body: str, expected: list[str], report: Rep
         report.error(path, f"second-level headings must be exactly {expected}; found {actual}")
 
 
+def check_required_headings(path: Path, body: str, required: set[str], report: Report) -> None:
+    actual = set(H2.findall(body))
+    for heading in sorted(required - actual):
+        report.error(path, f"missing required second-level heading `{heading}`")
+
+
+def check_list_fields(path: Path, data: dict, fields: set[str], report: Report) -> None:
+    for field in sorted(fields):
+        if field in data and not isinstance(data[field], list):
+            report.error(path, f"`{field}` must be a YAML list")
+
+
+def check_log(path: Path, text: str, report: Report) -> None:
+    dates = re.findall(r"^##\s+(\d{4}-\d{2}-\d{2})\s*$", text, re.M)
+    if dates != sorted(dates, reverse=True):
+        report.error(path, "date headings must appear newest-first")
+    for line in text.splitlines():
+        if re.match(r"^\s*[-*]\s+", line) and not re.match(
+            r"^\s*[-*]\s+\*\*[^*]+\*\*:\s+\S", line
+        ):
+            report.error(path, "log bullets must begin with a bold operation label")
+
+
 def clean_link_target(raw: str) -> str:
     target = raw.strip()
     if target.startswith("<") and target.endswith(">"):
@@ -256,6 +269,7 @@ def validate_wiki(root: Path) -> int:
             text = path.read_text(encoding="utf-8")
             if FRONTMATTER.match(text):
                 report.error(rel, "log.md must not contain frontmatter")
+            check_log(rel, text, report)
             check_links(path, text, report)
             continue
 
@@ -301,12 +315,24 @@ def validate_wiki(root: Path) -> int:
         elif not ptype.startswith("x-"):
             report.error(rel, f"unknown Trellis type `{ptype}`")
 
+        if ptype in TOPIC_TYPES:
+            if ptype != "source-capture" and "evidence" in data:
+                report.error(rel, "`evidence` is allowed only on source captures")
+            if ptype not in {"construct", "entity"} and "novelty" in data:
+                report.error(rel, f"`novelty` is not allowed on {ptype}")
+            if ptype not in {"construct", "entity"} and "confidence" in data:
+                report.error(rel, f"`confidence` is not allowed on {ptype}")
+            if "enforcement" in data:
+                report.error(
+                    rel,
+                    "`enforcement` is not a frontmatter field; invariant enforcement belongs in the body",
+                )
+
         if ptype == "source-capture":
             if data.get("evidence") not in EVIDENCE:
                 report.error(rel, "missing or invalid `evidence`")
-            for forbidden in ("confidence", "novelty", "related", "status"):
-                if forbidden in data:
-                    report.error(rel, f"`{forbidden}` is not allowed on a source capture")
+            if "status" in data:
+                report.error(rel, "`status` is not allowed on a source capture")
             check_exact_headings(rel, body, SOURCE_HEADINGS, report)
             raw_sources = []
             for source in data.get("sources", []):
@@ -324,12 +350,16 @@ def validate_wiki(root: Path) -> int:
                 report.error(rel, "missing or invalid `confidence`")
             if data.get("status") not in INTERPRETIVE_STATUS:
                 report.error(rel, "missing or invalid interpretive `status`")
+            if "aka" in data and not isinstance(data.get("aka"), list):
+                report.error(rel, "`aka` must be a YAML list")
+            if ptype == "construct" and "coined_by" in data and not isinstance(
+                data.get("coined_by"), str
+            ):
+                report.error(rel, "`coined_by` must be a string")
         elif ptype in {"synthesis", "assessment", "comparison"}:
             check_fields(rel, data, {"status", "related"}, report)
             if data.get("status") not in INTERPRETIVE_STATUS:
                 report.error(rel, "missing or invalid interpretive `status`")
-            if "confidence" in data:
-                report.error(rel, f"`confidence` is not allowed on {ptype}")
         elif ptype == "decision":
             check_fields(rel, data, {"status", "related"}, report)
             if data.get("status") not in DECISION_STATUS:
@@ -339,8 +369,6 @@ def validate_wiki(root: Path) -> int:
             check_fields(rel, data, {"status", "related"}, report)
             if data.get("status") not in INVARIANT_STATUS:
                 report.error(rel, "missing or invalid invariant `status`")
-            if "enforcement" in data:
-                report.error(rel, "invariant enforcement belongs in the body, not frontmatter")
             check_exact_headings(rel, body, INVARIANT_HEADINGS, report)
 
         check_links(path, body, report)
@@ -360,6 +388,8 @@ def dossier_slot(path: Path, root: Path) -> str | None:
         return "phase"
     if rel == "phases/later.md":
         return "roadmap"
+    if rel == "prerequisites.md":
+        return "prerequisites"
     if rel == "obligations.md":
         return "obligations"
     if rel == "alternatives/evaluation.md":
@@ -389,52 +419,92 @@ def validate_design(root: Path) -> int:
 
     alternatives = root / "alternatives"
     if alternatives.exists():
-        candidates = [p for p in alternatives.glob("*.md") if p.name != "evaluation.md"]
-        if len(candidates) < 2:
-            report.error("alternatives/", "must contain at least two candidate documents")
+        candidates = [
+            path
+            for path in alternatives.glob("*.md")
+            if dossier_slot(path, root) == "alternative"
+        ]
+        if not candidates:
+            report.error("alternatives/", "must contain at least one candidate document")
         if not (alternatives / "evaluation.md").exists():
             report.error("alternatives/", "must contain evaluation.md")
+        report.warning(
+            "alternatives/",
+            "verify candidates share one decision question and scope, address the target-content contract, and are evaluated against design.md",
+        )
+
+    assets = root / "assets"
+    for path in sorted(root.rglob("*")):
+        if not path.is_file() or assets in path.parents:
+            continue
+        if dossier_slot(path, root) is None:
+            report.error(
+                path.relative_to(root),
+                "non-standard supporting files must live under assets/",
+            )
 
     for path in sorted(root.rglob("*.md")):
         rel = path.relative_to(root)
-        if path.name == "index.md":
-            text = path.read_text(encoding="utf-8")
-            if FRONTMATTER.match(text):
-                report.error(rel, "dossier index.md must not contain frontmatter")
-            check_links(path, text, report)
-            continue
+        slot = dossier_slot(path, root)
+        if slot is None:
+            if assets not in path.parents:
+                continue
+            try:
+                text = path.read_text(encoding="utf-8")
+            except (OSError, UnicodeDecodeError) as exc:
+                report.error(rel, f"cannot read UTF-8 Markdown ({exc})")
+                continue
+            if not FRONTMATTER.match(text):
+                # Opaque supporting workspace is outside document conformance.
+                continue
         loaded = load_document(path, report)
         if not loaded:
             continue
         data, body = loaded
         check_fields(rel, data, {"title", "type", "description", "timestamp"}, report)
         check_timestamp(rel, data, report)
-        slot = dossier_slot(path, root)
+        check_list_fields(rel, data, {"sources", "related", "tags"}, report)
         ptype = data.get("type")
         if slot:
             if ptype != slot:
                 report.error(rel, f"structural position requires `type: {slot}`")
         elif not isinstance(ptype, str) or not ptype.startswith("x-"):
-            report.error(rel, "non-standard Markdown assets must use an `x-` extension type")
+            report.error(rel, "non-standard concept documents must use an `x-` extension type")
+
+        for forbidden in ("evidence", "confidence", "novelty", "enforcement"):
+            if forbidden in data:
+                report.error(rel, f"`{forbidden}` is not allowed on dossier documents")
 
         if slot == "design":
-            check_fields(rel, data, {"status", "trellis_design_version"}, report)
+            check_fields(
+                rel,
+                data,
+                {"status", "trellis_design_version", "sources", "related", "tags"},
+                report,
+            )
             if data.get("status") not in DESIGN_STATUS:
                 report.error(rel, "missing or invalid design `status`")
             if str(data.get("trellis_design_version")) != "0.1.0":
                 report.error(rel, "must declare `trellis_design_version: \"0.1.0\"`")
-            check_exact_headings(rel, body, DESIGN_HEADINGS, report)
         elif slot == "phase":
-            check_fields(rel, data, {"status"}, report)
-            if data.get("status") not in PHASE_STATUS:
-                report.error(rel, "missing or invalid phase `status`")
+            if "status" in data and data.get("status") not in PHASE_STATUS:
+                report.error(rel, "invalid phase `status`")
             check_exact_headings(rel, body, PHASE_HEADINGS, report)
         elif slot == "roadmap":
             check_exact_headings(rel, body, ["Deferred Scope"], report)
+        elif slot == "prerequisites":
+            check_exact_headings(rel, body, ["Prerequisites"], report)
         elif slot == "obligations":
             check_exact_headings(rel, body, ["Obligations"], report)
         elif slot == "alternative":
-            check_exact_headings(rel, body, ALTERNATIVE_HEADINGS, report)
+            if "status" in data and data.get("status") not in DESIGN_STATUS:
+                report.error(rel, "invalid alternative `status`")
+            check_required_headings(
+                rel,
+                body,
+                {"Scope", "Prerequisites", "Obligations", "Downstream Impacts"},
+                report,
+            )
         elif slot == "evaluation":
             check_exact_headings(rel, body, EVALUATION_HEADINGS, report)
 

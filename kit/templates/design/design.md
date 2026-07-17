@@ -5,34 +5,53 @@ description: One sentence describing the target.
 status: draft
 timestamp: YYYY-MM-DDTHH:MM:SSZ
 trellis_design_version: "0.1.0"
+sources: []
+related: []
+tags: []
 ---
 
 # Design Title
 
-## Motivation
+## Purpose
 
-<!-- Why is this design needed? -->
+<!-- What target does this design establish, and why? -->
 
-## Goals
+## System Boundary
 
-- <!-- Observable outcome. -->
+<!-- What is inside and outside the target? -->
 
-## Non-goals
+## Core Model
 
-- <!-- Explicit exclusion. -->
+<!-- Define the concepts, state, and relationships that govern the target. -->
 
-## Terminology
+## Components
 
-- **Term** — Definition.
+<!-- Describe the target's components and responsibilities. -->
 
-## Design
+## Architecture
 
-<!-- Complete target specification. -->
+<!-- Describe component arrangement, boundaries, and relationships. -->
 
-## Constraints
+## Workflow / Data Flow
+
+<!-- Describe behavior, interactions, and movement of information. -->
+
+## Constraints / Invariants
 
 - <!-- Constraint the target must satisfy. -->
 
-## Open Questions
+## Behavioral Statements (Acceptance Criteria)
+
+- <!-- Observable, testable target behavior. -->
+
+## Decisions
+
+- <!-- Target-local choice necessary to understand the design. -->
+
+## Evidence and Rationale
+
+<!-- Ground the target and explain consequential design choices. -->
+
+## Open Design Questions
 
 None.

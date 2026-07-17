@@ -166,6 +166,11 @@ tags: [subject, concern]
 Paths in `sources` and `related` frontmatter are plain paths or URLs, not
 Markdown links. Links in page bodies use standard Markdown syntax.
 
+Tags describe subject matter and cross-cutting concerns. They MUST NOT repeat a
+page's `type` merely to classify the document and SHOULD NOT mechanically repeat
+its directory path. A tag should remain meaningful when viewed without the
+page's location.
+
 Unknown frontmatter fields MAY be added. Consumers MUST preserve unknown fields
 when round-tripping and MUST tolerate unknown OKF types, even when those
 documents do not satisfy Trellis-specific conformance.
@@ -191,7 +196,9 @@ It MUST contain these exact second-level headings:
 3. `## Navigation`
 4. `## Current Understanding`
 
-The overview is a living front door, not a substitute for topic syntheses.
+The Purpose section MUST state one governing goal for the wiki. Scope defines
+what serves that goal and what belongs elsewhere. The overview is a living
+front door, not a substitute for topic syntheses.
 
 ---
 
@@ -225,7 +232,7 @@ Every source capture MUST cite at least one file under `wiki/raw/`. Derived
 topic pages normally cite source captures. Direct raw citations remain valid
 when no capture exists yet.
 
-Every factual claim, data point, or attributed finding in a page body SHOULD
+Every factual claim, data point, or attributed finding in a page body MUST
 include a standard Markdown link to the supporting capture, raw source, or
 external resource.
 
@@ -269,8 +276,9 @@ Additional frontmatter:
 evidence: empirical-primary | empirical-secondary | official-docs | expert-analysis | vendor-claim | llm-generated
 ```
 
-`evidence` is REQUIRED. `confidence`, `novelty`, `related`, and `status` MUST
-NOT appear.
+`evidence` is REQUIRED. `related` MAY contain navigational pointers to affected
+or adjacent pages; source isolation is epistemic, not navigational.
+`confidence`, `novelty`, and `status` MUST NOT appear.
 
 Evidence values:
 
@@ -285,7 +293,8 @@ Evidence values:
 
 The value rates the source in isolation. Within-source signals such as
 methodology transparency, sample size, conflicts of interest, firsthand versus
-relayed claims, and internal consistency may justify a weaker tier.
+relayed claims, and internal consistency may justify a weaker tier. Reliability
+Notes records the justification for any downward adjustment.
 
 The body MUST contain these exact second-level headings, in this order:
 
@@ -296,7 +305,7 @@ The body MUST contain these exact second-level headings, in this order:
 5. `## Methodology`
 6. `## Limitations and Caveats`
 7. `## Reliability Notes`
-8. `## Important References`
+8. `## Important References and Linked Material`
 9. `## Contribution Routing`
 10. `## Extraction Notes`
 
@@ -304,6 +313,13 @@ An inapplicable section states `Not applicable.` rather than being omitted.
 Core Contribution through Methodology are faithful reportage. Limitations and
 Caveats, Reliability Notes, Contribution Routing, and Extraction Notes are the
 capturer's bounded assessment and routing observations.
+
+Important References and Linked Material lists substantive works, tools,
+repositories, primary sources, and related reading identified by the source.
+Each entry SHOULD explain why the reference matters. Navigation, advertising,
+share links, generic homepages, and unrelated author-profile links SHOULD be
+excluded. Contribution Routing contains candidates for downstream review, not
+commitments to create or update pages.
 
 ### 6.2 `construct`
 
@@ -319,6 +335,16 @@ confidence: high | medium | low
 status: draft | stable | deprecated
 related: []
 ```
+
+Optional construct metadata:
+
+```yaml
+aka: [alternative name]
+coined_by: Person, group, or source
+```
+
+`aka` records alternative names for retrieval and disambiguation. `coined_by`
+identifies the originator when known.
 
 The body MUST address definition, significance, mechanism or structure,
 distinctions from neighboring concepts, supporting evidence, and open questions
@@ -336,6 +362,12 @@ novelty: established | emerging | exploratory | coined
 confidence: high | medium | low
 status: draft | stable | deprecated
 related: []
+```
+
+Optional entity metadata:
+
+```yaml
+aka: [alternative name, handle, or affiliation]
 ```
 
 The body MUST address identity, relevance to the wiki, associated artifacts,
@@ -370,9 +402,19 @@ interest and do not derive from one another. An LLM summary and the sources it
 summarizes are not independent. Multiple documents from the same vendor about
 that vendor's product count as one source for corroboration.
 
+Wikis operated by the same owner and agents count as one source for independence
+purposes. Moving or repeating a claim across repositories does not create
+corroboration.
+
 Official documentation may support a system-intent claim such as what a
 product is designed to do, but it does not independently establish an
-effectiveness claim.
+effectiveness claim. A construct or entity whose material claims are limited to
+system intent MAY reach `medium` from the relevant official documentation alone.
+
+An external resource without a source capture has no assigned evidence tier.
+For confidence derivation it counts as at most `expert-analysis` until captured
+and assessed. A producer MUST NOT infer a stronger tier from the URL or publisher
+alone.
 
 ### 6.6 `synthesis`
 
@@ -454,6 +496,17 @@ The body MUST contain these exact second-level headings, in this order:
 An empty Invariants Established section states `None.` Decisions MUST NOT carry
 `evidence`, `confidence`, or `novelty`.
 
+A decision records a specific choice and MUST NOT be edited into a different
+choice. Reversal creates a new decision whose `related` list identifies the
+superseded record. A superseding decision MUST identify every invariant
+established by the earlier decision and state whether each is repealed,
+re-grounded, or left standing. Superseding a decision does not silently retire
+its invariants.
+
+Use a decision when the choice and rejected alternatives have lasting value.
+Do not use it as the target specification, as a standing constraint, or as an
+assessment that reaches no choice.
+
 ### 6.10 `invariant`
 
 An invariant declares a standing constraint that must continue to hold. It is
@@ -480,6 +533,22 @@ Enforcement describes the actual automated, manual, conventional, or external
 mechanism keeping the constraint true. The Removal Path distinguishes deliberate
 repeal from accidental violation. Invariants MUST NOT carry `evidence`,
 `confidence`, `novelty`, or an `enforcement` frontmatter field.
+
+An invariant MUST name a binding constraint, its scope, the cost or consequence
+of violation, and a meaningful path to deliberate removal. Its origin is one of:
+
+- **decided** — established by a decision, which the Removal Path links and
+  inverts;
+- **inherited** — imposed by an external or legacy boundary; or
+- **discovered-and-ratified** — observed, examined, and deliberately accepted as
+  binding.
+
+A condition that merely happens to be true is not an invariant. A constraint
+local to one design remains in that design unless it is cross-cutting,
+independently referenceable, or requires its own removal analysis. A project
+MUST NOT duplicate a governing specification rule as an invariant; it links to
+the canonical rule instead. Retiring an invariant is a deliberate state change,
+not an accidental breach.
 
 ### 6.11 Extension types
 
@@ -558,8 +627,9 @@ An optional `log.md` follows OKF's chronological log format:
 - **Ingest**: Captured and routed a new source about retrieval.
 ```
 
-Date headings MUST use `YYYY-MM-DD`. Log entries are prose. Logs carry no
-frontmatter and are not typed pages.
+Date headings MUST use `YYYY-MM-DD` and appear newest-first. Each entry MUST be
+a bullet beginning with a bold operation label such as `**Ingest**`, `**Lint**`,
+or `**Move**`. Logs carry no frontmatter and are not typed pages.
 
 ---
 
@@ -572,8 +642,12 @@ A producer:
 - MUST update timestamps after meaningful content changes;
 - MUST keep the root index complete;
 - MUST maintain internal links;
+- MUST maintain inline provenance for factual claims, data, and attributed
+  findings;
+- MUST expose known material uncertainty and contradiction in the body of
+  synthetic pages;
 - SHOULD update existing pages instead of creating near-duplicates;
-- SHOULD expose uncertainty and contradiction in the body of synthetic pages.
+- SHOULD keep tags meaningful without repeating type or location mechanically.
 
 A consumer:
 
@@ -600,8 +674,10 @@ A bundle conforms to Trellis Wiki 0.1 when:
 6. Every standard type follows its location, metadata, and body contract.
 7. Every Markdown raw source follows the `raw-source` envelope.
 8. Every source capture cites a raw source.
-9. Every internal Markdown link resolves.
-10. The root index catalogs the overview and every typed topic page.
+9. Every factual claim, data point, and attributed finding has an inline link to
+   its support.
+10. Every internal Markdown link resolves.
+11. The root index catalogs the overview and every typed topic page.
 
 A document may be valid OKF without being Trellis-conformant. Consumers MUST
 distinguish validation from readability: failure of a Trellis rule does not make

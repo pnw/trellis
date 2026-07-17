@@ -5,7 +5,8 @@ Trellis publishes two independent, agent- and human-readable specifications:
 - [Trellis Wiki](specs/wiki.md) — a typed, provenance-preserving Wiki format
   conforming to Open Knowledge Format (OKF).
 - [Trellis Design](specs/design.md) — a progressive dossier format for target
-  specifications, implementation phases, obligations, and alternatives.
+  specifications with optional implementation phases, prerequisites,
+  obligations, alternatives, and supporting assets.
 
 Each specification is a standalone document. An agent can create a conforming
 artifact from the raw URL without cloning this repository or installing tools.

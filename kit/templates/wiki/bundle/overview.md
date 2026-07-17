@@ -10,7 +10,7 @@ timestamp: YYYY-MM-DDTHH:MM:SSZ
 
 ## Purpose
 
-<!-- State why this wiki exists. -->
+<!-- State exactly one governing goal for this wiki. -->
 
 ## Scope
 

@@ -7,7 +7,7 @@ contract; project-specific instructions below govern how agents apply it here.
 ## Purpose and Scope
 
 Read `wiki/overview.md` before changing wiki content. Keep content within its
-stated purpose and scope.
+single governing goal and stated scope.
 
 ## Core Rules
 
@@ -19,6 +19,19 @@ stated purpose and scope.
 - Update timestamps and the root index after meaningful changes.
 - Use `evidence` on source captures and derived `confidence` only on constructs
   and entities.
+- Link every factual claim, data point, and attributed finding to its support.
+- Count sources by independence, not file or repository count; wikis maintained
+  by the same owner and agents count as one source.
+- Create source captures during ingest. Create interpretive pages only when the
+  wiki will reason with their content again. Create decisions and invariants
+  only at user request or ratification.
+- Adjudicate contradictions in synthetic pages, never inside a source capture.
+
+## Agent Commentary
+
+A heading whose text is exactly `TODO(agent)` is transient human commentary.
+Read its containing section and nearby context, then act, ask, or leave it
+unchanged. If acted on, remove the whole TODO section and report the outcome.
 
 ## Optional Kit
 
