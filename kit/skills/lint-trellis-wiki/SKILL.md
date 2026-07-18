@@ -5,10 +5,17 @@ description: Check a Trellis Wiki for deterministic conformance and judgment-lev
 
 # Lint a Trellis Wiki
 
-1. Read the complete Wiki specification selected by the project. In this
-   repository, use `../../../specs/wiki.md`.
-2. Run `python3 ../../scripts/lint.py wiki <path-to-wiki>` when the kit script is
-   available. Treat its output as the deterministic tier.
+1. Run `python3 ../../scripts/lint.py wiki <path-to-wiki>` when the kit script is
+   available. This deterministic tier does not require loading the Wiki
+   specification. If the user requested only deterministic validation, report
+   its output and stop.
+2. Before a semantic audit, explanation, or repair, ensure the complete Wiki
+   specification selected by the project is in active context. Resolve it from
+   an explicit user selection,
+   `trellis.wiki.specification` in `trellis.yaml`, or, in this repository,
+   `../../../specs/wiki.md`. Prefer an immutable version-tagged URL and do not
+   reload while its full text remains in active context. Reload after
+   compaction before further semantic work.
 3. Review judgment concerns the script cannot prove:
    - source captures remain source-isolated;
    - evidence tiers match within-source reliability signals;

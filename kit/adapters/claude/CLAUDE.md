@@ -4,4 +4,6 @@
 
 Use the installed Trellis skills for scaffolding, ingest, query, lint, and
 design creation. Treat the Wiki and Design versions declared by the project as
-normative; tool adapters must not duplicate their rules.
+normative; tool adapters must not duplicate their rules. Do not import either
+complete specification into `CLAUDE.md`. The thin `AGENTS.md` router and
+`trellis.yaml` select the specification, and a skill loads it only when needed.

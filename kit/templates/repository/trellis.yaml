@@ -1,0 +1,18 @@
+# Keep only mappings for artifact classes installed in the project.
+trellis:
+  wiki:
+    root: wiki/
+    version: "0.1.0"
+    okf_version: "0.1"
+    specification: https://raw.githubusercontent.com/pnw/trellis/wiki-v0.1.0/specs/wiki.md
+    extensions: []
+    features:
+      log: false
+      move_log: false
+      local_search: false
+    adapters: []
+  design:
+    root: designs/
+    version: "0.1.0"
+    okf_version: "0.1"
+    specification: https://raw.githubusercontent.com/pnw/trellis/design-v0.1.0/specs/design.md

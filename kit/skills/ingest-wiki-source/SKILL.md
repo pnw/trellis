@@ -5,8 +5,12 @@ description: Preserve a source in wiki/raw, create a source-isolated capture, an
 
 # Ingest a Wiki Source
 
-1. Read the complete Wiki specification selected by the project. In this
-   repository, use `../../../specs/wiki.md`.
+1. Before semantic Wiki work, ensure the complete Wiki specification selected
+   by the project is in active context. Resolve it from an explicit user
+   selection, `trellis.wiki.specification` in `trellis.yaml`, or,
+   in this repository, `../../../specs/wiki.md`. Prefer an immutable
+   version-tagged URL. Do not reload while its full text remains in active
+   context; reload after compaction before further semantic work.
 2. Inspect `wiki/index.md` and `wiki/overview.md`, then locate the relevant topic
    and existing pages. Reuse an existing topic or subtopic unless a narrower
    named cluster materially improves navigation.

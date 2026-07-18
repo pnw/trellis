@@ -5,7 +5,13 @@ description: Search and synthesize answers from a Trellis Wiki with source-linke
 
 # Query a Trellis Wiki
 
-1. Read `wiki/index.md` and `wiki/overview.md` before searching broadly.
+1. Do not load the complete Wiki specification for an ordinary query. Read
+   `wiki/index.md` and `wiki/overview.md` before searching broadly. If the
+   question requires interpreting conformance or type semantics, ensure the
+   selected specification is in active context, resolving it from
+   `trellis.wiki.specification`, an explicit user selection, or the
+   repository-local specification. Reload it after compaction if semantic work
+   continues.
 2. Locate relevant topic pages using available text or indexed search. Treat
    optional search tooling as an optimization; direct file search must work.
 3. Read only the pages and raw sources needed to answer the question. Prefer
